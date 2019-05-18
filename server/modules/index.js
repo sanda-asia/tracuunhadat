@@ -1,9 +1,15 @@
 var createError = require('http-errors');
 
-
 module.exports = app => {
+    // model global
+    global.User = require("./users/users.model");
+    
     //router
-    app.use('/', (req,res)=> res.json({"message": "Hello my api"}));
+    const userRouter = require("./users/user.routes");
+
+    app.use('/user', userRouter);
+
+    app.use('/', (req,res,next)=> res.json({"message": "Hello my api"}));
 
     // catch 404 and forward to error handler
     app.use(function(req, res, next) {

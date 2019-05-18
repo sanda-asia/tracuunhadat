@@ -7,16 +7,21 @@ const UserSchema = mongoose.Schema({
     password: String,
     address: String,
     phone_number: Number,
-    role: Boolean, // 1, khachs hang 0-admin
-    post_id: [{
+    amount: Number,
+    role: Boolean, // 1, khachs hang 0-admin,
+    save_list: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Post'
+        ref: 'Classified'
     }],
-    blog_id: [{
+    id_blog: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Blog'
     }],
-    project_id: [{
+    id_classified: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Classified'
+    }],
+    id_project: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Project'
     }],
