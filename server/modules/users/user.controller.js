@@ -10,6 +10,7 @@ module.exports = {
             if( isValid == true){
                 let token = jwt.sign({ data: user[0] }, CONSTANTS.SECRET_KEY, { expiresIn: 3600*60});
                 let result = {
+                    "status": true,
                     "message" : "success",
                     "data" : user[0],
                     "token": token
@@ -17,6 +18,7 @@ module.exports = {
                 res.json(result);
             } else{
                 let result = {
+                    "status": false,
                     "message" : "password is not valid",
                     "data" : "",
                     "token": ""
@@ -25,6 +27,7 @@ module.exports = {
             }
         }else{
             result = {
+                "status": false,
                 "message" : "username not found",
                 "data" : "",
                 "token": ""
@@ -39,11 +42,31 @@ module.exports = {
         });
         let token = jwt.sign({ data: newUser }, CONSTANTS.SECRET_KEY, { expiresIn: 3600*60});
         let result = {
+            "status": true,
             "message": "success",
             "data": newUser,
             "token": token
         };
         res.json(result);
 
+    },
+    getProfile: async (req, res)=>{
+        let user = await User.findOne({_id:req.params.id});
+        if(user.password == req.data.password && user.username == req.data.username){
+            let result = {
+                "status" : true,
+                "message" : "login success",
+                "data" : user,
+            }
+            res.json(result);
+        } else{
+            let result = {
+                "status" : false,
+                "message" : "login failure",
+                "data" : ""
+            }
+            res.json(result);
+        }
+        
     }
 }
