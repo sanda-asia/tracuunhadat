@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>tracuunhadat</title>
+
+  </head>
+  <body>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+    <script src="./static/js/jquery-2.1.1.min.js"></script>
+    <script src="./static/js/jquery-ui.min.js"></script>
+    <script src="./static/js/jquery-ui-touch-punch.js"></script>
+    <script src="./static/js/jquery.placeholder.js"></script>
+    <script src="./static/js/bootstrap.js"></script>
+    <script src="./static/js/jquery.touchSwipe.min.js"></script>
+    <script src="./static/js/jquery.slimscroll.min.js"></script>
+    <script src="./static/js/jquery.visible.js"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=true&amp;libraries=geometry&amp;libraries=places" type="text/javascript"></script>
+    <script src="./static/js/infobox.js"></script>
+    <script src="./static/js/jquery.tagsinput.min.js"></script>
+    <script src="./static/js/bootstrap-datepicker.js"></script>
+    <script src="./static/js/app.js" type="text/javascript"></script>
+    <script>
+      $(document).ready(function(){
+        var windowHeight;
+    var windowWidth;
+    var contentHeight;
+    var contentWidth;
+    var windowResizeHandler = function() {
+        windowHeight = window.innerHeight;
+        windowWidth = $(window).width();
+        contentHeight = windowHeight - $('#header').height();
+        contentWidth = $('#content').width();
+
+        $('#leftSide').height(contentHeight);
+        $('.closeLeftSide').height(contentHeight);
+        $('#wrapper').height(contentHeight);
+        $('#mapView').height(contentHeight);
+        $('#content').height(contentHeight);
+        setTimeout(function() {
+            $('.commentsFormWrapper').width(contentWidth);
+        }, 300);
+
+
+        // Add custom scrollbar for left side navigation
+        if(windowWidth > 767) {
+            $('.bigNav').slimScroll({
+                height : contentHeight - $('.leftUserWraper').height()
+            });
+        } else {
+            $('.bigNav').slimScroll({
+                height : contentHeight
+            });
+        }
+        if($('.bigNav').parent('.slimScrollDiv').size() > 0) {
+            $('.bigNav').parent().replaceWith($('.bigNav'));
+            if(windowWidth > 767) {
+                $('.bigNav').slimScroll({
+                    height : contentHeight - $('.leftUserWraper').height()
+                });
+            } else {
+                $('.bigNav').slimScroll({
+                    height : contentHeight
+                });
+            }
+        }
+
+        // reposition of prices and area reange sliders tooltip
+        var priceSliderRangeLeft = parseInt($('.priceSlider .ui-slider-range').css('left'));
+        var priceSliderRangeWidth = $('.priceSlider .ui-slider-range').width();
+        var priceSliderLeft = priceSliderRangeLeft + ( priceSliderRangeWidth / 2 ) - ( $('.priceSlider .sliderTooltip').width() / 2 );
+        $('.priceSlider .sliderTooltip').css('left', priceSliderLeft);
+
+        var areaSliderRangeLeft = parseInt($('.areaSlider .ui-slider-range').css('left'));
+        var areaSliderRangeWidth = $('.areaSlider .ui-slider-range').width();
+        var areaSliderLeft = areaSliderRangeLeft + ( areaSliderRangeWidth / 2 ) - ( $('.areaSlider .sliderTooltip').width() / 2 );
+        $('.areaSlider .sliderTooltip').css('left', areaSliderLeft);
+    }
+        var navExpanded = false;
+    console.log('dfd');
+    $('.navHandler, .closeLeftSide').click(function() {
+        console.log('ccsascsdvasd');
+        if(!navExpanded) {
+            $('.logo').addClass('expanded');
+            $('#leftSide').addClass('expanded');
+            if(windowWidth < 768) {
+                $('.closeLeftSide').show();
+            }
+            $('.hasSub').addClass('hasSubActive');
+            $('.leftNav').addClass('bigNav');
+            if(windowWidth > 767) {
+                $('.full').addClass('m-full');
+            }
+            windowResizeHandler();
+            navExpanded = true;
+        } else {
+            $('.logo').removeClass('expanded');
+            $('#leftSide').removeClass('expanded');
+            $('.closeLeftSide').hide();
+            $('.hasSub').removeClass('hasSubActive');
+            $('.bigNav').slimScroll({ destroy: true });
+            $('.leftNav').removeClass('bigNav');
+            $('.leftNav').css('overflow', 'visible');
+            $('.full').removeClass('m-full');
+            navExpanded = false;
+        }
+    });
+});
+    </script>
+  </body>
+</html>
