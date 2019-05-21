@@ -107,32 +107,10 @@ import '../assets/stylesheets/jquery-ui.css'
 import '../assets/stylesheets/datepicker.css'
 import '../assets/stylesheets/bootstrap.css'
 import '../assets/stylesheets/app.css'
+import '../assets/stylesheets/main.css'
 
 export default {
     name: 'headerSide',
-//     mounted() {
-//     const  str= ['assets/scripts/jquery-2.1.1.min.js',
-//                 'assets/scripts/jquery-ui.min.js',
-//                 'assets/scripts/jquery-ui-touch-punch.js',
-//                 'assets/scripts/jquery.placeholder.js',
-//                 'assets/scripts/bootstrap.js',
-//                 'assets/scripts/jquery.touchSwipe.min.js',
-//                 'assets/scripts/jquery.slimscroll.min.js',
-//                 'http://maps.googleapis.com/maps/api/js?sensor=true&amp;libraries=geometry&amp;libraries=places',
-//                 'assets/scripts/infobox.js',
-//                 'assets/scripts/jquery.tagsinput.min.js',
-//                 'assets/scripts/bootstrap-datepicker.js',
-//                 'assets/scripts/app.js'];
-//     for(var i =0;i<str.length;i++) {
-//         const plugin = document.createElement("script");
-//         plugin.setAttribute(
-//         "src",
-//         str[i]
-//         );
-//         plugin.async = true;
-//         document.head.appendChild(plugin);
-//     }
-//   },
 }
 </script>
 

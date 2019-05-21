@@ -108,6 +108,37 @@
         }
     });
 });
+$('.mapHandler').click(function() {
+    if ($('#mapView').hasClass('mob-min') || 
+        $('#mapView').hasClass('mob-max') || 
+        $('#content').hasClass('mob-min') || 
+        $('#content').hasClass('mob-max')) {
+            $('#mapView').toggleClass('mob-max');
+            $('#content').toggleClass('mob-min');
+    } else {
+        $('#mapView').toggleClass('min');
+        $('#content').toggleClass('max');
+    }
+
+    setTimeout(function() {
+        var priceSliderRangeLeft = parseInt($('.priceSlider .ui-slider-range').css('left'));
+        var priceSliderRangeWidth = $('.priceSlider .ui-slider-range').width();
+        var priceSliderLeft = priceSliderRangeLeft + ( priceSliderRangeWidth / 2 ) - ( $('.priceSlider .sliderTooltip').width() / 2 );
+        $('.priceSlider .sliderTooltip').css('left', priceSliderLeft);
+
+        var areaSliderRangeLeft = parseInt($('.areaSlider .ui-slider-range').css('left'));
+        var areaSliderRangeWidth = $('.areaSlider .ui-slider-range').width();
+        var areaSliderLeft = areaSliderRangeLeft + ( areaSliderRangeWidth / 2 ) - ( $('.areaSlider .sliderTooltip').width() / 2 );
+        $('.areaSlider .sliderTooltip').css('left', areaSliderLeft);
+
+        if (map) {
+            google.maps.event.trigger(map, 'resize');
+        }
+
+        $('.commentsFormWrapper').width($('#content').width());
+    }, 300);
+
+});
     </script>
   </body>
 </html>
