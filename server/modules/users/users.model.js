@@ -9,6 +9,15 @@ const UserSchema = mongoose.Schema({
     phone_number: Number,
     amount: Number,
     role: Boolean, // 1, khachs hang 0-admin,
+    transaction:[{
+        _id:  mongoose.Schema.Types.ObjectId,
+        transaction_amount: Number,
+        transaction_content: String,
+        created_at: {
+            type: Date,
+            default: Date.now
+        }
+    }],
     save_list: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Classified'
