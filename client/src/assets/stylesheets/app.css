@@ -1451,14 +1451,14 @@ a.btn.viewInfo {
     margin-left: 10px;
 }
 #content {
-    overflow-x: hidden;
-    overflow-y: auto;
+
     background-color: #f3f3f3;
-    width: 50%;
+    width: 49%;
     height: 100px;
     border-top: 1px solid #e8e8e8;
     float: right;
     -webkit-overflow-scrolling: touch;
+    margin-right: 8px;
 }
 #content.max {
     width: 100%;
@@ -3073,7 +3073,7 @@ h1.pageTitle {
     border-radius: 0;
     color: #999;
     font-size: 12px;
-    padding: 15px 0;
+    padding: 10px 0;
     background-color: #e8e8e8;
     border-bottom: 1px solid #d9d9d9;
 }
@@ -5297,7 +5297,7 @@ blockquote {
     }
     #content {
         overflow-x: hidden;
-        overflow-y: scroll;
+        overflow-y: hidden;
         background-color: #f3f3f3;
         width: 0%;
         border-top: 1px solid #e8e8e8;

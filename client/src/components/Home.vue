@@ -1,5 +1,8 @@
 <template>
-    <map-place />
+    <div>
+        <map-place />
+        <content-home />
+    </div>
 </template>
 
 <script>

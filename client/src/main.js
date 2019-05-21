@@ -16,6 +16,10 @@ Vue.component('header-page', headerPage);
 import Map from './components/Map';
 Vue.component('map-place', Map);
 
+import ContentHome from './components/ContentHome';
+Vue.component('content-home', ContentHome);
+import MiniPoster from './components/MiniPoster';
+Vue.component('mini-poster', MiniPoster);
 
 import leftNav from './components/Leftnav';
 import jQuery from 'jquery';
