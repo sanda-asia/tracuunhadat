@@ -3,6 +3,7 @@ const CONSTANTS = require("../../config/constants");
 const bcrypt = require("bcryptjs");
 
 module.exports = {
+    // đăng nhập
     login: async (req, res)=>{
         let user = await User.find({username: req.body.username});
         if(user.length != 0){
@@ -35,10 +36,15 @@ module.exports = {
             res.json(result);
         }
     },
+    // đăng kí tài khoản
     register: async (req, res)=>{
         let newUser = await User.create({
             username: req.body.username,
-            password: bcrypt.hashSync(req.body.password)
+            password: bcrypt.hashSync(req.body.password),
+            email: req.body.email,
+            phone_number: req.body.phone_number,
+            amount: 100000, // default 100k
+            role: 1
         });
         let token = jwt.sign({ data: newUser }, CONSTANTS.SECRET_KEY, { expiresIn: 3600*60});
         let result = {
@@ -50,23 +56,9 @@ module.exports = {
         res.json(result);
 
     },
+    // 
     getProfile: async (req, res)=>{
-        let user = await User.findOne({_id:req.params.id});
-        if(user.password == req.data.password && user.username == req.data.username){
-            let result = {
-                "status" : true,
-                "message" : "login success",
-                "data" : user,
-            }
-            res.json(result);
-        } else{
-            let result = {
-                "status" : false,
-                "message" : "login failure",
-                "data" : ""
-            }
-            res.json(result);
-        }
-        
-    }
+        res.json(req.data);
+    },
+
 }

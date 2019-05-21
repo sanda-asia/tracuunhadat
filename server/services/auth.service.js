@@ -2,20 +2,33 @@ const jwt = require("jsonwebtoken");
 const CONSTANTS = require("../config/constants");
 
 
-module.exports = (req, res, next)=>{
+module.exports = async (req, res, next)=>{
     let token = req.headers['x-access-token'];
-    jwt.verify(token, CONSTANTS.SECRET_KEY, (err, decode)=>{
+    jwt.verify(token, CONSTANTS.SECRET_KEY, async (err, decode)=>{
         if(err){
             let result = {
-                "status": true,
-                "message": err.message,
-                "data": "error"
+                "status": false,
+                "message": err.message
             };
             res.json(result);
         } else{
-            req.data = decode.data;
-            next();
-        }
+            let user = await User.findOne({_id:req.params.id});
+            if(user.password == decode.data.password && user.username == decode.data.username){
+                req.data = {
+                    "status" : true,
+                    "message" : "login success",
+                    "data" : user,
+                }
+                next();
+            } else{
+                let result = {
+                    "status" : false,
+                    "message" : "login failure"
+                }
+                res.json(result);
+            }
+                next();
+            }
     })
 
 }
