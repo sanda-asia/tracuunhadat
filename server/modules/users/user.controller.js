@@ -20,18 +20,14 @@ module.exports = {
             } else{
                 let result = {
                     "status": false,
-                    "message" : "password is not valid",
-                    "data" : "",
-                    "token": ""
+                    "message" : "password is not valid"
                 };
                 res.json(result);
             }
         }else{
             result = {
                 "status": false,
-                "message" : "username not found",
-                "data" : "",
-                "token": ""
+                "message" : "username not found"
             };
             res.json(result);
         }
@@ -54,11 +50,31 @@ module.exports = {
             "token": token
         };
         res.json(result);
-
     },
     // 
     getProfile: async (req, res)=>{
-        res.json(req.data);
+        res.json(req.user);
+    },
+    //lấy lịch sử giao dich
+    getTransaction: async (req, res)=>{
+        res.json(req.user.data.transaction);
     },
 
+    getAllListClassifiedChecked: async (req, res)=>{
+        // let list = await User.findOne({_id: req.params.id,})
+    },
+
+    // Cập nhập thông tin của user 
+    putUser: async (req, res)=>{
+        let updateUser = {
+            $set: {
+                username: req.body.username,
+                password: bcrypt.hashSync(req.body.password),
+                email: req.body.email,
+                phone_number: req.body.phone_number
+            }
+        };
+        let result = await User.findOneAndUpdate({_id: req.params.id}, updateUser);
+        res.json();
+    }
 }

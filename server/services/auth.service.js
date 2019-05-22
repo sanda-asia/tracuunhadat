@@ -14,7 +14,7 @@ module.exports = async (req, res, next)=>{
         } else{
             let user = await User.findOne({_id:req.params.id});
             if(user.password == decode.data.password && user.username == decode.data.username){
-                req.data = {
+                req.user = {
                     "status" : true,
                     "message" : "login success",
                     "data" : user,
