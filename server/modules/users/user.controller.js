@@ -62,6 +62,8 @@ module.exports = {
 
     getAllListClassifiedChecked: async (req, res)=>{
         // let list = await User.findOne({_id: req.params.id,})
+        let list = await User.findOne({_id: req.params.id}).populate("id_classified");
+        res.json(list);
     },
 
     // Cập nhập thông tin của user 

@@ -1,13 +1,13 @@
 module.exports = {
    createPost : async (req,res,next) =>{
       try{
-         // list_img_url = [];
-         // let length = req.files.length;
-         // for(i = 0; i < length; i++){
-         //    list_img_url.push(req.files[i].filename);
-         // };
+         let list_img_url = [];
+         let length = req.files.length|0;
+         for(i = 0; i < length; i++){
+            list_img_url.push(req.files[i].filename);
+         };
          let newClassified = await Classified.create({
-            //id_user: req.data._id
+            id_user: req.user.data._id,
             title: req.body.title,
             price: req.body.price,
             area : req.body.area,
@@ -15,62 +15,69 @@ module.exports = {
             category: req.body.category,
             requirement : req.body.requirement,
             address: req.body.address,
-            // images : list_img_url,
+            images : list_img_url,
             time_post: req.body.time_post,
          });
+
+         // //add id classified into table User
+         await User.findOneAndUpdate({_id: newClassified.id_user},
+                     {$push: {id_classified: newClassified._id}});
+
          var result = {
             "data": newClassified,
-            "status": "Created successfully"
+            "message": "Create successfully",
+            "status": true
          };
       }
       catch(error){
          var result = {
-            "status": "Create failed",
+            "status": false,
+            "message": "Create failed",
             "error_msg": error.message
          };
       };
-      //req.data
       res.json(result);
    },
 
    updatePost : async(req, res, next) =>{
       try {
-         // let length = req.files.length;
-         // let list_img_url = [];
-         // for (i < 0; i <length; i++){
-         //    list_img_url.push(req.files[i].filename);
-         // };
-         let classifiedUpdate = {
-            title: req.body.title,
-            price: req.body.price,
-            area : req.body.area,
-            content: req.body.content,
-            category: req.body.category,
-            requirement : req.body.requirement,
-            address: req.body.address,
-            // images : list_img_url,
-            time_post: req.body.time_post,
+         let objectClassifiedUpdate = await Classified.findById(req.params.id);
+
+         // check user author of post
+         if(req.user.data._id != objectClassifiedUpdate.id_user){
+            throw new Error('Action denied! You are not author of post');
          }
 
-         let objectClassifiedUpdate = await Classified.findById(req.params.id);
-         //hình chưa xử lý
-         
-         // // check user author of post
-         // if(req.data._id == objectClassifiedUpdate){
-         //    await Classified.findOneAndUpdate({_id:req.params.id}, classifiedUpdate);
-         // }else{
-         //    throw new Error('Action denied! You are not author of post');
-         // }
-
-         await Classified.findOneAndUpdate({_id:req.params.id}, classifiedUpdate);
+         else{
+            let list_img_url = [];
+            let length = req.files.length|0;
+            for(i = 0; i < length; i++){
+            list_img_url.push(req.files[i].filename);
+            };
+            var classifiedUpdate = {
+               title: req.body.title,
+               price: req.body.price,
+               area : req.body.area,
+               content: req.body.content,
+               category: req.body.category,
+               requirement : req.body.requirement,
+               address: req.body.address,
+               images : list_img_url,
+               time_post: req.body.time_post,
+               last_modified: Date.now()
+            };
+            
+            await Classified.findOneAndUpdate({_id:req.params.id}, classifiedUpdate);
+         }
          var result ={
-            //"data": classifiedUpdate,
-            "id": objectClassifiedUpdate,
-            "status": "Updated successfully"
+            "data": classifiedUpdate,
+            "status": true,
+            "message": "Updated successfully"
          };
       } catch (error) { 
          var result = {
-            "status": "Update failed",
+            "status": false,
+            "message": "Update failed",
             "error_msg": error.message
          }
       }
@@ -79,13 +86,30 @@ module.exports = {
 
    deletePost : async (req, res, next) =>{
       try {
+         let objectClassifiedDelete = await Classified.findById(req.params.id);
+         //findById(): if not found => error
+
+         // check author of post
+         if(req.user.data._id != objectClassifiedDelete.id_user){
+            throw new Error('Action denied! You are not author of post');
+         }
+
          await Classified.findOneAndDelete({_id:req.params.id});
+
+         //delete id_classified in table user
+         await User.update(
+            { _id:req.user.data._id },
+            { $pull: {id_classified: req.params.id }
+         });
+
          var result = {
-            "status": "Deleted successfully"
+            "status": true,
+            "message": "Deleted successfully"
          }
       } catch (error) {
          var result = {
-            "status": "Delete failed",
+            "status": false,
+            "message": "Delete failed",
             "error_msg": error.message
          }
       }

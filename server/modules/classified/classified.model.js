@@ -8,7 +8,6 @@ const ClassifiedSchema = mongoose.Schema({
    category: String,
    requirement: {
       type: String,
-      enum: ['buy', 'sell', 'rent']
    },
    address: String,
    images: [{
@@ -27,6 +26,10 @@ const ClassifiedSchema = mongoose.Schema({
       default: 1     //1: normal 2: vip...
    },
    time_created: {
+      type: Date,
+      default: Date.now
+   },
+   last_modified:{
       type: Date,
       default: Date.now
    },
