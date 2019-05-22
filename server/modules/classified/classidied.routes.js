@@ -21,4 +21,6 @@ router.put("/update-post/:id", auth, upload.array('images'), classifiedControlle
 
 router.delete("/delete-post/:id",auth, classifiedController.deletePost); //auth
 
+router.put("/update-post-level/:id",auth, classifiedController.updateLevelPost); //auth
+
 module.exports = router;

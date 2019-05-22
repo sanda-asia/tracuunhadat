@@ -45,7 +45,7 @@ module.exports = {
 
          // check user author of post
          if(req.user.data._id != objectClassifiedUpdate.id_user){
-            throw new Error('Action denied! You are not author of post');
+            throw new Error('Action denied! You are not author of the post');
          }
 
          else{
@@ -91,7 +91,7 @@ module.exports = {
 
          // check author of post
          if(req.user.data._id != objectClassifiedDelete.id_user){
-            throw new Error('Action denied! You are not author of post');
+            throw new Error('Action denied! You are not author of the post');
          }
 
          await Classified.findOneAndDelete({_id:req.params.id});
@@ -110,6 +110,36 @@ module.exports = {
          var result = {
             "status": false,
             "message": "Delete failed",
+            "error_msg": error.message
+         }
+      }
+      res.json(result);
+   },
+
+   updateLevelPost: async(req,res) => {
+      try{
+         let postUpdateLevel = await Classified.findById(req.params.id);
+         if(req.user.data._id != postUpdateLevel.id_user){
+            throw new Error("Action denied! You are not author of the post");
+         }
+
+         // if(postUpdateLevel.status == 0){
+         //    throw new Error("Post is pendding! Can't upgrade level");
+         // }
+
+         await Classified.findOneAndUpdate(
+            { _id: req.params.id },
+            { level: req.body.level }
+         );
+         var result = {
+            "status": true,
+            "message": "Update level successfully!"
+         }
+      }
+      catch(error){
+         var result ={
+            "status": false,
+            "message": "Update false",
             "error_msg": error.message
          }
       }
