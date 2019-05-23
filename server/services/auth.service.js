@@ -12,23 +12,18 @@ module.exports = async (req, res, next)=>{
             };
             res.json(result);
         } else{
-            let user = await User.findOne({_id:req.params.id});
-            if(user.password == decode.data.password && user.username == decode.data.username){
-                req.user = {
-                    "status" : true,
-                    "message" : "login success",
-                    "data" : user,
-                }
+            // let user = await User.findOne({_id:req.params.id});
+            // if(user.password == decode.data.password && user.username == decode.data.username){
+                req.user = decode;
                 next();
-            } else{
-                let result = {
-                    "status" : false,
-                    "message" : "login failure"
-                }
-                res.json(result);
-            }
-                next();
+            // } else{
+            //     let result = {
+            //         "status" : false,
+            //         "message" : "login failure"
+            //     }
+            //     res.json(result);
+            // }
+                // next();
             }
     })
-
 }

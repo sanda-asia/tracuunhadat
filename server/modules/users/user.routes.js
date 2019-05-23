@@ -10,6 +10,7 @@ router.post("/dang-nhap", userController.login);
 router.post("/dang-ky", userController.register);
 
 // get profile 
+
 router.get("/:id", auth, check.isUser ,userController.getProfile);
 
 //Lấy danh sách tin đăng được duyệt
@@ -17,6 +18,7 @@ router.get("/:id/list/checked", userController.getAllListClassifiedChecked);
 
 // Lấy lịch sử giao dich
 router.get("/:id/transaction", userController.getTransaction);
+
 
 // Cập nhập thông tin user
 router.put("/:id/", userController.putUser);
