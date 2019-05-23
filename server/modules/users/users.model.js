@@ -9,6 +9,7 @@ const UserSchema = mongoose.Schema({
     phone_number: Number,
     amount: Number,
     role: Boolean, // 1, khachs hang 0-admin,
+    show_agency: Number, // 0: không hiển thị, 1: đang chờ duyệt, 2: hiển thị
     transaction:[{
         _id:  mongoose.Schema.Types.ObjectId,
         transaction_amount: Number,

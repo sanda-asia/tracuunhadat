@@ -19,6 +19,9 @@ router.get("/:id/list/checked", userController.getAllListClassifiedChecked);
 router.get("/:id/transaction", userController.getTransaction);
 
 // Cập nhập thông tin user
-router.put("/:id/transaction", userController.putUser);
+router.put("/:id/", userController.putUser);
+
+// Yêu cầu hiện thị thông tin lên chuyên mục top môi giới
+router.get("/:id/show-agency", userController.showAgency);
 
 module.exports = router;

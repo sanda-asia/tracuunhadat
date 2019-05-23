@@ -67,14 +67,28 @@ module.exports = {
     // Cập nhập thông tin của user 
     putUser: async (req, res)=>{
         let updateUser = {
-            $set: {
-                username: req.body.username,
-                password: bcrypt.hashSync(req.body.password),
-                email: req.body.email,
-                phone_number: req.body.phone_number
-            }
+            username: req.body.username,
+            password: bcrypt.hashSync(req.body.password),
+            email: req.body.email,
+            phone_number: req.body.phone_number
         };
         let result = await User.findOneAndUpdate({_id: req.params.id}, updateUser);
-        res.json();
+        res.json({
+            "status" : true,
+            "message" : "Updated successfuly",
+            "data" : result
+        });
+    },
+
+    // Yêu cầu Hiện thị profile lên top môi giới
+    showAgency: async (req, res)=>{
+        let updateUser = {
+            "show_agency": 1
+        };
+        let user = await User.findOneAndUpdate({_id:req.params.id}, updateUser);
+        res.json({
+            "status" : true,
+            "message" : "request was sent"
+        });
     }
 }

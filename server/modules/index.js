@@ -6,10 +6,10 @@ module.exports = app => {
     
     //router
     const userRouter = require("./users/user.routes");
-    const adminRouter = require("./admin/admin.routes")
+    const settingRouter = require("./setting/setting.routers");
 
     app.use('/user', userRouter);
-    
+    app.use('/setting', settingRouter);
     
 
     app.use('/', (req,res,next)=> res.json({"message": "Hello my api"}));
