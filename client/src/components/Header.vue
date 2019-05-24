@@ -4,7 +4,7 @@
             <div class="logo">
                 <a href="index.html">
                     <span class="fa fa-home marker"></span>
-                    <span class="logoText">reales</span>
+                    <span class="logoText">Home</span>
                 </a>
             </div>
             <a href="#" class="navHandler"><span class="fa fa-bars"></span></a>

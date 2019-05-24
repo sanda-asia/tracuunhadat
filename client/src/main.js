@@ -18,8 +18,15 @@ Vue.component('map-place', Map);
 
 import ContentHome from './components/ContentHome';
 Vue.component('content-home', ContentHome);
+
 import MiniPoster from './components/MiniPoster';
 Vue.component('mini-poster', MiniPoster);
+
+import ModalPopUp from './components/ModalPopUp';
+Vue.component('modal-pop-up', ModalPopUp);
+
+import Pagination from './components/Pagination';
+Vue.component('pagination', Pagination);
 
 import leftNav from './components/Leftnav';
 import jQuery from 'jquery';

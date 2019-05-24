@@ -2,6 +2,7 @@
     <div>
         <map-place />
         <content-home />
+        
     </div>
 </template>
 
