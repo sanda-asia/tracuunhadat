@@ -13,7 +13,7 @@ var storage = multer.diskStorage({
    }
  });
  
- var upload = multer({ storage: storage });
+var upload = multer({ storage: storage });
 
 router.post("/create-post", auth, upload.array('images'), classifiedController.createPost); //auth
 

@@ -10,25 +10,25 @@ import Resource from 'vue-resource';
 
 Vue.config.productionTip = false;
 // Import global Vue Components
-import headerPage from './components/Header';
+import headerPage from './components/Layout/Header';
 Vue.component('header-page', headerPage);
 
-import Map from './components/Map';
+import Map from './components/Layout/Map';
 Vue.component('map-place', Map);
 
-import ContentHome from './components/ContentHome';
+import ContentHome from './components/Home/ContentHome';
 Vue.component('content-home', ContentHome);
 
-import MiniPoster from './components/MiniPoster';
+import MiniPoster from './components/Home/MiniPoster';
 Vue.component('mini-poster', MiniPoster);
 
-import ModalPopUp from './components/ModalPopUp';
+import ModalPopUp from './components/Home/ModalPopUp';
 Vue.component('modal-pop-up', ModalPopUp);
 
-import Pagination from './components/Pagination';
+import Pagination from './components/Layout/Pagination';
 Vue.component('pagination', Pagination);
 
-import leftNav from './components/Leftnav';
+import leftNav from './components/Layout/Leftnav';
 import jQuery from 'jquery';
 global.jQuery = jQuery;
 Vue.component('left-nav', leftNav);

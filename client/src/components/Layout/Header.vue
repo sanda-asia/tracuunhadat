@@ -101,13 +101,13 @@
 </template>
 
 <script>
-import '../assets/stylesheets/font-awesome.css'
-import '../assets/stylesheets/simple-line-icons.css'
-import '../assets/stylesheets/jquery-ui.css'
-import '../assets/stylesheets/datepicker.css'
-import '../assets/stylesheets/bootstrap.css'
-import '../assets/stylesheets/app.css'
-import '../assets/stylesheets/main.css'
+import '../../assets/stylesheets/font-awesome.css'
+import '../../assets/stylesheets/simple-line-icons.css'
+import '../../assets/stylesheets/jquery-ui.css'
+import '../../assets/stylesheets/datepicker.css'
+import '../../assets/stylesheets/bootstrap.css'
+import '../../assets/stylesheets/app.css'
+import '../../assets/stylesheets/main.css'
 
 export default {
     name: 'headerSide',
