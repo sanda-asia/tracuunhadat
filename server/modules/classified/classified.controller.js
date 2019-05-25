@@ -196,6 +196,71 @@ module.exports = {
       }
       res.json(result);
    },
+   showListPostAprroved: async (req,res) =>{
+      try {
+         let listPostApproved = await Classified.find({status: 1}).sort({time_approved: -1});
+         var result= {
+            "status": true,
+            "data": listPostApproved
+         }
+      } catch (error) {
+         var result = {
+            "status": false,
+            "error_msg": error.message
+         }
+      }
+      res.json(result);
+   },
 
+   showListPostPending: async (req,res) =>{
+      try {
+         let listPostPending = await Classified.find({status: 0}).sort({time_created: 1});
+         var result= {
+            "status": true,
+            "data": listPostPending
+         }
+      } catch (error) {
+         var result = {
+            "status": false,
+            "error_msg": error.message
+         }
+      }
+      res.json(result);
+   },
+
+   savePost: async(req, res) => {
+      try {
+         await User.findOneAndUpdate(
+            { _id: req.user.data._id},
+            { $push: {save_list: req.params.id}}
+         );
+         var result = {
+            "status": true,
+            "message": "Saved post"
+         }
+      } catch (error) {
+         var result = {
+            "status": false,
+            "error_msg": error.message
+         }
+      }
+      res.json(result);
+   },
+
+   showPostDetails: async (req, res) => {
+      try {
+         let postDetails = await Classified.findById({ _id: req.params.id }).populate('id_user');
+         var result= {
+            "data" : postDetails,
+            "status": true
+         }
+      } catch (error) {
+         var result = {
+            "status": false,
+            "error_msg": error.message
+         }
+      }
+      res.json(result);
+   }
 
 };

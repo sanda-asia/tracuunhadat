@@ -23,5 +23,13 @@ router.delete("/posts/:id",auth, classifiedController.deletePost); //auth
 
 router.put("/posts-approve/:id", classifiedController.aprrovePost); //isAdmin
 
+router.get("/posts-approved", classifiedController.showListPostAprroved); //isAdmin
+
+router.get("/posts-pending", classifiedController.showListPostPending); //isAdmin
+
+// //show post and user of post
+router.get("/post-details/:id", classifiedController.showPostDetails); //isAdmin
+
+router.put("/save-post/:id",auth, classifiedController.savePost);
 
 module.exports = router;
