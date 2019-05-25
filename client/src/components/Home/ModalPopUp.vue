@@ -1,7 +1,7 @@
 <template>
     <!-- Modal -->
     <div id="myModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog" style="margin-top: 0px;">
 
         <!-- Modal content-->
         <div class="modal-content">
@@ -11,7 +11,7 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-7">
+                    <div class="col-md-8">
                         <div class="wrapper-left-pop-up detail-info-poster">
                             <div class="wrapper-img-poster">
                                 <div id="propWidget-3" class="carousel slide propWidget-3" data-ride="carousel">
@@ -30,37 +30,37 @@
                                     </ol>
                                     <div class="carousel-inner">
                                         <div class="item active">
-                                            <a href="#"><img :src="require('./../assets/images/img1.png')" alt="First slide"></a>
+                                            <a href="#"><img :src="require('../../assets/images/img1.png')" alt="First slide"></a>
                                             <div class="container">
                                                 <div class="carousel-caption">
-                                                    <img :src="require('./../assets/images/img1.png')" alt="image">
+                                                    <img :src="require('../../assets/images/img1.png')" alt="image">
                                                     <div class="opac"></div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="item">
-                                            <a href="#"><img :src="require('./../assets/images/img1.png')" alt="Second slide"></a>
+                                            <a href="#"><img :src="require('../../assets/images/img1.png')" alt="Second slide"></a>
                                             <div class="container">
                                                 <div class="carousel-caption">
-                                                    <img :src="require('./../assets/images/img1.png')" alt="image">
+                                                    <img :src="require('../../assets/images/img1.png')" alt="image">
                                                     <div class="opac"></div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="item">
-                                            <a href="#"><img :src="require('./../assets/images/img1.png')" alt="Third slide"></a>
+                                            <a href="#"><img :src="require('../../assets/images/img1.png')" alt="Third slide"></a>
                                             <div class="container">
                                                 <div class="carousel-caption">
-                                                    <img :src="require('./../assets/images/img1.png')" alt="image">
+                                                    <img :src="require('../../assets/images/img1.png')" alt="image">
                                                     <div class="opac"></div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="item">
-                                            <a href="#"><img :src="require('./../assets/images/img1.png')" alt="Fourth slide"></a>
+                                            <a href="#"><img :src="require('../../assets/images/img1.png')" alt="Fourth slide"></a>
                                             <div class="container">
                                                 <div class="carousel-caption">
-                                                    <img :src="require('./../assets/images/img1.png')" alt="image">
+                                                    <img :src="require('../../assets/images/img1.png')" alt="image">
                                                     <div class="opac"></div>
                                                 </div>
                                             </div>
@@ -77,11 +77,11 @@
                         </div>
                         
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <div class="detail-user">
                             <div class="userWidget-1">
                                         <div class="avatar">
-                                            <img :src="require('./../assets/images/img1.png')" alt="avatar">
+                                            <img :src="require('../../assets/images/img1.png')" alt="avatar">
                                             <div class="ops">
                                                 <a href="#" class="btn btn-icon btn-round btn-o btn-white btn-sm"><span class="fa fa-envelope-o"></span></a>
                                                 <a href="#" class="btn btn-icon btn-round btn-o btn-white btn-sm"><span class="fa fa-heart-o"></span></a>
@@ -129,7 +129,7 @@
 </template>
 
 <script>
-import img from './../assets/images/img.png';
+import img from '../../assets/images/img.png';
 export default {
     props: ['user','poster'],
 
