@@ -29,6 +29,10 @@ const ClassifiedSchema = mongoose.Schema({
       type: Date,
       default: Date.now
    },
+   time_approved: {
+      type: Date,
+      default: null
+   },
    last_modified:{
       type: Date,
       default: Date.now
