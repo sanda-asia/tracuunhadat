@@ -1,20 +1,20 @@
 const mongoose = require('mongoose');
 
 const ProjectSchema = mongoose.Schema({
-    
+
     Name_of_project: String,
-    
+
     Address: String,
-    
+
     //Investor: Chủ đầu tư
-    Investor: String, 
-    
+    Investor: String,
+
     //total_area: Tổng diện tích
-    total_area: Number, 
-    
+    total_area: Number,
+
     // locationdisplayed: Vị trí
     locationdisplayed: Number,
-    
+
     Price: Number,
 
     // //Quy mô dự án
@@ -24,28 +24,28 @@ const ProjectSchema = mongoose.Schema({
 
     // Overview of the data: Tổng quan về dự án
     Overview_of_the_data: String,
-    
+
     userEvaluateProject: [{
-        id_user: {
+        comment: String,
+        comment_by: [{
             type: mongoose.Schema.Types.ObjectId,
             ref: "User"
-        },
-        cmt: String
+        }]
     }],
 
     img_url: [{
         type: String
     }],
-    category:{
+    category: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'categories'
     },
-    created:{
+    created: {
         type: Date,
         default: Date.now
     },
 
-    updateDate:{
+    updateDate: {
         type: Date,
     }
 });

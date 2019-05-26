@@ -18,9 +18,13 @@ router.get("/:id", auth, projectController.viewProject);
 // fetch all project
 router.get("/", auth, projectController.viewAllProject);
 
+
+//Sửa đổi: put
 //add evaluate about project
 //Thêm đánh giá về dự án
 router.post("/them-danhgia/:id", auth, projectController.addEvaluateProject);
+
+
 
 router.post("/update-posision/:id", auth, projectController.updateLocationProject);
 
