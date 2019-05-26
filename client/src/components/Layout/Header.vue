@@ -35,7 +35,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="headerNotifyWraper">
+            <!-- <div class="headerNotifyWraper">
                 <a href="#" class="headerNotify dropdown-toggle" data-toggle="dropdown">
                     <span class="notifyIcon icon-bell"></span>
                     <span class="counter">5</span>
@@ -49,7 +49,7 @@
                     <ul class="notifyList">
                         <li>
                             <a href="#">
-                                <img class="avatar pull-left" src="images/avatar-1.png" alt="avatar">
+                                <img class="avatar pull-left" src="#" alt="avatar">
                                 <div class="pulse border-grey"></div>
                                 <div class="notify pull-left">
                                     <div class="notifyName">Sed ut perspiciatis unde</div>
@@ -94,7 +94,7 @@
                     </ul>
                     <a href="#" class="notifyAll">See All</a>
                 </div>
-            </div>
+            </div> -->
             <a href="#" class="mapHandler"><span class="icon-map"></span></a>
             <div class="clearfix"></div>
         </div>

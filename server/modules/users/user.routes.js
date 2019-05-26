@@ -17,7 +17,7 @@ router.get("/:id", auth, check.isUser ,userController.getProfile);
 router.get("/:id/list/checked", userController.getAllListClassifiedChecked);
 
 // Lấy lịch sử giao dich
-router.get("/:id/transaction", userController.getTransaction);
+router.get("/:id/transaction",auth, userController.getTransaction);
 
 
 // Cập nhập thông tin user

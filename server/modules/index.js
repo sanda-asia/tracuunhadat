@@ -8,12 +8,12 @@ module.exports = app => {
 
     //router
     const userRouter = require("./users/user.routes");
-    const settingRouter = require("./setting/setting.routers");
+    // const settingRouter = require("./setting/setting.routers");
 
     const classifiedRouter = require("./classified/classidied.routes");
 
     app.use('/user', userRouter);
-    app.use('/setting', settingRouter);
+    // app.use('/setting', settingRouter);
     
 
     app.use('/classified', classifiedRouter);
