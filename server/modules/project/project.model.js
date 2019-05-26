@@ -1,5 +1,25 @@
 const mongoose = require('mongoose');
 
+
+
+
+
+// const ReviewSchema = mongoose.Schema({
+//     id_user: {
+//         type: mongoose.Schema.Types.ObjectId,
+//         ref: 'User'
+//     },
+//     comment: String,
+// });
+
+// const postSchema = mongoose.Schema({
+//     _creator  : { type: Schema.Types.ObjectId, ref: 'User' },
+//     comment: String,
+//   });
+
+
+// const Review = mongoose.model("Review", ReviewSchema);
+
 const ProjectSchema = mongoose.Schema({
 
     Name_of_project: String,
@@ -26,12 +46,15 @@ const ProjectSchema = mongoose.Schema({
     Overview_of_the_data: String,
 
     userEvaluateProject: [{
-        comment: String,
-        comment_by: [{
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "User"
-        }]
+        id_user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+        Comment: String
     }],
+
+    // _creator: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: "User",
+    //     required: true
+    // },
 
     img_url: [{
         type: String
@@ -49,5 +72,7 @@ const ProjectSchema = mongoose.Schema({
         type: Date,
     }
 });
+
+// const Post  = mongoose.model('Post', postSchema);
 
 module.exports = mongoose.model("Project", ProjectSchema);

@@ -1,6 +1,10 @@
 const jwt = require("jsonwebtoken");
 const CONSTANTS = require("../../config/constants");
 const bcrypt = require("bcryptjs");
+const ObjectId = require('mongodb').ObjectID;
+const bodyParser = require('body-parser');
+
+
 
 module.exports = {
     // Thêm dự án
@@ -33,22 +37,25 @@ module.exports = {
         };
         res.json(result);
     },
-
     //Xem thông tin dự án theo ID
     viewProject: async (req, res) => {
-        let dataProject = await Project.find({ _id: req.params.id }).populate('comment_by');
+        let dataProject = await Project.find({ _id: req.params.id });
+
+        // let dataProject = await Project.find({ _id: req.params.id }).populate('_creator');
         let result = {
             "status": true,
             "message": "success",
             "data": dataProject
         };
         res.json(dataProject);
+
     },
 
 
     //Xem thông tin toàn bộ dự án
     viewAllProject: async (req, res) => {
-        let dataAllProject = await Project.find({}).sort({ locationdisplayed: 1 });
+        let dataAllProject = await Project.find({});
+        // sort({ locationdisplayed: 1 });
         // let dataAllProject = await Project.find({});
         let result = {
             "status": true,
@@ -122,18 +129,22 @@ module.exports = {
 
     //Thêm đánh giá về dự án
     addEvaluateProject: async (req, res) => {
-        query = { _id : req.body.id }
+        query = { _id: req.params.id }
+        console.log(req.user.data._id) 
         let userEvaluateProject = {
             comment: req.body.comment,
-            // comment_by: getProfile._id
+            id_user: req.user.data._id
+            // id_user: '5ce4b63360801a2e909d70ff'
         }
+        console.log(req.user.data._id)
         update = {
             $push: { userEvaluateProject: userEvaluateProject }
         }
-        console.log("Hello")
+
         options = { upsert: true };
-        // let result = await Project.create(query, update, options).populate('id_user');
-        let result = await Project.findOneAndUpdate(query, update, options);
+
+        let result = await Project.updateOne(query, update, options).populate('id_user');
+
         let resultSuccess = {
             "status": true,
             "message": "success",
