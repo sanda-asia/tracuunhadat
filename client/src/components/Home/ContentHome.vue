@@ -1,14 +1,113 @@
 <template>
     <div id="content" class="content-home">
-        <div class="tabsContainer" >
-            <ul class="nav nav-tabs " role="tablist">
-                <li class="active"><a href="#home" role="tab" data-toggle="tab"><span class="icon-home"></span> ALL</a></li>
-                <li><a href="#profile" role="tab" data-toggle="tab"><span class="fas fa-gavel"></span> SELL</a></li>
-                <li><a href="#notifications" role="tab" data-toggle="tab"><span class="fas fa-shopping-cart"></span> BUY</a></li>
+        <div class="tabsContainer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+                <li class="active"><a href="#home" role="tab" data-toggle="tab"><span class="icon-home"></span> All</a></li>
+                <li class=""><a href="#profile" role="tab" data-toggle="tab"><span class="icon-user"></span> Buy</a></li>
+                <li class=""><a href="#notifications" role="tab" data-toggle="tab"><span class="icon-bubbles"></span> Sell</a></li>
+                <li class=""><a href="#rent" role="tab" data-toggle="tab"><span class="icon-bubbles"></span> Rent</a></li>
             </ul>
             <div class="tab-content" style="margin-bottom: 20px;">
-                <div class="tab-pane fade in active" id="home">
-                    
+                <div class="filter">
+                    <h1 class="osLight">Filter your results</h1>
+                    <a href="#" class="handleFilter"><span class="icon-equalizer"></span></a>
+                    <div class="clearfix"></div>
+                    <form class="filterForm" style="display: none;">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 formItem">
+                                <div class="formField">
+                                    <label>Property Type</label>
+                                    <a href="#" data-toggle="dropdown" class="btn btn-gray dropdown-btn dropdown-toggle propTypeSelect">
+                                        <span class="dropdown-label">All</span>
+                                        <span class="fa fa-angle-down dsArrow"></span>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-select full" role="menu">
+                                        <li class="active"><input type="radio" name="pType" checked="checked"><a href="#">All</a></li>
+                                        <li><input type="radio" name="pType"><a href="#">Rent</a></li>
+                                        <li><input type="radio" name="pType"><a href="#">Sale</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 formItem">
+                                <div class="formField">
+                                    <label>Property Type</label>
+                                    <a href="#" data-toggle="dropdown" class="btn btn-gray dropdown-btn dropdown-toggle propTypeSelect">
+                                        <span class="dropdown-label">All</span>
+                                        <span class="fa fa-angle-down dsArrow"></span>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-select full" role="menu">
+                                        <li class="active"><input type="radio" name="pType" checked="checked"><a href="#">All</a></li>
+                                        <li><input type="radio" name="pType"><a href="#">Rent</a></li>
+                                        <li><input type="radio" name="pType"><a href="#">Sale</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 formItem">
+                                <div class="formField">
+                                    <label>Property Type</label>
+                                    <a href="#" data-toggle="dropdown" class="btn btn-gray dropdown-btn dropdown-toggle propTypeSelect">
+                                        <span class="dropdown-label">All</span>
+                                        <span class="fa fa-angle-down dsArrow"></span>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-select full" role="menu">
+                                        <li class="active"><input type="radio" name="pType" checked="checked"><a href="#">All</a></li>
+                                        <li><input type="radio" name="pType"><a href="#">Rent</a></li>
+                                        <li><input type="radio" name="pType"><a href="#">Sale</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 formItem">
+                                <div class="formField">
+                                    <label>Price Range</label>
+                                    <div class="slider priceSlider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
+                                        <div class="sliderTooltip" style="left: 106.5px;">
+                                            <div class="stArrow"></div>
+                                            <div class="stLabel">$500,000 <span class="fa fa-arrows-h"></span> $1,500,000</div>
+                                        </div>
+                                    <div class="ui-slider-range ui-widget-header ui-corner-all" style="left: 25%; width: 50%;"></div><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 25%;"></span><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 75%;"></span></div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 formItem">
+                                <div class="formField">
+                                    <label>Area Range</label>
+                                    <div class="slider areaSlider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
+                                        <div class="sliderTooltip" style="left: 55.5px;">
+                                            <div class="stArrow"></div>
+                                            <div class="stLabel">5,000 Sq Ft <span class="fa fa-arrows-h"></span> 10,000 Sq Ft</div>
+                                        </div>
+                                    <div class="ui-slider-range ui-widget-header ui-corner-all" style="left: 25%; width: 25%;"></div><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 25%;"></span><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 50%;"></span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 formItem">
+                                <div class="formField">
+                                    <label>Bedrooms</label>
+                                    <div class="volume">
+                                        <a href="#" class="btn btn-gray btn-round-left"><span class="fa fa-angle-left"></span></a>
+                                        <input type="text" class="form-control" readonly="readonly" value="1">
+                                        <a href="#" class="btn btn-gray btn-round-right"><span class="fa fa-angle-right"></span></a>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 formItem">
+                                <div class="formField">
+                                    <label>Bathrooms</label>
+                                    <div class="volume">
+                                        <a href="#" class="btn btn-gray btn-round-left"><span class="fa fa-angle-left"></span></a>
+                                        <input type="text" class="form-control" readonly="readonly" value="1">
+                                        <a href="#" class="btn btn-gray btn-round-right"><span class="fa fa-angle-right"></span></a>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                    </form>
+                </div>
+                <div class="tab-pane fade active in" id="home">
                     <div class="wrapper-poster" v-for="poster in posters" :key="poster.id">
                         <mini-poster v-bind:poster="poster" />
                     </div>
@@ -19,6 +118,11 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="notifications">
+                    <div class="wrapper-poster" v-for="poster in posters" :key="poster.id">
+                        <mini-poster v-bind:poster="poster" />
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="#rent">
                     <div class="wrapper-poster" v-for="poster in posters" :key="poster.id">
                         <mini-poster v-bind:poster="poster" />
                     </div>
@@ -40,7 +144,7 @@ export default {
                 id: 1,
                 header : 'Nhà  đất quận 1',
                 description : ', CC Hưng Phát, PV Gas, Gần Khu công viên ánh sáng Kenton node, Phú mỹ hưng, Lotte Quận 7 DT: 6m x 14m Đất thổ cư, xây nhà kiên cố ép cọc bê tông đúc sàn đầy đủ',
-                price: 5000000000,
+                price: '5.000.000.000',
                 area: '10000',
                 address: 'Hữu Lợi, Hữu Đạo, Châu Thành, Tiền Giang.',
             },
@@ -48,7 +152,7 @@ export default {
                 id: 2,
                 header : 'Nhà  đất quận 2',
                 description : 'Cần bán gấp Căn Nhà Riêng Chính Chủ tại 1419 Đường lê Văn Lương Phước Kiển Nhà bè Ngay cầu ông Bốn Gần HAGL an Tiến, CC Hưng Phát, PV Gas, Gần Khu công viên ánh sáng Kenton node, Phú mỹ hưng, Lotte Quận 7 DT: 6m x 14m Đất thổ cư, xây nhà kiên cố ép cọc bê tông đúc sàn đầy đủ',
-                price: 5000000000,
+                price: '5.000.000.000',
                 area: '10000',
                 address: 'Hữu Lợi, Hữu Đạo, Châu Thành, Tiền Giang.',
             },
@@ -56,7 +160,7 @@ export default {
                 id: 3,
                 header : 'Nhà  đất quận 3',
                 description : 'Cần bán gấp Căn Nhà Riêng Chính Chủ tại 1419 Đường lê Văn Lương Phước Kiển Nhà bè Ngay cầu ông Bốn Gần HAGL an Tiến, CC Hưng Phát, PV Gas, Gần Khu công viên ánh sáng Kenton node, Phú mỹ hưng, Lotte Quận 7 DT: 6m x 14m Đất thổ cư, xây nhà kiên cố ép cọc bê tông đúc sàn đầy đủ',
-                price: 5000000000,
+                price: '5.000.000.000',
                 area: '10000',
                 address: 'Hữu Lợi, Hữu Đạo, Châu Thành, Tiền Giang.',
             },
@@ -64,7 +168,7 @@ export default {
                 id: 4,
                 header : 'Nhà  đất quận 4',
                 description : 'Cần bán gấp Căn Nhà Riêng Chính Chủ tại 1419 Đường lê Văn Lương Phước Kiển Nhà bè Ngay cầu ông Bốn Gần HAGL an Tiến, CC Hưng Phát, PV Gas, Gần Khu công viên ánh sáng Kenton node, Phú mỹ hưng, Lotte Quận 7 DT: 6m x 14m Đất thổ cư, xây nhà kiên cố ép cọc bê tông đúc sàn đầy đủ',
-                price: 5000000000,
+                price: '5.000.000.000',
                 area: '10000',
                 address: 'Hữu Lợi, Hữu Đạo, Châu Thành, Tiền Giang.',
             },
@@ -72,7 +176,7 @@ export default {
                 id: 5,
                 header : 'Nhà  đất quận 5',
                 description : 'Cần bán gấp Căn Nhà Riêng Chính Chủ tại 1419 Đường lê Văn Lương Phước Kiển Nhà bè Ngay cầu ông Bốn Gần HAGL an Tiến, CC Hưng Phát, PV Gas, Gần Khu công viên ánh sáng Kenton node, Phú mỹ hưng, Lotte Quận 7 DT: 6m x 14m Đất thổ cư, xây nhà kiên cố ép cọc bê tông đúc sàn đầy đủ',
-                price: 5000000000,
+                price: '5.000.000.000',
                 area: '10000',
                 address: 'Hữu Lợi, Hữu Đạo, Châu Thành, Tiền Giang.',
             },
@@ -80,7 +184,7 @@ export default {
                 id: 6,
                 header : 'Nhà  đất quận 6',
                 description : 'Cần bán gấp Căn Nhà Riêng Chính Chủ tại 1419 Đường lê Văn Lương Phước Kiển Nhà bè Ngay cầu ông Bốn Gần HAGL an Tiến, CC Hưng Phát, PV Gas, Gần Khu công viên ánh sáng Kenton node, Phú mỹ hưng, Lotte Quận 7 DT: 6m x 14m Đất thổ cư, xây nhà kiên cố ép cọc bê tông đúc sàn đầy đủ',
-                price: 5000000000,
+                price: '5.000.000.000',
                 area: '10000',
                 address: 'Hữu Lợi, Hữu Đạo, Châu Thành, Tiền Giang.',
             },
@@ -88,7 +192,7 @@ export default {
                 id: 7,
                 header : 'Nhà  đất quận 7',
                 description : 'Cần bán gấp Căn Nhà Riêng Chính Chủ tại 1419 Đường lê Văn Lương Phước Kiển Nhà bè Ngay cầu ông Bốn Gần HAGL an Tiến, CC Hưng Phát, PV Gas, Gần Khu công viên ánh sáng Kenton node, Phú mỹ hưng, Lotte Quận 7 DT: 6m x 14m Đất thổ cư, xây nhà kiên cố ép cọc bê tông đúc sàn đầy đủ',
-                price: 5000000000,
+                price: '5.000.000.000',
                 area: '10000',
                 address: 'Hữu Lợi, Hữu Đạo, Châu Thành, Tiền Giang.',
             },
@@ -96,7 +200,7 @@ export default {
                 id: 8,
                 header : 'Nhà  đất quận 8',
                 description : 'Cần bán gấp Căn Nhà Riêng Chính Chủ tại 1419 Đường lê Văn Lương Phước Kiển Nhà bè Ngay cầu ông Bốn Gần HAGL an Tiến, CC Hưng Phát, PV Gas, Gần Khu công viên ánh sáng Kenton node, Phú mỹ hưng, Lotte Quận 7 DT: 6m x 14m Đất thổ cư, xây nhà kiên cố ép cọc bê tông đúc sàn đầy đủ',
-                price: 5000000000,
+                price: '5.000.000.000',
                 area: '10000',
                 address: 'Hữu Lợi, Hữu Đạo, Châu Thành, Tiền Giang.',
             },
@@ -104,7 +208,7 @@ export default {
                 id: 9,
                 header : 'Nhà  đất quận 9',
                 description : 'Cần bán gấp Căn Nhà Riêng Chính Chủ tại 1419 Đường lê Văn Lương Phước Kiển Nhà bè Ngay cầu ông Bốn Gần HAGL an Tiến, CC Hưng Phát, PV Gas, Gần Khu công viên ánh sáng Kenton node, Phú mỹ hưng, Lotte Quận 7 DT: 6m x 14m Đất thổ cư, xây nhà kiên cố ép cọc bê tông đúc sàn đầy đủ',
-                price: 5000000000,
+                price: '5.000.000.000',
                 area: '10000',
                 address: 'Hữu Lợi, Hữu Đạo, Châu Thành, Tiền Giang.',
             },

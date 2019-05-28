@@ -2989,28 +2989,29 @@ h1.pageTitle {
 .userWidget-2 {
     display: block;
     background-color: #fff;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.13);
-    margin-bottom: 20px;
+    /* box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.13); */
+    /* margin-bottom: 20px; */
     text-decoration: none;
     overflow: hidden;
-    border-radius: 3px;
+    /* border-radius: 3px; */
     position: relative;
 }
 .userWidget-2 .avatar {
     width: auto;
     height: auto;
     border-radius: 0;
-    padding: 10px;
+    padding: 10px 0;
     float: left;
 }
 .userWidget-2 .avatar > img {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
 }
 .userWidget-2 .info {
     float: left;
-    padding: 18px 0;
+    padding: 18px 10px;
+    text-align: left;
     max-width: 70%;
 }
 .userWidget-2 .info .name {
