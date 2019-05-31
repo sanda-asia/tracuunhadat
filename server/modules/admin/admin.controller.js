@@ -3,9 +3,5 @@ const CONSTANTS = require("../../config/constants");
 const bcrypt = require("bcryptjs");
 
 module.exports = {
-<<<<<<< HEAD
 
 }
-=======
-}
->>>>>>> int module project

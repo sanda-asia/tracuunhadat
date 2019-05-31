@@ -35,6 +35,11 @@ const UserSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Project'
     }],
+
+    id_comment: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Comment'
+    }],
 });
 
 module.exports = mongoose.model("User", UserSchema);

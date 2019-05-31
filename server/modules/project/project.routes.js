@@ -24,6 +24,7 @@ router.get("/", auth, projectController.viewAllProject);
 //Thêm đánh giá về dự án
 router.put("/them-danhgia/:id", auth, projectController.addEvaluateProject);
 
+
 router.post("/update-posision/:id", auth, projectController.updateLocationProject);
 
 //view all evaluate about project

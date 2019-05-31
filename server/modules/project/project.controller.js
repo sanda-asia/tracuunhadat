@@ -39,9 +39,8 @@ module.exports = {
     },
     //Xem thông tin dự án theo ID
     viewProject: async (req, res) => {
-        let dataProject = await Project.find({ _id: req.params.id });
-
-        // let dataProject = await Project.find({ _id: req.params.id }).populate('_creator');
+        let dataProject = await Project.findOne({ _id: req.params.id }).populate('userEvaluateProject.id_user', 'username');
+        // let dataProject = await Project.find({ _id: req.params.id });
         let result = {
             "status": true,
             "message": "success",
@@ -127,24 +126,42 @@ module.exports = {
 
 
 
+    // //Thêm đánh giá về dự án
+    // addEvaluateProject: async (req, res) => {
+    //     query = { _id: req.params.id }
+    //     update = {
+    //         // $set: {comment: req.body.comment},
+    //         'userEvaluateProject.comment': req.body.comment,
+    //         $push: { 'userEvaluateProject.id_user': req.user.data._id }
+    //     }
+
+    //     options = { upsert: true };
+    //     let result = await Project.findOneAndUpdate(query, update, options);
+    //     let resultSuccess = {
+    //         "status": true,
+    //         "message": "success",
+    //         "data": update
+    //     };
+    //     res.json(resultSuccess);
+    // },
+
     //Thêm đánh giá về dự án
     addEvaluateProject: async (req, res) => {
         query = { _id: req.params.id }
-        console.log(req.user.data._id) 
-        let userEvaluateProject = {
-            comment: req.body.comment,
-            id_user: req.user.data._id
-            // id_user: '5ce4b63360801a2e909d70ff'
-        }
-        console.log(req.user.data._id)
         update = {
-            $push: { userEvaluateProject: userEvaluateProject }
+            $set: {
+                'userEvaluateProject.Comment': req.body.comment,
+                $push: {
+                    'userEvaluateProject.id_user': req.user.data._id,
+                }
+            },
+            // $push: {
+            //     'userEvaluateProject.id_user': req.user.data._id,
+            // }
         }
-
+        
         options = { upsert: true };
-
-        let result = await Project.updateOne(query, update, options).populate('id_user');
-
+        let result = await Project.findOneAndUpdate(query, update, options);
         let resultSuccess = {
             "status": true,
             "message": "success",
@@ -170,14 +187,10 @@ module.exports = {
 
 
 
-
-
     //Xem toàn bộ đánh giá về sản phẩm
     viewAllEvaluateProject: async (req, res) => {
         query = { '_id': req.body.id };
-
-        let result = await Project.find(query);
-
+        let result = await Comment.find(query);
         let resultSuccess = {
             "status": true,
             "message": "success",
