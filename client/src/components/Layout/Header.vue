@@ -110,6 +110,7 @@ import '../../assets/stylesheets/bootstrap.css'
 import '../../assets/stylesheets/app.css'
 import '../../assets/stylesheets/main.css'
 import '../../assets/stylesheets/custom.css'
+// import 'https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css'
 // import "../../assets/js/jquery-2.1.1.min.js"
 // import "../../assets/js/jquery-ui.min.js" 
 // import "../../assets/js/jquery-ui-touch-punch.js" 

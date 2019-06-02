@@ -7,7 +7,7 @@
                     <input type="text" placeholder="Search for houses, apartments...">
                     <div class="clearfix"></div>
                 </div>
-                <ul class="text-align-left">
+                <ul v-if="users.role == 0" class="text-align-left">
                     <li><a href="explore.html"><span class="navIcon icon-compass"></span><span class="navLabel">Top Projects</span></a></li>
                     <li><router-link :to="{ name: 'Classified'}"><span class="navIcon fas fa-ad"></span><span class="navLabel">Classified Ads</span></router-link></li>
                     <li><router-link :to="{ name: 'Blog'}"><span class="navIcon fab fa-blogger"></span><span class="navLabel">Blog</span></router-link></li>
@@ -32,6 +32,18 @@
                         </ul>
                     </li>
                 </ul>
+                <ul v-else class="text-align-left">
+                    <li><a href="#"><span class="navIcon icon-compass"></span><span class="navLabel">Dự án</span></a></li>
+                    <li><router-link :to="{ name: 'Classified'}"><span class="navIcon fas fa-ad"></span><span class="navLabel">Tin đăng</span></router-link></li>
+                    <li><router-link :to="{ name: 'BlogAdmin'}"><span class="navIcon fab fa-blogger"></span><span class="navLabel">Blog</span></router-link></li>
+                    <li class="hasSub">
+                        <a href="#"><span class="navIcon fa fa-group"></span><span class="navLabel">Người dùng</span><span class="badge bg-yellow"></span></a>
+                    </li>
+                    <li class="hasSub">
+                        <a href="#"><span class="navIcon icon-earphones-alt"></span><span class="navLabel">Help</span></a>
+                        <!-- <a href="#" class="modal-box-up" data-toggle="modal" data-target="#loginModal" style="padding:0;"></a> -->
+                    </li>
+                </ul>
             </nav>
         
         </div>
@@ -43,6 +55,13 @@
 <script>
 export default {
     name: 'LeftNav',
+    data: () => {
+        return {
+            users:{
+                role : 1 // admin
+            } 
+        }
+    }
 
 }
 </script>

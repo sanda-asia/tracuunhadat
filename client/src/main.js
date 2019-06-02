@@ -34,6 +34,9 @@ Vue.component('left-nav', leftNav);
 import LoginModal from './components/LoginModal';
 Vue.component('login-modal', LoginModal);
 
+// import Admin from './components/Admin/Admin';
+// Vue.component('admin', Admin);
+
 // import Blog from './components/Blog/Blog';
 // Vue.component('blog', Blog);
 
