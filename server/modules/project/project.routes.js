@@ -28,7 +28,7 @@ router.put("/them-danhgia/:id", auth, projectController.addEvaluateProject);
 router.post("/update-posision/:id", auth, projectController.updateLocationProject);
 
 //view all evaluate about project
-router.get("/tatcadanhgia/:id", auth, projectController.viewAllEvaluateProject);
+// router.get("/tatcadanhgia/:id", auth, projectController.viewAllEvaluateProject);
 
 
 module.exports = router;

@@ -4,26 +4,24 @@ const bcrypt = require("bcryptjs");
 const ObjectId = require('mongodb').ObjectID;
 const bodyParser = require('body-parser');
 
-
-
 module.exports = {
     // Thêm dự án
     add: async (req, res) => {
         //Chèn 3 ảnh
         // try {
-        //     let length = 3;
-        //     let arrImg = [];
-        //     for (i = 0; i < length; i++) {
-        //         arrImg.push(req.files[i].filename);
-        //     }
+        let length = 3;
+        let arrImg = [];
+        for (i = 0; i < length; i++) {
+            arrImg.push(req.files[i].filename);
+        }
         let newProject = await Project.create({
-            // total_area: req.body.total_area,
-            // Overview_of_the_data: req.body.Overview_of_the_data,
-            // img_url: arrImg,
-            // category: req.body.category_id,
+            total_area: req.body.total_area,
+            Overview_of_the_data: req.body.Overview_of_the_data,
+            img_url: arrImg,
+            category: req.body.category_id,
             //location displayed: Vị trí hiển thị
-            // Address: req.body.Address,
-            // Investor: req.body.Investor,
+            Address: req.body.Address,
+            Investor: req.body.Investor,
             Name_of_project: req.body.Name_of_project,
             Price: req.body.Price,
             locationdisplayed: req.body.locationdisplayed,
@@ -40,7 +38,6 @@ module.exports = {
     //Xem thông tin dự án theo ID
     viewProject: async (req, res) => {
         let dataProject = await Project.findOne({ _id: req.params.id }).populate('userEvaluateProject.id_user', 'username');
-        // let dataProject = await Project.find({ _id: req.params.id });
         let result = {
             "status": true,
             "message": "success",
@@ -49,13 +46,9 @@ module.exports = {
         res.json(dataProject);
 
     },
-
-
     //Xem thông tin toàn bộ dự án
     viewAllProject: async (req, res) => {
-        let dataAllProject = await Project.find({});
-        // sort({ locationdisplayed: 1 });
-        // let dataAllProject = await Project.find({});
+        let dataAllProject = await Project.find({}).populate('userEvaluateProject.id_user', 'username');
         let result = {
             "status": true,
             "message": "success",
@@ -69,13 +62,13 @@ module.exports = {
         let updateProject = {
             $set: {
                 Name_of_project: req.body.Name_of_project,
-                // Address: req.body.Address,
-                // Investor: req.body.Investor,
-                // Price: req.body.Price,
-                // total_area: req.body.total_area,
-                // Overview_of_the_data: req.body.Overview_of_the_data,
-                // img_url: arrImg,
-                // category: req.body.category_id,
+                Address: req.body.Address,
+                Investor: req.body.Investor,
+                Price: req.body.Price,
+                total_area: req.body.total_area,
+                Overview_of_the_data: req.body.Overview_of_the_data,
+                img_url: arrImg,
+                category: req.body.category_id,
             }
         };
         let result = await Project.findOneAndUpdate({ _id: req.params.id }, updateProject);
@@ -114,83 +107,24 @@ module.exports = {
         res.json(result)
     },
 
-
-
-
-
-
-
-
-
-
-
-
-
-    // //Thêm đánh giá về dự án
-    // addEvaluateProject: async (req, res) => {
-    //     query = { _id: req.params.id }
-    //     update = {
-    //         // $set: {comment: req.body.comment},
-    //         'userEvaluateProject.comment': req.body.comment,
-    //         $push: { 'userEvaluateProject.id_user': req.user.data._id }
-    //     }
-
-    //     options = { upsert: true };
-    //     let result = await Project.findOneAndUpdate(query, update, options);
-    //     let resultSuccess = {
-    //         "status": true,
-    //         "message": "success",
-    //         "data": update
-    //     };
-    //     res.json(resultSuccess);
-    // },
-
+    //push: Có thể đẩy trùng nhau
+    //set: Không thể trùng nhau
     //Thêm đánh giá về dự án
     addEvaluateProject: async (req, res) => {
-        query = { _id: req.params.id }
-        update = {
-            $set: {
-                'userEvaluateProject.Comment': req.body.comment,
-                $push: {
-                    'userEvaluateProject.id_user': req.user.data._id,
-                }
-            },
-            // $push: {
-            //     'userEvaluateProject.id_user': req.user.data._id,
-            // }
-        }
-        
-        options = { upsert: true };
-        let result = await Project.findOneAndUpdate(query, update, options);
-        let resultSuccess = {
-            "status": true,
-            "message": "success",
-            "data": update
+        query = {
+            _id: req.params.id
         };
-        res.json(resultSuccess);
-    },
+        update = {
+            '$push': {
+                'userEvaluateProject': {
+                    'id_user': req.user.data._id,
+                    'comment': req.body.comment
+                }
+            }
+        }
+        options = { upsert: true };
+        let result = await Project.update(query, update, options);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //Xem toàn bộ đánh giá về sản phẩm
-    viewAllEvaluateProject: async (req, res) => {
-        query = { '_id': req.body.id };
-        let result = await Comment.find(query);
         let resultSuccess = {
             "status": true,
             "message": "success",

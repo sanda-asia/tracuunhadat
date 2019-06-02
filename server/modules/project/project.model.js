@@ -20,16 +20,16 @@ const ProjectSchema = mongoose.Schema({
     // Overview of the data: Tổng quan về dự án
     Overview_of_the_data: String,
 
-    //Khi userEvaluateProject là một mảng thì báo lỗi 
-    //Cannot create field 'id_user' in element {userEvaluateProject: []}
+    //Bình luận
     userEvaluateProject: [{
-        id_user: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'User'
+        id_user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+        comment: String,
+        posted: {
+            type: Date,
+            default: Date.now
         },
-        comment: String
-    }],
 
+    }],
     img_url: [{
         type: String
     }],
@@ -47,13 +47,4 @@ const ProjectSchema = mongoose.Schema({
     }
 });
 
-const CommentSchema = Schema({
-    id_user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-    },
-    comment: String
-});
-
-module.exports = mongoose.model("Comment", CommentSchema);
 module.exports = mongoose.model("Project", ProjectSchema);
