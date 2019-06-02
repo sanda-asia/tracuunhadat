@@ -1,7 +1,7 @@
 <template>
     <div id="content" class="content-home">
         <div class="tabsContainer">
-            <ul class="nav nav-tabs nav-justified" role="tablist">
+            <ul class="nav nav-tabs" role="tablist">
                 <li class="active"><a href="#home" role="tab" data-toggle="tab"><span class="icon-home"></span> All</a></li>
                 <li class=""><a href="#profile" role="tab" data-toggle="tab"><span class="icon-user"></span> Buy</a></li>
                 <li class=""><a href="#notifications" role="tab" data-toggle="tab"><span class="icon-bubbles"></span> Sell</a></li>

@@ -1813,25 +1813,25 @@ a.card, div.card {
     right: 10px;
     bottom: 10px;
 }
-a.card h2, div.card h2 {
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 16px;
-    margin: 0 10px 0 0;
-    padding: 10px 0 3px 10px;
+a.card h4, div.card h4 {
+    /* font-weight: bold; */
+    font-size: 16px;
+    line-height: 29px;
+    /* margin: 0 10px 0 0; */
+    padding: 0 5px 10px 10px;
     color: #333;
     text-decoration: none;
-    white-space: nowrap;
-    overflow: hidden;
+    /* white-space: nowrap; */
+    /* overflow: hidden; */
     float: none;
 }
-.no-touch a.card:hover, .no-touch div.card:hover {
+/* .no-touch a.card:hover, .no-touch div.card:hover {
     text-decoration: none;
 }
 .no-touch a.card:hover h2, .no-touch div.card:hover h2 {
     color: #0eaaa6;
     text-decoration: none;
-}
+} */
 a.card .cardAddress, div.card .cardAddress {
     font-size: 11px;
     line-height: 13px;

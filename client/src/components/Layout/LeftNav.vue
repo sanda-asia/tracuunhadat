@@ -9,15 +9,15 @@
                 </div>
                 <ul class="text-align-left">
                     <li><a href="explore.html"><span class="navIcon icon-compass"></span><span class="navLabel">Top Projects</span></a></li>
-                    <li><a href="single.html"><span class="navIcon fas fa-ad"></span><span class="navLabel">Classified Ads</span></a></li>
-                    <li><a href="add.html"><span class="navIcon fab fa-blogger"></span><span class="navLabel">Blog</span></a></li>
+                    <li><router-link :to="{ name: 'Classified'}"><span class="navIcon fas fa-ad"></span><span class="navLabel">Classified Ads</span></router-link></li>
+                    <li><router-link :to="{ name: 'Blog'}"><span class="navIcon fab fa-blogger"></span><span class="navLabel">Blog</span></router-link></li>
                     <li class="hasSub">
                         <a href="#"><span class="navIcon fa fa-group"></span><span class="navLabel">Community</span><span class="badge bg-yellow"></span></a>
 
                     </li>
                     <li class="hasSub">
                         <a href="#"><span class="navIcon icon-earphones-alt"></span><span class="navLabel">Help</span></a>
-
+                        <!-- <a href="#" class="modal-box-up" data-toggle="modal" data-target="#loginModal" style="padding:0;"></a> -->
                     </li>
                     <li class="hasSub">
                         <a href="#"><span class="navIcon icon-link"></span><span class="navLabel">Pages</span><span class="fa fa-angle-left arrowRight"></span></a>

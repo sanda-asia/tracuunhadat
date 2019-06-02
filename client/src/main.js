@@ -29,9 +29,17 @@ import Pagination from './components/Layout/Pagination';
 Vue.component('pagination', Pagination);
 
 import leftNav from './components/Layout/Leftnav';
+Vue.component('left-nav', leftNav);
+
+import LoginModal from './components/LoginModal';
+Vue.component('login-modal', LoginModal);
+
+// import Blog from './components/Blog/Blog';
+// Vue.component('blog', Blog);
+
 import jQuery from 'jquery';
 global.jQuery = jQuery;
-Vue.component('left-nav', leftNav);
+
 Vue.use(Resource);
 /* eslint-disable no-new */
 new Vue({

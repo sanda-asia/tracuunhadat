@@ -2,10 +2,10 @@
 <template>
     <div id="header">
             <div class="logo">
-                <a href="index.html">
+                <router-link :to="{ name: 'Home'}">
                     <span class="fa fa-home marker"></span>
                     <span class="logoText">Home</span>
-                </a>
+                </router-link>
             </div>
             <a href="#" class="navHandler"><span class="fa fa-bars"></span></a>
             <div class="search">
@@ -98,6 +98,7 @@
             <a href="#" class="mapHandler"><span class="icon-map"></span></a>
             <div class="clearfix"></div>
         </div>
+        
 </template>
 
 <script>
@@ -108,6 +109,20 @@ import '../../assets/stylesheets/datepicker.css'
 import '../../assets/stylesheets/bootstrap.css'
 import '../../assets/stylesheets/app.css'
 import '../../assets/stylesheets/main.css'
+import '../../assets/stylesheets/custom.css'
+// import "../../assets/js/jquery-2.1.1.min.js"
+// import "../../assets/js/jquery-ui.min.js" 
+// import "../../assets/js/jquery-ui-touch-punch.js" 
+// import "../../assets/js/jquery.placeholder.js" 
+// import "../../assets/js/bootstrap.js" 
+// import "../../assets/js/jquery.touchSwipe.min.js" 
+// import "../../assets/js/jquery.slimscroll.min.js" 
+// import "../../assets/js/jquery.visible.js" 
+// // import "http://maps.googleapis.com/maps/api/js?sensor=true&amp;libraries=geometry&amp;libraries=places"  
+// import "../../assets/js/infobox.js" 
+// import "../../assets/js/jquery.tagsinput.min.js" 
+// import "../../assets/js/bootstrap-datepicker.js" 
+// import "../../assets/js/app.js" 
 
 export default {
     name: 'headerSide',
