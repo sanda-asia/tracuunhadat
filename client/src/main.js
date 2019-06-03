@@ -7,27 +7,29 @@ import Vue from 'vue';
 import App from './App';
 import router from './router';
 import Resource from 'vue-resource';
-
+// window.$ = require('jquery')
+// window.jQuery = require('jquery')
 Vue.config.productionTip = false;
 // Import global Vue Components
-import headerPage from './components/Layout/Header';
+import headerPage from './components/Header';
 Vue.component('header-page', headerPage);
 
-import Map from './components/Layout/Map';
+import Map from './components/Map';
 Vue.component('map-place', Map);
 
-import ContentHome from './components/Home/ContentHome';
+import ContentHome from './layouts/ContentHome';
 Vue.component('content-home', ContentHome);
 
-import MiniPoster from './components/Home/MiniPoster';
+import MiniPoster from './layouts/MiniPoster';
 Vue.component('mini-poster', MiniPoster);
 
-import ModalPopUp from './components/Home/ModalPopUp';
+import ModalPopUp from './layouts/ModalPopUp';
 Vue.component('modal-pop-up', ModalPopUp);
 
-import Pagination from './components/Layout/Pagination';
+import Pagination from './components/Pagination';
 Vue.component('pagination', Pagination);
 
+<<<<<<< HEAD
 import leftNav from './components/Layout/Leftnav';
 Vue.component('left-nav', leftNav);
 
@@ -41,6 +43,14 @@ Vue.component('login-modal', LoginModal);
 // Vue.component('blog', Blog);
 
 import jQuery from 'jquery';
+=======
+import 'bootstrap-vue/dist/bootstrap-vue.css';
+import BootstrapVue from 'bootstrap-vue';
+Vue.use(BootstrapVue);
+
+import leftNav from './components/Leftnav';
+
+>>>>>>> them blog
 global.jQuery = jQuery;
 
 Vue.use(Resource);

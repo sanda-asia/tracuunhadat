@@ -1,3 +1,4 @@
+console
 $(document).ready(function() {
     var options = {
         zoom : 14,

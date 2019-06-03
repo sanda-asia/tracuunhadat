@@ -102,6 +102,7 @@
 </template>
 
 <script>
+<<<<<<< HEAD:client/src/components/Layout/Header.vue
 import '../../assets/stylesheets/font-awesome.css'
 import '../../assets/stylesheets/simple-line-icons.css'
 import '../../assets/stylesheets/jquery-ui.css'
@@ -124,6 +125,15 @@ import '../../assets/stylesheets/custom.css'
 // import "../../assets/js/jquery.tagsinput.min.js" 
 // import "../../assets/js/bootstrap-datepicker.js" 
 // import "../../assets/js/app.js" 
+=======
+import '../assets/stylesheets/font-awesome.css'
+import '../assets/stylesheets/simple-line-icons.css'
+import '../assets/stylesheets/jquery-ui.css'
+import '../assets/stylesheets/datepicker.css'
+import '../assets/stylesheets/bootstrap.css'
+import '../assets/stylesheets/app.css'
+import '../assets/stylesheets/main.css'
+>>>>>>> them blog:client/src/components/Header.vue
 
 export default {
     name: 'headerSide',
