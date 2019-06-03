@@ -29,8 +29,7 @@ Vue.component('modal-pop-up', ModalPopUp);
 import Pagination from './components/Pagination';
 Vue.component('pagination', Pagination);
 
-<<<<<<< HEAD
-import leftNav from './components/Layout/Leftnav';
+import leftNav from './components/Leftnav';
 Vue.component('left-nav', leftNav);
 
 import LoginModal from './components/LoginModal';
@@ -43,14 +42,10 @@ Vue.component('login-modal', LoginModal);
 // Vue.component('blog', Blog);
 
 import jQuery from 'jquery';
-=======
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import BootstrapVue from 'bootstrap-vue';
 Vue.use(BootstrapVue);
 
-import leftNav from './components/Leftnav';
-
->>>>>>> them blog
 global.jQuery = jQuery;
 
 Vue.use(Resource);

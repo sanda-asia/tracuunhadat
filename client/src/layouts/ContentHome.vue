@@ -2,17 +2,10 @@
     <div id="content" class="content-home">
         <div class="tabsContainer">
             <ul class="nav nav-tabs" role="tablist">
-<<<<<<< HEAD:client/src/components/Home/ContentHome.vue
-                <li class="active"><a href="#home" role="tab" data-toggle="tab"><span class="icon-home"></span> All</a></li>
-                <li class=""><a href="#profile" role="tab" data-toggle="tab"><span class="icon-user"></span> Buy</a></li>
-                <li class=""><a href="#notifications" role="tab" data-toggle="tab"><span class="icon-bubbles"></span> Sell</a></li>
-                <li class=""><a href="#rent" role="tab" data-toggle="tab"><span class="icon-bubbles"></span> Rent</a></li>
-=======
-                <li class="active"><a href="" role="tab" data-toggle="tab"><router-link v-bind:to="{ name: 'AllPoster'}"><span class="icon-home"></span> All</router-link></a></li>
-                <li class=""><a href="" role="tab" data-toggle="tab"><router-link v-bind:to="{ name: 'AllPoster', query:{ f: 'b',page : page}}"><span class="icon-user"></span> Buy</router-link></a></li>
-                <li class=""><a href="" role="tab" data-toggle="tab"><router-link v-bind:to="{  name: 'AllPoster', query:{ f: 's',page : page}}"><span class="icon-bubbles"></span> Sell</router-link></a></li>
-                <li class=""><a href="" role="tab" data-toggle="tab"><router-link v-bind:to="{  name: 'AllPoster', query:{ f: 'r',page : page}}"><span class="icon-bubbles"></span> Rent</router-link></a></li>
->>>>>>> them blog:client/src/layouts/ContentHome.vue
+                <li class="active"><a href="" role="tab" data-toggle="tab"><router-link v-bind:to="{ name: 'Classified'}"><span class="icon-home"></span> All</router-link></a></li>
+                <li class=""><a href="" role="tab" data-toggle="tab"><router-link v-bind:to="{ name: 'Classified', query:{ find: 'b',page : page}}"><span class="icon-user"></span> Buy</router-link></a></li>
+                <li class=""><a href="" role="tab" data-toggle="tab"><router-link v-bind:to="{  name: 'Classified', query:{ find: 's',page : page}}"><span class="icon-bubbles"></span> Sell</router-link></a></li>
+                <li class=""><a href="" role="tab" data-toggle="tab"><router-link v-bind:to="{  name: 'Classified', query:{ find: 'r',page : page}}"><span class="icon-bubbles"></span> Rent</router-link></a></li>
             </ul>
             <div class="tab-content" style="margin-bottom: 20px;">
                 <div class="filter">
@@ -91,7 +84,7 @@
                     </form>
                 </div>
                 <div class="tab-pane fade active in">
-                   <router-view></router-view>
+                   <list-poster />
                 </div>
             </div>
         </div>
@@ -101,6 +94,7 @@
 </template>
 
 <script>
+import ListPoster from './ListPoster'
 export default {
     data() {
         return {
@@ -228,6 +222,9 @@ export default {
             });
         },
     },
+    components: {
+        listPoster : ListPoster,
+    }
 }
 </script>
 

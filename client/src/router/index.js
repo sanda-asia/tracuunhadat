@@ -1,18 +1,12 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-<<<<<<< HEAD
-import Home from '@/components/Home/Home';
-import Blog from '@/components/Blog/Blog';
-import DetailBlog from '@/components/Blog/DetailBlog';
-import BlogAdmin from '@/components/Blog/BlogAdmin';
-import BlogAdd from '@/components/Blog/BlogAdd';
-import Admin from '@/components/Admin/Admin';
-=======
-import Home from '@/pages/Home';
-import ContentHome from '@/layouts/ContentHome';
+import Blog from '@/pages/Blog/Blog';
+import DetailBlog from '@/pages/Blog/DetailBlog';
+import BlogAdmin from '@/pages/Blog/BlogAdmin';
+import BlogAdd from '@/pages/Blog/BlogAdd';
+import Admin from '@/pages/Admin/Admin';
 import ListPoster from '@/layouts/ListPoster';
->>>>>>> them blog
-
+import Home from '@/pages/Home';
 Vue.use(Router);
 
 export default new Router({
@@ -20,7 +14,6 @@ export default new Router({
     {
       path: '/',
       name: 'Home',
-      alias: '/home',
       component: Home,
       children: [
         {
@@ -46,10 +39,9 @@ export default new Router({
         },
       ]
     },
-<<<<<<< HEAD
     {
-      path: '/rao-vat',
-      name: 'Classified',
+      path:'/rao-vat',
+      name : 'Classified',
       component: Home,
     },
     {
@@ -81,9 +73,6 @@ export default new Router({
       name: 'BlogAdd',
       component: BlogAdd,
     },
-=======
-  
->>>>>>> them blog
   ],
   mode: 'history',
 });
