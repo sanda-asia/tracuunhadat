@@ -2,10 +2,17 @@
     <div id="content" class="content-home">
         <div class="tabsContainer">
             <ul class="nav nav-tabs" role="tablist">
+<<<<<<< HEAD:client/src/components/Home/ContentHome.vue
                 <li class="active"><a href="#home" role="tab" data-toggle="tab"><span class="icon-home"></span> All</a></li>
                 <li class=""><a href="#profile" role="tab" data-toggle="tab"><span class="icon-user"></span> Buy</a></li>
                 <li class=""><a href="#notifications" role="tab" data-toggle="tab"><span class="icon-bubbles"></span> Sell</a></li>
                 <li class=""><a href="#rent" role="tab" data-toggle="tab"><span class="icon-bubbles"></span> Rent</a></li>
+=======
+                <li class="active"><a href="" role="tab" data-toggle="tab"><router-link v-bind:to="{ name: 'AllPoster'}"><span class="icon-home"></span> All</router-link></a></li>
+                <li class=""><a href="" role="tab" data-toggle="tab"><router-link v-bind:to="{ name: 'AllPoster', query:{ f: 'b',page : page}}"><span class="icon-user"></span> Buy</router-link></a></li>
+                <li class=""><a href="" role="tab" data-toggle="tab"><router-link v-bind:to="{  name: 'AllPoster', query:{ f: 's',page : page}}"><span class="icon-bubbles"></span> Sell</router-link></a></li>
+                <li class=""><a href="" role="tab" data-toggle="tab"><router-link v-bind:to="{  name: 'AllPoster', query:{ f: 'r',page : page}}"><span class="icon-bubbles"></span> Rent</router-link></a></li>
+>>>>>>> them blog:client/src/layouts/ContentHome.vue
             </ul>
             <div class="tab-content" style="margin-bottom: 20px;">
                 <div class="filter">
@@ -81,53 +88,11 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="row">
-                            <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 formItem">
-                                <div class="formField">
-                                    <label>Bedrooms</label>
-                                    <div class="volume">
-                                        <a href="#" class="btn btn-gray btn-round-left"><span class="fa fa-angle-left"></span></a>
-                                        <input type="text" class="form-control" readonly="readonly" value="1">
-                                        <a href="#" class="btn btn-gray btn-round-right"><span class="fa fa-angle-right"></span></a>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 formItem">
-                                <div class="formField">
-                                    <label>Bathrooms</label>
-                                    <div class="volume">
-                                        <a href="#" class="btn btn-gray btn-round-left"><span class="fa fa-angle-left"></span></a>
-                                        <input type="text" class="form-control" readonly="readonly" value="1">
-                                        <a href="#" class="btn btn-gray btn-round-right"><span class="fa fa-angle-right"></span></a>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
                     </form>
                 </div>
-                <div class="tab-pane fade active in" id="home">
-                    <div class="wrapper-poster" v-for="poster in posters" :key="poster.id">
-                        <mini-poster v-bind:poster="poster" />
-                    </div>
+                <div class="tab-pane fade active in">
+                   <router-view></router-view>
                 </div>
-                <div class="tab-pane fade" id="profile">
-                    <div class="wrapper-poster" v-for="poster in posters" :key="poster.id">
-                        <mini-poster v-bind:poster="poster" />
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="notifications">
-                    <div class="wrapper-poster" v-for="poster in posters" :key="poster.id">
-                        <mini-poster v-bind:poster="poster" />
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="#rent">
-                    <div class="wrapper-poster" v-for="poster in posters" :key="poster.id">
-                        <mini-poster v-bind:poster="poster" />
-                    </div>
-                </div>
-                <pagination />
             </div>
         </div>
         <modal-pop-up v-bind:poster="posters[1]" v-bind:user="user" />
@@ -139,6 +104,9 @@
 export default {
     data() {
         return {
+        page: this.$route.query.test?this.$route.query.test:1,
+        activeTag: [],
+        itemsPerPage: 3,
         posters : [
             {
                 id: 1,
@@ -222,7 +190,23 @@ export default {
         },
         };
     },
+    computed:{
+        currentPage(){
+            return this.$route.query.page?this.$route.query.page:1;
+        },
+        totalPages(){
+            return Math.ceil(this.posters.length / 3);
+        },
+        displayPosters(){
+            const index = (this.currentPage-1) * this.itemsPerPage;
+            return this.posters.slice(index, index + this.itemsPerPage);
+        },
+        setActiveTag(){
+            const tag = this.$route.query.f;
+            
 
+        }
+    },
     mounted(){
         // this.fetchPosters();
     },

@@ -6,6 +6,7 @@ module.exports = app => {
     
     global.Classified = require("./classified/classified.model");
 
+    global.Blog = require("./blog/blog.model");
     //router
     const userRouter = require("./users/user.routes");
     // const settingRouter = require("./setting/setting.routers");
@@ -17,6 +18,9 @@ module.exports = app => {
     
 
     app.use('/classified', classifiedRouter);
+
+    const blogRouter = require("./blog/blog.routes");
+    app.use('/blog', blogRouter);
 
     app.use('/', (req,res,next)=> res.json({"message": "Hello my api"}));
 

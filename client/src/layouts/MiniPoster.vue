@@ -2,7 +2,7 @@
     <div class="row m-poster">
         <button type="button" class="modal-box-up" data-toggle="modal" data-target="#myModal" style="padding:0;">
             <div class="col-xs-4 col-md-4 col-lg-4 img-poster" style="padding-left:0px;">
-                <img :src="require('../../assets/images/1.jpg')" />
+                <img :src="require('../assets/images/1.jpg')" />
             </div>
             <div class="col-xs-8 col-md-8 col-lg-8 description-poster" >
                 <h4 class="m-header-poster">{{ poster.header }}</h4>
@@ -20,7 +20,7 @@
                 
                 <div class="userWidget-2">
                     <div class="avatar">
-                        <img src="../../assets/images/img1.png" alt="avatar">
+                        <img src="../assets/images/img1.png" alt="avatar">
                     </div>
                     <div class="info">
                         <div class="name">Ngô Minh Nhí</div>
@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import img from '../../assets/images/img.png';
+import img from '../assets/images/img.png';
 export default {
     props: ['poster']
 }

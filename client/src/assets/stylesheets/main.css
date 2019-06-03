@@ -78,7 +78,11 @@
         font-size: 15px;
     }
     .tabsContainer ul.nav-tabs li {
+<<<<<<< HEAD
         padding: 0px 50px;
+=======
+        padding: 0px 35px;
+>>>>>>> them blog
     }
 }
 .row {
@@ -174,4 +178,8 @@ button.modal-box-up {
     /* left: 0;
     right: 0; */
     margin-top: 0;
+}
+
+.fade {
+    opacity: 1;
 }
