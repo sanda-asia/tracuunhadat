@@ -12,8 +12,12 @@ module.exports = async (req, res, next)=>{
             };
             res.json(result);
         } else{
-                req.user = decode;
-                next();
+            req.user = {
+                "status" : true,
+                "message" : "login success",
+                "data" : decode.data,
             }
+            next();
+        }
     })
 }
