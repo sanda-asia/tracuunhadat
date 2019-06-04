@@ -16,35 +16,25 @@
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 formItem">
                                 <div class="formField">
-                                    <label>Property Type</label>
-                                    <a href="#" data-toggle="dropdown" class="btn btn-gray dropdown-btn dropdown-toggle propTypeSelect">
-                                        <span class="dropdown-label">All</span>
-                                        <span class="fa fa-angle-down dsArrow"></span>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-select full" role="menu">
-                                        <li class="active"><input type="radio" name="pType" checked="checked"><a href="#">All</a></li>
-                                        <li><input type="radio" name="pType"><a href="#">Rent</a></li>
-                                        <li><input type="radio" name="pType"><a href="#">Sale</a></li>
-                                    </ul>
+                                    <label for="">Tỉnh - Thành Phố</label>
+                                    <select class="form-control" v-model="selectProvince">
+                                        <option value="-1">Tất Cả</option>
+                                        <option v-for="(province, index) in provinces" :value="index">{{province}}</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 formItem">
                                 <div class="formField">
-                                    <label>Property Type</label>
-                                    <a href="#" data-toggle="dropdown" class="btn btn-gray dropdown-btn dropdown-toggle propTypeSelect">
-                                        <span class="dropdown-label">All</span>
-                                        <span class="fa fa-angle-down dsArrow"></span>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-select full" role="menu">
-                                        <li class="active"><input type="radio" name="pType" checked="checked"><a href="#">All</a></li>
-                                        <li><input type="radio" name="pType"><a href="#">Rent</a></li>
-                                        <li><input type="radio" name="pType"><a href="#">Sale</a></li>
-                                    </ul>
+                                    <label for="">Quận - Huyện</label>
+                                    <select class="form-control" v-model="selectDistrict">
+                                        <option value="-1">Tất Cả</option>
+                                        <option v-for="(district, index) in districts" :value="index">{{district}}</option>
+                                    </select>
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 formItem">
+                            <!-- <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 formItem">
                                 <div class="formField">
-                                    <label>Property Type</label>
+                                    <label>Phường - Xã</label>
                                     <a href="#" data-toggle="dropdown" class="btn btn-gray dropdown-btn dropdown-toggle propTypeSelect">
                                         <span class="dropdown-label">All</span>
                                         <span class="fa fa-angle-down dsArrow"></span>
@@ -55,23 +45,23 @@
                                         <li><input type="radio" name="pType"><a href="#">Sale</a></li>
                                     </ul>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 formItem">
                                 <div class="formField">
-                                    <label>Price Range</label>
+                                    <label>Khoảng Giá</label>
                                     <div class="slider priceSlider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
                                         <div class="sliderTooltip" style="left: 106.5px;">
                                             <div class="stArrow"></div>
-                                            <div class="stLabel">$500,000 <span class="fa fa-arrows-h"></span> $1,500,000</div>
+                                            <div class="stLabel">0 VND <span class="fa fa-arrows-h"></span> 10,000,000,000 VND</div>
                                         </div>
                                     <div class="ui-slider-range ui-widget-header ui-corner-all" style="left: 25%; width: 50%;"></div><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 25%;"></span><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 75%;"></span></div>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 formItem">
                                 <div class="formField">
-                                    <label>Area Range</label>
+                                    <label> Diện tích</label>
                                     <div class="slider areaSlider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
                                         <div class="sliderTooltip" style="left: 55.5px;">
                                             <div class="stArrow"></div>
@@ -95,95 +85,59 @@
 
 <script>
 import ListPoster from './ListPoster'
+import address from '../data.json'
+
 export default {
     data() {
         return {
-        page: this.$route.query.test?this.$route.query.test:1,
-        activeTag: [],
-        itemsPerPage: 3,
-        posters : [
-            {
-                id: 1,
-                header : 'Nhà  đất quận 1',
-                description : ', CC Hưng Phát, PV Gas, Gần Khu công viên ánh sáng Kenton node, Phú mỹ hưng, Lotte Quận 7 DT: 6m x 14m Đất thổ cư, xây nhà kiên cố ép cọc bê tông đúc sàn đầy đủ',
-                price: '5.000.000.000',
-                area: '10000',
-                address: 'Hữu Lợi, Hữu Đạo, Châu Thành, Tiền Giang.',
-            },
-            {
-                id: 2,
-                header : 'Nhà  đất quận 2',
-                description : 'Cần bán gấp Căn Nhà Riêng Chính Chủ tại 1419 Đường lê Văn Lương Phước Kiển Nhà bè Ngay cầu ông Bốn Gần HAGL an Tiến, CC Hưng Phát, PV Gas, Gần Khu công viên ánh sáng Kenton node, Phú mỹ hưng, Lotte Quận 7 DT: 6m x 14m Đất thổ cư, xây nhà kiên cố ép cọc bê tông đúc sàn đầy đủ',
-                price: '5.000.000.000',
-                area: '10000',
-                address: 'Hữu Lợi, Hữu Đạo, Châu Thành, Tiền Giang.',
-            },
-            {
-                id: 3,
-                header : 'Nhà  đất quận 3',
-                description : 'Cần bán gấp Căn Nhà Riêng Chính Chủ tại 1419 Đường lê Văn Lương Phước Kiển Nhà bè Ngay cầu ông Bốn Gần HAGL an Tiến, CC Hưng Phát, PV Gas, Gần Khu công viên ánh sáng Kenton node, Phú mỹ hưng, Lotte Quận 7 DT: 6m x 14m Đất thổ cư, xây nhà kiên cố ép cọc bê tông đúc sàn đầy đủ',
-                price: '5.000.000.000',
-                area: '10000',
-                address: 'Hữu Lợi, Hữu Đạo, Châu Thành, Tiền Giang.',
-            },
-            {
-                id: 4,
-                header : 'Nhà  đất quận 4',
-                description : 'Cần bán gấp Căn Nhà Riêng Chính Chủ tại 1419 Đường lê Văn Lương Phước Kiển Nhà bè Ngay cầu ông Bốn Gần HAGL an Tiến, CC Hưng Phát, PV Gas, Gần Khu công viên ánh sáng Kenton node, Phú mỹ hưng, Lotte Quận 7 DT: 6m x 14m Đất thổ cư, xây nhà kiên cố ép cọc bê tông đúc sàn đầy đủ',
-                price: '5.000.000.000',
-                area: '10000',
-                address: 'Hữu Lợi, Hữu Đạo, Châu Thành, Tiền Giang.',
-            },
-            {
-                id: 5,
-                header : 'Nhà  đất quận 5',
-                description : 'Cần bán gấp Căn Nhà Riêng Chính Chủ tại 1419 Đường lê Văn Lương Phước Kiển Nhà bè Ngay cầu ông Bốn Gần HAGL an Tiến, CC Hưng Phát, PV Gas, Gần Khu công viên ánh sáng Kenton node, Phú mỹ hưng, Lotte Quận 7 DT: 6m x 14m Đất thổ cư, xây nhà kiên cố ép cọc bê tông đúc sàn đầy đủ',
-                price: '5.000.000.000',
-                area: '10000',
-                address: 'Hữu Lợi, Hữu Đạo, Châu Thành, Tiền Giang.',
-            },
-            {
-                id: 6,
-                header : 'Nhà  đất quận 6',
-                description : 'Cần bán gấp Căn Nhà Riêng Chính Chủ tại 1419 Đường lê Văn Lương Phước Kiển Nhà bè Ngay cầu ông Bốn Gần HAGL an Tiến, CC Hưng Phát, PV Gas, Gần Khu công viên ánh sáng Kenton node, Phú mỹ hưng, Lotte Quận 7 DT: 6m x 14m Đất thổ cư, xây nhà kiên cố ép cọc bê tông đúc sàn đầy đủ',
-                price: '5.000.000.000',
-                area: '10000',
-                address: 'Hữu Lợi, Hữu Đạo, Châu Thành, Tiền Giang.',
-            },
-            {
-                id: 7,
-                header : 'Nhà  đất quận 7',
-                description : 'Cần bán gấp Căn Nhà Riêng Chính Chủ tại 1419 Đường lê Văn Lương Phước Kiển Nhà bè Ngay cầu ông Bốn Gần HAGL an Tiến, CC Hưng Phát, PV Gas, Gần Khu công viên ánh sáng Kenton node, Phú mỹ hưng, Lotte Quận 7 DT: 6m x 14m Đất thổ cư, xây nhà kiên cố ép cọc bê tông đúc sàn đầy đủ',
-                price: '5.000.000.000',
-                area: '10000',
-                address: 'Hữu Lợi, Hữu Đạo, Châu Thành, Tiền Giang.',
-            },
-            {
-                id: 8,
-                header : 'Nhà  đất quận 8',
-                description : 'Cần bán gấp Căn Nhà Riêng Chính Chủ tại 1419 Đường lê Văn Lương Phước Kiển Nhà bè Ngay cầu ông Bốn Gần HAGL an Tiến, CC Hưng Phát, PV Gas, Gần Khu công viên ánh sáng Kenton node, Phú mỹ hưng, Lotte Quận 7 DT: 6m x 14m Đất thổ cư, xây nhà kiên cố ép cọc bê tông đúc sàn đầy đủ',
-                price: '5.000.000.000',
-                area: '10000',
-                address: 'Hữu Lợi, Hữu Đạo, Châu Thành, Tiền Giang.',
-            },
-            {
-                id: 9,
-                header : 'Nhà  đất quận 9',
-                description : 'Cần bán gấp Căn Nhà Riêng Chính Chủ tại 1419 Đường lê Văn Lương Phước Kiển Nhà bè Ngay cầu ông Bốn Gần HAGL an Tiến, CC Hưng Phát, PV Gas, Gần Khu công viên ánh sáng Kenton node, Phú mỹ hưng, Lotte Quận 7 DT: 6m x 14m Đất thổ cư, xây nhà kiên cố ép cọc bê tông đúc sàn đầy đủ',
-                price: '5.000.000.000',
-                area: '10000',
-                address: 'Hữu Lợi, Hữu Đạo, Châu Thành, Tiền Giang.',
-            },
+            page: this.$route.query.test?this.$route.query.test:1,
+            activeTag: [],
+            itemsPerPage: 3,
+            posters : [
+                {
+                    id: 1,
+                    header : 'Nhà  đất quận 1',
+                    description : ', CC Hưng Phát, PV Gas, Gần Khu công viên ánh sáng Kenton node, Phú mỹ hưng, Lotte Quận 7 DT: 6m x 14m Đất thổ cư, xây nhà kiên cố ép cọc bê tông đúc sàn đầy đủ',
+                    price: '5.000.000.000',
+                    area: '10000',
+                    address: 'Hữu Lợi, Hữu Đạo, Châu Thành, Tiền Giang.',
+                },
 
-        ],
-        user : {
-            id: 1,
-            userName: 'Ngô Minh Nhí',
-            address: 'Hữu Lợi, Hữu Đạo, Châu Thành, Tiền Giang.',
-            contact: '0325655533',
-        },
-        };
+            ],
+            user : {
+                id: 1,
+                userName: 'Ngô Minh Nhí',
+                address: 'Hữu Lợi, Hữu Đạo, Châu Thành, Tiền Giang.',
+                contact: '0325655533',
+            },
+            address: address,
+            provinces: [],
+            selectProvince: -1,
+            districts: [],
+            selectDistrict: -1
+            };
     },
+
+    mounted(){
+        for(let index in address){
+            this.provinces.push(address[index].name);
+        } 
+    },
+
+    watch:{
+        selectProvince(){
+            this.districts = [];
+            this.selectDistrict = -1;
+            for(let index in address){
+                if(index == this.selectProvince+1){
+                    for(let key in address[index].districts){
+                        this.districts.push(address[index].districts[key]);
+                    }
+                }
+            }
+        }
+    },
+
     computed:{
         currentPage(){
             return this.$route.query.page?this.$route.query.page:1;
@@ -197,30 +151,7 @@ export default {
         },
         setActiveTag(){
             const tag = this.$route.query.f;
-            
-
         }
-    },
-    mounted(){
-        // this.fetchPosters();
-    },
-    methods:{
-        reply: function() {
-        this.msg = "I'm doing great ! Thanks !";
-        },
-        async fetchPosters(){
-        return axios({
-            method: 'get',
-            url: 'http://localhost:8081/posters',
-
-        })
-            .then((response) => {
-            this.movies = response.data.posters;
-            })
-            .catch(() => {
-
-            });
-        },
     },
     components: {
         listPoster : ListPoster,

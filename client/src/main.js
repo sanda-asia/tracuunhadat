@@ -7,9 +7,12 @@ import Vue from 'vue';
 import App from './App';
 import router from './router';
 import Resource from 'vue-resource';
-// window.$ = require('jquery')
-// window.jQuery = require('jquery')
+import Vuetify from 'vuetify'
+
+Vue.use(Vuetify)
+
 Vue.config.productionTip = false;
+
 // Import global Vue Components
 import headerPage from './components/Header';
 Vue.component('header-page', headerPage);
@@ -35,12 +38,6 @@ Vue.component('left-nav', leftNav);
 import LoginModal from './components/LoginModal';
 Vue.component('login-modal', LoginModal);
 
-// import Admin from './components/Admin/Admin';
-// Vue.component('admin', Admin);
-
-// import Blog from './components/Blog/Blog';
-// Vue.component('blog', Blog);
-
 import jQuery from 'jquery';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import BootstrapVue from 'bootstrap-vue';
@@ -49,6 +46,7 @@ Vue.use(BootstrapVue);
 global.jQuery = jQuery;
 
 Vue.use(Resource);
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

@@ -41,6 +41,7 @@ export default new Router({
     },
     {
       path:'/rao-vat',
+      // redirect: '/',
       name : 'Classified',
       component: Home,
     },

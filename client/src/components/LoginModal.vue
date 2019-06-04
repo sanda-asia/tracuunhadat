@@ -5,10 +5,6 @@
 
         <!-- Modal content-->
         <div class="modal-content" style="position: fixed">
-            <!-- <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Modal Header</h4>
-            </div> -->
             <div class="modal-body">
                 <div class="panel panel-default">
                     <div class="panel-heading">Basic Form</div>
