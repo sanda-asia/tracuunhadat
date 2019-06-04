@@ -1,14 +1,13 @@
 <template>
-    <div style="margin-top: 60px">
+    <div id="home">
         <map-place />
         <content-home />
-        <login-modal/>
+        <!-- <login-modal/> -->
     </div>
 </template>
 
 
 <script>
-
 
 export default {
     name: 'Home',
@@ -17,5 +16,7 @@ export default {
 </script>
 
 <style scoped>
-
+#home {
+    margin-top: 60px;
+}
 </style>

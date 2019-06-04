@@ -4,14 +4,10 @@
     <div class="modal-dialog fixed-modal">
 
         <!-- Modal content-->
-        <div class="modal-content" style="position: fixed">
-            <!-- <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Modal Header</h4>
-            </div> -->
+        <div class="modal-content">
             <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-8">
+                <div class="row" style="height:100%">
+                    <div class="col-md-8" id="scroll-able">
                         
                         <div class="wrapper-left-pop-up detail-info-poster">
                             <ol class="breadcrumb">
@@ -77,7 +73,7 @@
                                 </div>
                             </div>
                             <div class="">
-                                <h2> {{ poster.header }}</h2>
+                                <h2 style="font-size: 18px"> {{ poster.header }}</h2>
                                 <div class="m-text-description-poster"> 
                                     <div class="m-price-poster"><span class="fa fa-money"></span> {{poster.price}}</div>
                                     <div class="area-poster"><span class="icon-frame"></span>
@@ -88,21 +84,32 @@
                                         Location : {{ poster.address }}
                                     </div>
                                 </div>
-                                <div>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere nulla maiores libero necessitatibus culpa assumenda, consectetur iste molestias rem, deleniti officiis. Temporibus iure ipsa officia asperiores hic neque accusamus tempora?
-                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati doloremque explicabo delectus eligendi ducimus quos voluptatibus nobis culpa magni tempore dolore sed illum, ipsum vitae soluta est sapiente reiciendis. Reprehenderit?
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga cumque maiores incidunt earum odio voluptatum, corrupti praesentium soluta eum pariatur aspernatur suscipit quasi alias assumenda doloremque ipsum fugit consequuntur qui!
-                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem magnam, quas architecto tempora rem ad itaque earum eos suscipit voluptatum odit necessitatibus est maxime, enim, expedita vel totam a magni?
-                                    </p>
-                                </div>
-                                <div class="panel panel-default dd">
-                                    <a href="#ddPanel" class="btn btn-o btn-default btn-block btn-lg align-left collapsed" data-toggle="collapse">Dropdown Panel<span class="fa fa-angle-down pull-right"></span></a>
-                                    <div id="ddPanel" class="panel-collapse collapse" style="height: 0px;">
-                                        <div class="panel-body">
-                                            Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.
+                                <div class="share">
+                                    <h3>Share on Social Networks</h3>
+                                    <div class="row">
+                                        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 shareItem">
+                                            <a href="#" class="btn btn-sm btn-round btn-o btn-facebook"><span class="fa fa-facebook"></span> Facebook</a>
+                                        </div>
+                                        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 shareItem">
+                                            <a href="#" class="btn btn-sm btn-round btn-o btn-twitter"><span class="fa fa-twitter"></span> Twitter</a>
+                                        </div>
+                                        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 shareItem">
+                                            <a href="#" class="btn btn-sm btn-round btn-o btn-google"><span class="fa fa-google-plus"></span> Google+</a>
+                                        </div>
+                                        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 shareItem">
+                                            <a href="#" class="btn btn-sm btn-round btn-o btn-pinterest"><span class="fa fa-pinterest"></span> Pinterest</a>
                                         </div>
                                     </div>
                                 </div>
+                                <h3>Tổng Quan</h3>
+                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium excepturi, repellat non earum soluta culpa, sint dolores ad molestiae vero qui error eveniet. Fuga blanditiis repellat hic. Neque, ipsa quaerat!</p>
+                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis, pariatur nesciunt temporibus laudantium necessitatibus distinctio incidunt non maiores enim iusto ad officiis consequatur excepturi vitae itaque ducimus. Quae, rem? Placeat!</p>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio placeat quas nemo iure quis facilis vero, quisquam ad id quam ut, dolorum voluptatem alias sunt, et tenetur eos! Saepe, eum!</p>
+                                <h3>Tiện ích</h3>
+                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium excepturi, repellat non earum soluta culpa, sint dolores ad molestiae vero qui error eveniet. Fuga blanditiis repellat hic. Neque, ipsa quaerat!</p>
+                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis, pariatur nesciunt temporibus laudantium necessitatibus distinctio incidunt non maiores enim iusto ad officiis consequatur excepturi vitae itaque ducimus. Quae, rem? Placeat!</p>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio placeat quas nemo iure quis facilis vero, quisquam ad id quam ut, dolorum voluptatem alias sunt, et tenetur eos! Saepe, eum!</p>
+                                
                             </div> 
                         </div>
 
@@ -149,9 +156,6 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
         </div>
 
     </div>
@@ -166,11 +170,54 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
     .images-poster{
         margin-bottom: 20px;
     }
     .profile-img {
         border-radius: 50%;
+    }
+
+    @media (min-width: 768px){
+        .modal-dialog {
+            /* width: 600px; */
+            margin: 0px auto;
+        }
+        .modal-open .modal {
+            overflow-x: hidden;
+            overflow-y: hidden;
+        }
+        .fixed-modal {
+            position: fixed;
+            /* margin-top: 0; */
+            left: 0;
+            right: 0;
+            height: 100%;
+        }
+        .modal-content {
+            position: fixed;
+            background-color: #fff;
+            background-clip: padding-box;
+            /* border: 1px solid #999; */
+            border: 1px solid rgba(0, 0, 0, .2);
+            border-radius: 3px;
+            outline: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+        }
+        .modal-body {
+            position: relative;
+            padding: 15px;
+            height: 100%;
+        }
+        
+        #scroll-able{
+            overflow-y: scroll;
+            height: 100%;
+        }
+    }
+    .description, .amenities, .share, .similar {
+        padding: 0;
     }
 </style>
