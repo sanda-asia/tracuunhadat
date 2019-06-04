@@ -78,7 +78,7 @@
                 </div>
             </div>
         </div>
-        <modal-pop-up v-bind:poster="posters[1]" v-bind:user="user" />
+        <modal-pop-up v-bind:poster="posters[0]" v-bind:user="user"/>
     </div>
     
 </template>
@@ -159,25 +159,11 @@ export default {
 }
 </script>
 
-<style>
-::-webkit-scrollbar-track
-{
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-	border-radius: 10px;
-	background-color: #F5F5F5;
-}
+<style scoped>
 
-::-webkit-scrollbar
-{
-	width: 12px;
-	background-color: #F5F5F5;
-}
-
-::-webkit-scrollbar-thumb
-{
-	border-radius: 10px;
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-	background-color: rgb(156, 150, 150);
+.tab-pane {
+    padding: 0 5px;
+    font-size: 13px;
 }
 
 </style>

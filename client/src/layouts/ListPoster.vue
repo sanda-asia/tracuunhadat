@@ -2,7 +2,6 @@
     <div class="tab-pane fade" id="profile">
         <div class="wrapper-poster" v-for="poster in posters" :key="poster.id">
             <mini-poster v-bind:poster="poster" />
-            
         </div>
         <pagination v-bind:total-pages="totalPages" />
     </div>
@@ -112,26 +111,13 @@ export default {
         // this.fetchPosters();
     },
     methods:{
-        reply: function() {
-        this.msg = "I'm doing great ! Thanks !";
-        },
-        async fetchPosters(){
-        return axios({
-            method: 'get',
-            url: 'http://localhost:8081/posters',
-
-        })
-            .then((response) => {
-            this.movies = response.data.posters;
-            })
-            .catch(() => {
-
-            });
-        },
     },
 }
 </script>
 
-<style>
-
+<style scoped>
+.tab-pane {
+    padding: 0 5px;
+    font-size: 13px;
+}
 </style>

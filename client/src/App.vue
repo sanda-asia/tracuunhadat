@@ -5,7 +5,7 @@
       <left-nav/>
       <router-view/>
     </div>
-    <login-modal/>
+    
   </div>
 </template>
 
