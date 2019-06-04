@@ -58,7 +58,7 @@ export default {
     data: () => {
         return {
             users:{
-                role : 1 // admin
+                role : 0 // admin
             } 
         }
     }

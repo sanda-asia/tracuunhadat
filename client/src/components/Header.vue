@@ -109,6 +109,7 @@ import '../assets/stylesheets/datepicker.css'
 import '../assets/stylesheets/bootstrap.css'
 import '../assets/stylesheets/app.css'
 import '../assets/stylesheets/main.css'
+import '../assets/stylesheets/custom.css'
 
 export default {
     name: 'headerSide',
