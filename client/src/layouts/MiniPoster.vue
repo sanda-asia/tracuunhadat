@@ -47,6 +47,23 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+    
+    @media (max-width: 480px){
+        .m-text-description-poster {
+            font-size: 12px;
+            margin: 0;
+        }
+        .userWidget-2 {
+            display: none;
+        }
+        .m-price-poster {
+            text-align: left;
+            font-size: 15px;
+            width: 60%;
+            float: left;
+            color: #c81010;
+            font-weight: bold;
+        }
+    }
 </style>

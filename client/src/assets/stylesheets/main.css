@@ -61,7 +61,7 @@
         padding-right: 0px;
     }
     h4.m-header-poster {
-        margin: 5px 0px;
+        /* margin: 5px 0px; */
         font-size: 14px;
     }
     
@@ -70,9 +70,9 @@
     }
     
     .m-price-poster {
-        font-size: 14px;
+        /* font-size: 14px;
         font-weight: bold;
-        margin-left: 10px;
+        margin-left: 10px; */
     }
     .expanded .leftNav ul li a span.navLabel{
         font-size: 15px;
