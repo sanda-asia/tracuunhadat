@@ -7,6 +7,7 @@ import BlogAdd from '@/pages/Blog/BlogAdd';
 import Admin from '@/pages/Admin/Admin';
 import ListPoster from '@/layouts/ListPoster';
 import Home from '@/pages/Home';
+import User from '@/pages/User';
 Vue.use(Router);
 
 export default new Router({
@@ -58,6 +59,11 @@ export default new Router({
       path: '/nhan-dinh/:titleBlog',
       name: 'DetailBlog',
       component: DetailBlog,
+    },
+    {
+      path: '/user/:id',
+      name: 'User',
+      component: User,
     },
     {
       path: '/admin',

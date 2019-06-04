@@ -220,4 +220,12 @@ export default {
     .description, .amenities, .share, .similar {
         padding: 0;
     }
+    #content h2 {
+        margin: 0;
+        border-bottom: none;
+    }
+    .share {
+        text-align: left;
+        margin: 20px 0;
+    }
 </style>
