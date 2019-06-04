@@ -196,6 +196,7 @@ module.exports = {
       }
       res.json(result);
    },
+
    showListPostAprroved: async (req,res) =>{
       try {
          let listPostApproved = await Classified.find({status: 1}).populate('id_user').sort({time_approved: -1});
@@ -214,7 +215,7 @@ module.exports = {
 
    showListPostPending: async (req,res) =>{
       try {
-         let listPostPending = await Classified.find({status: 0}).sort({time_created: 1});
+         let listPostPending = await Classified.find({status: 0}).sort({_id: 1});
          var result= {
             "status": true,
             "data": listPostPending
@@ -261,6 +262,27 @@ module.exports = {
          }
       }
       res.json(result);
-   }
+   },
 
+   showPostInPage: async(req, res)=>{
+      try {
+         let search = req.query.search || '';
+         let pageNumber = parseInt(req.query.page) || 1;
+         let numberOfItems = 2;
+         let begin = (pageNumber - 1) * numberOfItems;
+         let regexPattern = new RegExp(".*"+ search +".*", "i");
+         let listPost = await Classified.find({status: 1, title: { $regex: regexPattern}})
+                              .sort({_id:-1}).limit(numberOfItems).skip(begin);
+         var result = {
+            "status": true,
+            "data": listPost
+         }
+      } catch (error) {
+         var result = {
+            "status": false,
+            "err.msg": error.message
+         }
+      }
+      res.json(result);
+   },
 };

@@ -32,4 +32,6 @@ router.get("/post-details/:id", classifiedController.showPostDetails); //isAdmin
 
 router.put("/save-post/:id",auth, classifiedController.savePost);
 
+router.get("/posts", classifiedController.showPostInPage); //isAdmin
+
 module.exports = router;
