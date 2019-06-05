@@ -264,7 +264,7 @@ module.exports = {
       res.json(result);
    },
 
-   showPostInPage: async(req, res)=>{
+   showPostApproved: async(req, res)=>{
       try {
          let search = req.query.search || '';
          let pageNumber = parseInt(req.query.page) || 1;
@@ -284,5 +284,5 @@ module.exports = {
          }
       }
       res.json(result);
-   },
+   }
 };
