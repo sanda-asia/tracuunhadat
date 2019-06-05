@@ -19,14 +19,16 @@ module.exports = app => {
 
     const blogRouter = require("./blog/blog.routes");
 
-    app.use('/user', userRouter);
+    var cors = require('cors');
+
+    app.use('/user', cors(), userRouter);
     // app.use('/setting', settingRouter);
     
-    app.use('/classified', classifiedRouter);
+    app.use('/classified', cors(), classifiedRouter);
 
-    app.use('/blog', blogRouter);
+    app.use('/blog', cors(), blogRouter);
 
-    app.use('/project', projectRouter);
+    app.use('/project', cors(), projectRouter);
 
     app.use('/', (req,res,next)=> res.json({"message": "Hello my api"}));
 

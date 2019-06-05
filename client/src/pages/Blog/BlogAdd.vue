@@ -362,10 +362,15 @@ export default {
 </script>
 
 <style scoped>
-#wrapper {
-    left: 70px;
-    top: 60px;
-    margin: 60px 0 0 90px;
-    /* padding: 20px; */
-}
+    #wrapper {
+        left: 70px;
+        top: 60px;
+        margin: 60px 0 0 90px;
+        /* padding: 20px; */
+    }
+    #content.max {
+        width: 100%;
+        height: 100%;
+        overflow-y: scroll;
+    }
 </style>

@@ -11,8 +11,12 @@ import Vue from 'vue';
 import App from './App';
 import router from './router';
 import Resource from 'vue-resource';
+<<<<<<< HEAD
+import Vuetify from 'vuetify' 
+=======
 import Vuetify from 'vuetify'
 Vue.use(BootstrapVue);
+>>>>>>> 718b246fcc3f3fb090571299eb89dba1088c2c8e
 
 Vue.use(Vuetify)
 
