@@ -74,7 +74,7 @@
                     </form>
                 </div>
                 <div class="tab-pane fade active in">
-                   <list-poster />
+                   <list-poster :posters="posters" />
                 </div>
             </div>
         </div>
@@ -86,6 +86,7 @@
 <script>
 import ListPoster from './ListPoster'
 import address from '../data.json'
+import axios from 'axios'
 
 export default {
     data() {
@@ -93,31 +94,38 @@ export default {
             page: this.$route.query.test?this.$route.query.test:1,
             activeTag: [],
             itemsPerPage: 3,
-            posters : [
-                {
-                    id: 1,
-                    header : 'Nhà  đất quận 1',
-                    description : ', CC Hưng Phát, PV Gas, Gần Khu công viên ánh sáng Kenton node, Phú mỹ hưng, Lotte Quận 7 DT: 6m x 14m Đất thổ cư, xây nhà kiên cố ép cọc bê tông đúc sàn đầy đủ',
-                    price: '5.000.000.000',
-                    area: '10000',
-                    address: 'Hữu Lợi, Hữu Đạo, Châu Thành, Tiền Giang.',
-                },
-
-            ],
-            user : {
-                id: 1,
-                userName: 'Ngô Minh Nhí',
-                address: 'Hữu Lợi, Hữu Đạo, Châu Thành, Tiền Giang.',
-                contact: '0325655533',
-            },
+            posters : [],
             address: address,
             provinces: [],
             selectProvince: -1,
             districts: [],
             selectDistrict: -1
-            };
+        };
     },
 
+    created() {
+        return axios.get('http://localhost:3000/classified/posts-approved')
+        .then(response =>{
+            this.posters = response.data.data;
+            console.log(response.data)
+        })
+        .catch(err=>{
+            console.log("quoc cho")
+        })
+    },
+
+    methods:{
+        // getAllListClassified(){
+        //     return axios.get('http://localhost:3000/classified/posts-approved')
+        //     .then(response =>{
+        //         this.posters = response.data.data;
+        //         console.log(response.data)
+        //     })
+        //     .catch(err=>{
+        //         console.log("quoc cho")
+        //     })
+        // }
+    },
     mounted(){
         for(let index in address){
             this.provinces.push(address[index].name);

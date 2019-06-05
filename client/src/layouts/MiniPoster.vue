@@ -9,7 +9,7 @@
         
         <div class="col-xs-8 col-md-8 col-lg-8 description-poster" >
             <button type="button" class="modal-box-up" data-toggle="modal" data-target="#myModal" style="padding:0;">
-                <h4 class="m-header-poster">{{ poster.header }}</h4>
+                <h4 class="m-header-poster">{{ poster.title }}</h4>
             </button>
             <div class="m-text-description-poster"> 
                 <div class="m-price-poster"><span class="fa fa-money"></span> {{poster.price}}</div>
@@ -27,7 +27,7 @@
                     <img src="../assets/images/img1.png" alt="avatar">
                 </div>
                 <div class="info">
-                    <div class="name">Ngô Minh Nhí</div>
+                    <div class="name">{{poster.id_user.username}}</div>
                     <div class="title">Chuyên viên tư vấn</div>
                 </div>
                 <div class="ops">

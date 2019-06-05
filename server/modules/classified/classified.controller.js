@@ -198,7 +198,7 @@ module.exports = {
    },
    showListPostAprroved: async (req,res) =>{
       try {
-         let listPostApproved = await Classified.find({status: 1}).sort({time_approved: -1});
+         let listPostApproved = await Classified.find({status: 1}).populate('id_user').sort({time_approved: -1});
          var result= {
             "status": true,
             "data": listPostApproved

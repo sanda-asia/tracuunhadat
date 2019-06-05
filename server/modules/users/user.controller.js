@@ -36,6 +36,7 @@ module.exports = {
     register: async (req, res)=>{
         let newUser = await User.create({
             username: req.body.username,
+            fullname: req.body.fullname,
             password: bcrypt.hashSync(req.body.password),
             email: req.body.email,
             phone_number: req.body.phone_number,
@@ -70,6 +71,7 @@ module.exports = {
     putUser: async (req, res)=>{
         let updateUser = {
             username: req.body.username,
+            fullname:req.body.fullname,
             password: bcrypt.hashSync(req.body.password),
             email: req.body.email,
             phone_number: req.body.phone_number
