@@ -15,11 +15,12 @@ var storage = multer.diskStorage({
  
 var upload = multer({ storage: storage });
 
+// RETURN ALL POST APPROVED IN DATABASE OR POSTS WITH QUERY: search
 router.get("/posts-approved", classifiedController.showListPostAprroved); 
 
 router.get("/posts-pending", classifiedController.showListPostPending); //isAdmin
 
-//Query Params: page, search
+//Query Params: page
 router.get("/posts", classifiedController.showPostApproved);
 
 router.get("/post-details/:id", classifiedController.showPostDetails);
