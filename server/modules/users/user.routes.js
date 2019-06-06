@@ -9,9 +9,8 @@ router.post("/dang-nhap", userController.login);
 //đăng kí
 router.post("/dang-ky", userController.register);
 
-// get profile 
-
-router.get("/:id", auth, check.isUser ,userController.getProfile);
+// get profile
+router.get("/:id", userController.getProfile);
 
 //Lấy danh sách tin đăng được duyệt
 router.get("/:id/list/checked", userController.getAllListClassifiedChecked);

@@ -2,7 +2,6 @@
     <!-- Modal -->
 <div id="myModal2" class="modal fade" role="dialog">
   <div class="modal-dialog">
-
     <!-- Modal content-->
     <div class="modal-content register-modal-content">
       <div class="modal-body">
@@ -108,8 +107,8 @@ data: () => {
         return {
         temp: '',
         valid: true,
-        usernameLogin: 'nhi',
-        passwordLogin: '1111111',
+        usernameLogin: '',
+        passwordLogin: '',
         username: '',
         email: '',
         phone_number: '',
@@ -161,15 +160,13 @@ data: () => {
                         this.temp = 'Username or Password is incorrect!'
                     } else {
                        this.temp = '';
+                       localStorage.setItem('token',response.data.token);
                        swal(
                             `Welcome ${response.data.data.username}!`,
                             'Login success!',
                             'success',
                         );
-                        const urlPage = window.location.href;
-                        router.push({urlPage});
-                        this.$refs.form.reset();
-                        console.log(this.urlPage);
+                        this.$router.go();
                     }
                 }).catch((error) => {
                     console.log(error);

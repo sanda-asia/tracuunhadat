@@ -2,7 +2,7 @@
     <div id="home">
         <map-place />
         <content-home />
-        <!-- <login-modal/> -->
+        
     </div>
 </template>
 

@@ -8,7 +8,7 @@
                     <div class="clearfix"></div>
                 </div>
                 <ul v-if="users.role == 0" class="text-align-left">
-                    <li><a href="explore.html"><span class="navIcon icon-compass"></span><span class="navLabel">Top Projects</span></a></li>
+                    <li><a href="#"><span class="navIcon icon-compass"></span><span class="navLabel">Top Projects</span></a></li>
                     <li><router-link :to="{ name: 'Classified'}"><span class="navIcon fas fa-ad"></span><span class="navLabel">Classified Ads</span></router-link></li>
                     <li><router-link :to="{ name: 'Blog'}"><span class="navIcon fab fa-blogger"></span><span class="navLabel">Blog</span></router-link></li>
                     <li class="hasSub">

@@ -1,14 +1,13 @@
 <template>
     <div class="row m-poster">
-        
         <div class="col-xs-4 col-md-4 col-lg-4 img-poster" style="padding-left:0px;">
-            <button class="modal-box-up" data-toggle="modal" data-target="#myModal" style="padding:0;">
+            <button class="modal-box-up" data-toggle="modal" data-target="#myModal1" style="padding:0;">
                 <img src="../assets/images/1.jpg" />
             </button>
         </div>
         
         <div class="col-xs-8 col-md-8 col-lg-8 description-poster" >
-            <button type="button" class="modal-box-up" data-toggle="modal" data-target="#myModal" style="padding:0;">
+            <button type="button" class="modal-box-up" data-toggle="modal" data-target="#myModal1" style="padding:0;">
                 <h4 class="m-header-poster">{{ poster.title }}</h4>
             </button>
             <div class="m-text-description-poster"> 

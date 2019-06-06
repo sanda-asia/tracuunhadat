@@ -9,8 +9,6 @@ require('./config/middlewares')(app);
 
 require('./modules/index')(app);
 
-
-
 app.listen(constants.PORT, err => {
     if (err) {
       throw err;

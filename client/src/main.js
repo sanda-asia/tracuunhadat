@@ -17,7 +17,6 @@ Vue.use(Vuetify)
 
 Vue.config.productionTip = false;
 
-// Import global Vue Components
 import headerPage from './components/Header';
 Vue.component('header-page', headerPage);
 

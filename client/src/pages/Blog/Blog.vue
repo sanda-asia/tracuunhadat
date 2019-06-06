@@ -48,41 +48,7 @@ export default {
     name: 'Blog',
     data: ()=> {
         return {
-            posters : [
-                {
-                    id: 1,
-                    header : 'Nhà  đất quận 1',
-                    description : ', CC Hưng Phát, PV Gas, Gần Khu công viên ánh sáng Kenton node, Phú mỹ hưng, Lotte Quận 7 DT: 6m x 14m Đất thổ cư, xây nhà kiên cố ép cọc bê tông đúc sàn đầy đủ',
-                    price: '5.000.000.000',
-                    area: '10000',
-                    address: 'Hữu Lợi, Hữu Đạo, Châu Thành, Tiền Giang.',
-                },
-                {
-                    id: 2,
-                    header : 'Nhà  đất quận 2',
-                    description : 'Cần bán gấp Căn Nhà Riêng Chính Chủ tại 1419 Đường lê Văn Lương Phước Kiển Nhà bè Ngay cầu ông Bốn Gần HAGL an Tiến, CC Hưng Phát, PV Gas, Gần Khu công viên ánh sáng Kenton node, Phú mỹ hưng, Lotte Quận 7 DT: 6m x 14m Đất thổ cư, xây nhà kiên cố ép cọc bê tông đúc sàn đầy đủ',
-                    price: '5.000.000.000',
-                    area: '10000',
-                    address: 'Hữu Lợi, Hữu Đạo, Châu Thành, Tiền Giang.',
-                },
-                {
-                    id: 3,
-                    header : 'Nhà  đất quận 3',
-                    description : 'Cần bán gấp Căn Nhà Riêng Chính Chủ tại 1419 Đường lê Văn Lương Phước Kiển Nhà bè Ngay cầu ông Bốn Gần HAGL an Tiến, CC Hưng Phát, PV Gas, Gần Khu công viên ánh sáng Kenton node, Phú mỹ hưng, Lotte Quận 7 DT: 6m x 14m Đất thổ cư, xây nhà kiên cố ép cọc bê tông đúc sàn đầy đủ',
-                    price: '5.000.000.000',
-                    area: '10000',
-                    address: 'Hữu Lợi, Hữu Đạo, Châu Thành, Tiền Giang.',
-                },
-                {
-                    id: 4,
-                    header : 'Nhà  đất quận 4',
-                    description : 'Cần bán gấp Căn Nhà Riêng Chính Chủ tại 1419 Đường lê Văn Lương Phước Kiển Nhà bè Ngay cầu ông Bốn Gần HAGL an Tiến, CC Hưng Phát, PV Gas, Gần Khu công viên ánh sáng Kenton node, Phú mỹ hưng, Lotte Quận 7 DT: 6m x 14m Đất thổ cư, xây nhà kiên cố ép cọc bê tông đúc sàn đầy đủ',
-                    price: '5.000.000.000',
-                    area: '10000',
-                    address: 'Hữu Lợi, Hữu Đạo, Châu Thành, Tiền Giang.',
-                },
-
-            ]
+            posters : []
         };
     }
 }

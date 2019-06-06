@@ -43,7 +43,13 @@ module.exports = {
             amount: 100000, // default 100k
             role: 1
         });
-        let token = jwt.sign({ data: newUser }, CONSTANTS.SECRET_KEY, { expiresIn: 3600*60});
+        let token = jwt.sign({ data: {
+            username: req.body.username,
+            fullname: req.body.fullname,
+            email: req.body.email,
+            phone_number: req.body.phone_number,
+            role: 1
+        } }, CONSTANTS.SECRET_KEY, { expiresIn: 3600*60});
         let result = {
             "status": true,
             "message": "success",
@@ -53,8 +59,14 @@ module.exports = {
         res.json(result);
     },
     // 
-    getProfile: async (req, res)=>{
-        res.json(req.user);
+    getProfile: (req, res)=>{
+        User.findOne({_id:req.params.id},(err, user)=>{
+            if(err){
+                throw new Error(err.message)
+            } else{
+                res.json(user)
+            }
+        })
     },
     //lấy lịch sử giao dich
     getTransaction: async (req, res)=>{

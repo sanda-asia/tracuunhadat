@@ -78,7 +78,7 @@
                 </div>
             </div>
         </div>
-        <modal-pop-up v-bind:poster="posters[0]" v-bind:user="user"/>
+        <modal-pop-up :poster="posters[0]"/>
     </div>
     
 </template>
@@ -110,7 +110,7 @@ export default {
             console.log(response.data)
         })
         .catch(err=>{
-            console.log("quoc cho")
+            // console.log("quoc cho")
         })
     },
 

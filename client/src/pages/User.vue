@@ -220,7 +220,7 @@
         </div>
         
         <div class="clearfix"></div>
-        <modal-pop-up v-bind:poster="posters[0]" v-bind:user="user"/>
+        <!-- <modal-pop-up v-bind:poster="posters[0]"/> -->
     </div>
 </template>
 
@@ -228,6 +228,7 @@
 <script>
 import ListPoster from '../layouts/ListPoster'
 import address from '../data.json'
+import axios from 'axios'
 
 export default {
     name: "User",
@@ -236,29 +237,24 @@ export default {
             page: this.$route.query.test?this.$route.query.test:1,
             activeTag: [],
             itemsPerPage: 3,
-            posters : [
-                {
-                    id: 1,
-                    header : 'Nhà  đất quận 1',
-                    description : ', CC Hưng Phát, PV Gas, Gần Khu công viên ánh sáng Kenton node, Phú mỹ hưng, Lotte Quận 7 DT: 6m x 14m Đất thổ cư, xây nhà kiên cố ép cọc bê tông đúc sàn đầy đủ',
-                    price: '5.000.000.000',
-                    area: '10000',
-                    address: 'Hữu Lợi, Hữu Đạo, Châu Thành, Tiền Giang.',
-                },
-
-            ],
-            user : {
-                id: 1,
-                userName: 'Ngô Minh Nhí',
-                address: 'Hữu Lợi, Hữu Đạo, Châu Thành, Tiền Giang.',
-                contact: '0325655533',
-            },
+            user : '',
             address: address,
             provinces: [],
             selectProvince: -1,
             districts: [],
             selectDistrict: -1
-            };
+        };
+    },
+
+    created(){
+        axios.get('http://localhost:3000/user/'+this.$route.params.id)
+        .then(response=>{
+            this.user = response.data;
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+        // alert(JSON.stringify(this.$route.params))
     },
 
     mounted(){

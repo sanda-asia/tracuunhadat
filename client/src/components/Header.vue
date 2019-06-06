@@ -12,31 +12,33 @@
                 <span class="searchIcon icon-magnifier"></span>
                 <input type="text" placeholder="Search for houses, apartments...">
             </div>
-            <div class="headerUserWraper">
-                <button class="btn btn-primary">
-                <button class="modal-box-up " data-toggle="modal" data-target="#myModal2" style="padding:0;">
-                Login
+            <div class="headerUserWraper"  v-if="exitsToken == null">
+                <button class="btn btn-primary mg10">
+                    <button class="modal-box-up " data-toggle="modal" data-target="#myModal2" style="padding:0;">
+                        Login
+                    </button>
                 </button>
-                </button>
+            </div>
+            <div class="headerUserWraper"  v-else>
                 <a href="#" class="userHandler dropdown-toggle" data-toggle="dropdown"><span class="icon-user"></span><span class="counter">5</span></a>
                 <a href="#" class="headerUser dropdown-toggle" data-toggle="dropdown">
-                    <img class="avatar headerAvatar pull-left" src="images/avatar-1.png" alt="avatar">
+                    <img class="avatar headerAvatar pull-left" src="https://img.homedy.com/store/images/2019/01/16/161485a60e92edccb483.jpg_170x170.jpg" alt="avatar">
                     <div class="userTop pull-left">
-                        <span class="headerUserName">John Smith</span> <span class="fa fa-angle-down"></span>
+                        <span class="headerUserName">{{user.data.username}}</span> <span class="fa fa-angle-down"></span>
                     </div>
                     <div class="clearfix"></div>
                 </a>
                 <div class="dropdown-menu pull-right userMenu" role="menu">
                     <div class="mobAvatar">
                         <img class="avatar mobAvatarImg" src="images/avatar-1.png" alt="avatar">
-                        <div class="mobAvatarName">John Smith</div>
+                        <div class="mobAvatarName">{{user.data.username}}</div>
                     </div>
                     <ul>
                         <li><a href="#"><span class="icon-settings"></span>Settings</a></li>
-                        <li><a href="profile.html"><span class="icon-user"></span>Profile</a></li>
+                        <li><router-link :to="{name: 'User', params: {id : user.data._id} }"><span class="icon-user"></span>Trang Cá Nhân</router-link></li>
                         <li><a href="#"><span class="icon-bell"></span>Notifications <span class="badge pull-right bg-red">5</span></a></li>
                         <li class="divider"></li>
-                        <li><a href="#"><span class="icon-power"></span>Logout</a></li>
+                        <li @click="logout()"><a href="#"><span class="icon-power"></span>Logout</a></li>
                     </ul>
                 </div>
             </div>
@@ -56,13 +58,32 @@ import '../assets/stylesheets/bootstrap.css'
 import '../assets/stylesheets/app.css'
 import '../assets/stylesheets/main.css'
 import '../assets/stylesheets/custom.css'
+// import jwt from 'jsonwebtoken'
+import jwt_decode from 'jwt-decode';
 
 export default {
     name: 'headerSide',
+    data(){
+        return{
+            exitsToken : localStorage.getItem('token') || null,
+            user: ''
+        }
+    }, 
+    created(){
+        this.user = jwt_decode(this.exitsToken);
+    },
+    methods:{
+        logout(){
+            localStorage.removeItem('token');
+            this.$router.go();
+        }
+    }
 }
 </script>
 
 <style>
-
+.mg10{
+    margin: 10px;
+}
 </style>
 

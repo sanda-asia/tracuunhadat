@@ -16,33 +16,32 @@ export default new Router({
       path: '/',
       name: 'Home',
       component: Home,
-      children: [
-        {
-          path: '/',
-          name: 'AllPoster',
-          alias: '/home/all',
-          component: ListPoster,
-        },
-        {
-          path: '/home/buy',
-          name: 'PosterForBuy',
-          component: ListPoster,
-        },
-        {
-          path: '/home/sell',
-          name: 'PosterForSell',
-          component: ListPoster,
-        },
-        {
-          path: '/home/rent',
-          name: 'PosterForRent',
-          component: ListPoster,
-        },
-      ]
+      // children: [
+      //   {
+      //     path: '/',
+      //     name: 'AllPoster',
+      //     alias: '/home/all',
+      //     component: ListPoster,
+      //   },
+      //   {
+      //     path: '/home/buy',
+      //     name: 'PosterForBuy',
+      //     component: ListPoster,
+      //   },
+      //   {
+      //     path: '/home/sell',
+      //     name: 'PosterForSell',
+      //     component: ListPoster,
+      //   },
+      //   {
+      //     path: '/home/rent',
+      //     name: 'PosterForRent',
+      //     component: ListPoster,
+      //   },
+      // ]
     },
     {
       path:'/rao-vat',
-      // redirect: '/',
       name : 'Classified',
       component: Home,
     },
@@ -50,10 +49,6 @@ export default new Router({
       path: '/nhan-dinh',
       name: 'Blog',
       component: Blog,
-      // children:[{
-      //   path: '/chi-tiet/:titleBlog',
-      //   component: DetailBlog
-      // }]
     },
     {
       path: '/nhan-dinh/:titleBlog',
