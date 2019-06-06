@@ -165,7 +165,6 @@ module.exports = {
       res.json(result);
    },
 
-   //duyệt bài price: 10k once day
    aprrovePost: async (req,res) =>{
       try {
          let classified_approved = await Classified.findOneAndUpdate(
@@ -196,9 +195,26 @@ module.exports = {
       }
       res.json(result);
    },
+
    showListPostAprroved: async (req,res) =>{
       try {
-         let listPostApproved = await Classified.find({status: 1}).populate('id_user').sort({time_approved: -1});
+         let listPostApproved = null;
+         const search = req.query.search;
+         if(search){
+            let regexPattern = new RegExp(".*"+ search +".*", "i");
+            listPostApproved = await Classified.find({
+               $or: [
+                  'title', 'content'
+               ].map(key => ({
+                  [key]: {
+                     $regex: regexPattern
+                  }
+               }))  
+            }).limit(8).populate('id_user');
+         }
+         else{
+            listPostApproved = await Classified.find({status: 1}).populate('id_user').sort({time_approved: -1});
+         }
          var result= {
             "status": true,
             "data": listPostApproved
@@ -214,7 +230,7 @@ module.exports = {
 
    showListPostPending: async (req,res) =>{
       try {
-         let listPostPending = await Classified.find({status: 0}).sort({time_created: 1});
+         let listPostPending = await Classified.find({status: 0}).sort({_id: 1});
          var result= {
             "status": true,
             "data": listPostPending
@@ -261,6 +277,25 @@ module.exports = {
          }
       }
       res.json(result);
-   }
+   },
 
+   showPostApproved: async(req, res)=>{
+      try {
+         let pageNumber = parseInt(req.query.page) || 1;
+         let numberOfItems = 8;
+         let begin = (pageNumber - 1) * numberOfItems;
+         let listPost = await Classified.find({status: 1})
+                              .sort({_id:-1}).limit(numberOfItems).skip(begin);
+         var result = {
+            "status": true,
+            "data": listPost
+         }
+      } catch (error) {
+         var result = {
+            "status": false,
+            "err.msg": error.message
+         }
+      }
+      res.json(result);
+   }
 };
