@@ -9,7 +9,13 @@ module.exports = {
         if(user.length != 0){
             let isValid = bcrypt.compareSync(req.body.password, user[0].password);
             if( isValid == true){
-                let token = jwt.sign({ data: user[0] }, CONSTANTS.SECRET_KEY, { expiresIn: 3600*60});
+                let token = jwt.sign({ data: {
+                    username: user[0].username,
+                    fullname: user[0].fullname,
+                    email: user[0].email,
+                    phone_number: user[0].phone_number,
+                    role: user[0].role
+                } }, CONSTANTS.SECRET_KEY, { expiresIn: 3600*60});
                 let result = {
                     "status": true,
                     "message" : "success",
