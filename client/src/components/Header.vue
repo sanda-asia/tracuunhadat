@@ -30,11 +30,11 @@
                 </a>
                 <div class="dropdown-menu pull-right userMenu" role="menu">
                     <div class="mobAvatar">
-                        <img class="avatar mobAvatarImg" src="images/avatar-1.png" alt="avatar">
+                        <img class="avatar mobAvatarImg" src="https://img.homedy.com/store/images/2019/01/16/161485a60e92edccb483.jpg_170x170.jpg" alt="avatar">
                         <div class="mobAvatarName">{{user.data.username}}</div>
                     </div>
                     <ul>
-                        <li><a href="#"><span class="icon-settings"></span>Settings</a></li>
+                        <li><router-link :to="{name: 'AddClassified', params:{id: user.data._id}}"><span class="icon-plus"></span>Đăng tin</router-link></li>
                         <li><router-link :to="{name: 'User', params: {id : user.data._id} }"><span class="icon-user"></span>Trang Cá Nhân</router-link></li>
                         <li><a href="#"><span class="icon-bell"></span>Notifications <span class="badge pull-right bg-red">5</span></a></li>
                         <li class="divider"></li>
@@ -58,6 +58,9 @@ import '../assets/stylesheets/bootstrap.css'
 import '../assets/stylesheets/app.css'
 import '../assets/stylesheets/main.css'
 import '../assets/stylesheets/custom.css'
+import '../assets/stylesheets/fileinput.min.css'
+import '../assets/stylesheets/jquery.tagsinput.css'
+
 // import jwt from 'jsonwebtoken'
 import jwt_decode from 'jwt-decode';
 
@@ -70,7 +73,14 @@ export default {
         }
     }, 
     created(){
-        this.user = jwt_decode(this.exitsToken);
+        if(this.exitsToken != null){
+            this.user = jwt_decode(this.exitsToken);
+        }else{
+            this.user = ''
+        }
+    },
+    mounted(){
+        // this.$router.go(1);
     },
     methods:{
         logout(){

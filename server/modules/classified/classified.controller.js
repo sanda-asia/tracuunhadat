@@ -7,12 +7,6 @@ function calculateBalance(current_balance,time_post, level_post = 1){
 module.exports = {
    createPost : async (req,res) =>{
       try{
-         let list_img_url = [];
-         let length = req.files.length|0;
-         for(i = 0; i < length; i++){
-            list_img_url.push(req.files[i].filename);
-         };
-         
          let newClassified = {
             id_user: req.user.data._id,
             title: req.body.title,
@@ -23,7 +17,7 @@ module.exports = {
             category: req.body.category,
             requirement : req.body.requirement,
             address: req.body.address,
-            images : list_img_url,
+            images : req.body.images,
             time_post: req.body.time_post,
          };
 

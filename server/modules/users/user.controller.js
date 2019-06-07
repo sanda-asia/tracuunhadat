@@ -75,7 +75,7 @@ module.exports = {
 
     getAllListClassifiedChecked: async (req, res)=>{
         // let list = await User.findOne({_id: req.params.id,})
-        let list = await User.findOne({_id: req.params.id}).populate("id_classified");
+        let list = await User.findOne({_id: req.params.id,status: 1}).populate("id_classified");
         res.json(list);
     },
 
@@ -106,5 +106,32 @@ module.exports = {
             "status" : true,
             "message" : "request was sent"
         });
+    },
+
+    upload: (req, res) =>{
+        let length = req.files.length || 0;
+        let arrImg= [];
+        for(i=0;i<length;i++){
+            arrImg.push(req.files[i].filename);
+        }
+        let updateImg = {
+            $push: {
+                photo_library: {
+                    $each: arrImg
+                }
+            }
+        };
+        // console.log(arrImg)
+        User.update({_id: req.params.id},updateImg, (err)=>{
+            if(err){
+                console.log(err.message)
+            } else{
+                res.json({
+                    status: true,
+                    message: "upload image successfully"
+                });
+            }
+        });
     }
+
 }

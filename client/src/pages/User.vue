@@ -3,112 +3,6 @@
 
     <div id="wrapper" class="full">
         <div id="content" class="max">
-            <!-- <div class="singleTop whiteBg widthPage">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <div class="userWidget-1">
-                            <div class="avatar">
-                                <img src="https://img.homedy.com/store/images/2019/01/16/161485a60e92edccb483.jpg_170x170.jpg" alt="avatar">
-                                <div class="ops">
-                                    <a href="#" class="btn btn-icon btn-round btn-o btn-white btn-sm"><span class="fa fa-envelope-o"></span></a>
-                                    <a href="#" class="btn btn-icon btn-round btn-o btn-white btn-sm"><span class="fa fa-heart-o"></span></a>
-                                </div>
-                                <div class="name osLight">Jane Smith</div>
-                            </div>
-                            <div class="title">Real Estate Agent</div>
-                            <div class="address">Los Angeles, CA, United States of America</div>
-                            <div class="rating">
-                                <div class="number text-green osLight">4.5</div>
-                                <div class="stars">
-                                    <ul>
-                                        <li><span class="fa fa-star star-1"></span></li>
-                                        <li><span class="fa fa-star star-2"></span></li>
-                                        <li><span class="fa fa-star star-3"></span></li>
-                                        <li><span class="fa fa-star star-4"></span></li>
-                                        <li><span class="fa fa-star-o star-5"></span></li>
-                                    </ul>
-                                    <div class="clearfix"></div>
-                                    <div class="reviews">123 Reviews</div>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <ul class="stats">
-                                <li style="margin: 0;"><span>280</span>Followers</li>
-                                <li style="margin: 0;"><span>345</span>Following</li>
-                                <li style="margin: 0;"><span>36</span>Posts</li>
-                            </ul>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="rightContainer widthPage">
-                <div class="tabsContainer">
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li class="active"><a href="" role="tab" data-toggle="tab"><router-link v-bind:to="{ name: ''}"><span class="icon-home"></span> Đang Bán</router-link></a></li>
-                        <li class=""><a href="" role="tab" data-toggle="tab"><router-link v-bind:to="{ name: '', query:{ find: 'b',page : page}}"><span class="icon-user"></span> Đang chờ duyệt</router-link></a></li>
-                        <li class=""><a href="" role="tab" data-toggle="tab"><router-link v-bind:to="{  name: '', query:{ find: 's',page : page}}"><span class="icon-bubbles"></span> Đã bán</router-link></a></li>
-                        <li class=""><a href="" role="tab" data-toggle="tab"><router-link v-bind:to="{  name: '', query:{ find: 'r',page : page}}"><span class="icon-bubbles"></span> Lịch sử giao dịch</router-link></a></li>
-                    </ul>
-                    <div class="" style="margin-bottom: 20px;">
-                        <div class="filter">
-                            <h1 class="osLight">Filter your results</h1>
-                            <a href="#" class="handleFilter"><span class="icon-equalizer"></span></a>
-                            <div class="clearfix"></div>
-                            <form class="filterForm" style="display: none;">
-                                <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 formItem">
-                                        <div class="formField">
-                                            <label for="">Tỉnh - Thành Phố</label>
-                                            <select class="form-control" v-model="selectProvince">
-                                                <option value="-1">Tất Cả</option>
-                                                <option v-for="(province, index) in provinces" :value="index">{{province}}</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 formItem">
-                                        <div class="formField">
-                                            <label for="">Quận - Huyện</label>
-                                            <select class="form-control" v-model="selectDistrict">
-                                                <option value="-1">Tất Cả</option>
-                                                <option v-for="(district, index) in districts" :value="index">{{district}}</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 formItem">
-                                        <div class="formField">
-                                            <label>Khoảng Giá</label>
-                                            <div class="slider priceSlider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
-                                                <div class="sliderTooltip" style="left: 106.5px;">
-                                                    <div class="stArrow"></div>
-                                                    <div class="stLabel">0 VND <span class="fa fa-arrows-h"></span> 10,000,000,000 VND</div>
-                                                </div>
-                                            <div class="ui-slider-range ui-widget-header ui-corner-all" style="left: 25%; width: 50%;"></div><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 25%;"></span><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 75%;"></span></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 formItem">
-                                        <div class="formField">
-                                            <label> Diện tích</label>
-                                            <div class="slider areaSlider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
-                                                <div class="sliderTooltip" style="left: 55.5px;">
-                                                    <div class="stArrow"></div>
-                                                    <div class="stLabel">5,000 Sq Ft <span class="fa fa-arrows-h"></span> 10,000 Sq Ft</div>
-                                                </div>
-                                            <div class="ui-slider-range ui-widget-header ui-corner-all" style="left: 25%; width: 25%;"></div><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 25%;"></span><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 50%;"></span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="tab-pane fade active in" >
-                            <list-poster />
-                        </div>
-                    </div>
-                </div>
-            </div> -->
             <div class="row widthPage">
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                     <div class="row">
@@ -258,6 +152,7 @@ export default {
     },
 
     mounted(){
+        // this.$router.go(1);
         for(let index in address){
             this.provinces.push(address[index].name);
         } 

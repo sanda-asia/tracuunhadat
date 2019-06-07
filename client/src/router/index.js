@@ -5,7 +5,7 @@ import DetailBlog from '@/pages/Blog/DetailBlog';
 import BlogAdmin from '@/pages/Blog/BlogAdmin';
 import BlogAdd from '@/pages/Blog/BlogAdd';
 import Admin from '@/pages/Admin/Admin';
-import ListPoster from '@/layouts/ListPoster';
+import AddClassified from '@/pages/AddClassified';
 import Home from '@/pages/Home';
 import User from '@/pages/User';
 Vue.use(Router);
@@ -59,6 +59,11 @@ export default new Router({
       path: '/user/:id',
       name: 'User',
       component: User,
+    },
+    {
+      path: '/user/:id/dang-tin',
+      name: 'AddClassified',
+      component: AddClassified,
     },
     {
       path: '/admin',

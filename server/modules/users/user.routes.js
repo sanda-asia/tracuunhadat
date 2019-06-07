@@ -2,9 +2,24 @@ const router = require("express").Router();
 const userController = require("./user.controller");
 const auth = require("../../services/auth.service");
 const check = require("../../services/checkPermision");
+var multer  = require('multer');
+
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'http://localhost:3000/public/upload')
+    },
+    filename: function (req, file, cb) {
+      cb(null, Date.now() + '_' + file.originalname);
+    }
+  });
+  
+var upload = multer({ storage: storage });
 
 // đăng nhập
 router.post("/dang-nhap", userController.login);
+
+//upload
+router.post("/:id/upload",upload.array('images',5), userController.upload);
 
 //đăng kí
 router.post("/dang-ky", userController.register);

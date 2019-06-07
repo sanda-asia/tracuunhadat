@@ -9,7 +9,7 @@ const UserSchema = mongoose.Schema({
     address: String,
     phone_number: Number,
     amount: Number,
-    role: Boolean, // 1, khachs hang 0-admin,
+    role: Boolean, // 1, khach hang 0-admin,
     show_agency: Number, // 0: không hiển thị, 1: đang chờ duyệt, 2: hiển thị
     transaction:[{
         _id:  mongoose.Schema.Types.ObjectId,
@@ -20,6 +20,10 @@ const UserSchema = mongoose.Schema({
             default: Date.now
         }
     }],
+    photo_library: [{
+        type: String,
+    }]
+    ,
     save_list: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Classified'
