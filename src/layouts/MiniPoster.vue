@@ -27,7 +27,7 @@
                 </div>
                 <div class="info">
                     <div class="name">{{poster.id_user.username}}</div>
-                    <div class="title">Chuyên viên tư vấn</div>
+                    <div style="font-weight: bold;">Chuyên viên tư vấn</div>
                 </div>
                 <div class="ops">
                     <a href="#" class="btn btn-icon btn-round btn-o btn-magenta btn-sm"><span class="fa fa-envelope-o"></span></a>

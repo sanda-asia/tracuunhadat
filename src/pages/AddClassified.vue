@@ -171,11 +171,13 @@ export default {
         async submitPost(){
 
             let formData = new FormData();
+            let files = []
             for( var i = 0; i < this.images.length; i++ ){
                 let file = this.images[i];
-                formData.append('images[' + i + ']', file);
+                files.push(file);
             }
-            console.log(formData)
+            formData.append('images', files);
+            console.log(formData);
             await axios({
                 method: 'POST',
                 url: `http://localhost:3000/user/${this.$route.params.id}/upload`,
@@ -195,7 +197,7 @@ export default {
             if(this.title && this.price && this.area && this.content && this.category && this.requirement && this.address && this.time_post && this.level){
                 let nameImg = [];
 
-                let date = Date.now;
+                let date = Date.now();
 
                 for( var i = 0; i < this.images.length; i++ ){
                     nameImg.push(`${date}_${this.images[i].name}`);

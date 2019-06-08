@@ -5,6 +5,7 @@ import DetailBlog from '@/pages/Blog/DetailBlog';
 import BlogAdmin from '@/pages/Blog/BlogAdmin';
 import BlogAdd from '@/pages/Blog/BlogAdd';
 import Admin from '@/pages/Admin/Admin';
+import ClassifiedAdmin from '@/pages/Admin/ClassifiedAdmin'
 import AddClassified from '@/pages/AddClassified';
 import Home from '@/pages/Home';
 import User from '@/pages/User';
@@ -44,6 +45,11 @@ export default new Router({
       path:'/rao-vat',
       name : 'Classified',
       component: Home,
+    },
+    {
+      path:'/admin/rao-vat',
+      name : 'ClassifiedAdmin',
+      component: ClassifiedAdmin,
     },
     {
       path: '/nhan-dinh',

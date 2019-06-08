@@ -47,6 +47,12 @@ module.exports = {
       };
       res.json(result);
    },
+   showAllListPost: (req,res)=>{
+      Classified.find({},(err, data)=>{
+         if(err) throw new Error(err.message);
+         res.json({data : data});
+      })
+   },
 
    updatePost : async(req, res) =>{
       try {

@@ -3,6 +3,8 @@ const auth = require("../../services/auth.service");
 const checkPermision = require("../../services/checkPermision");
 const classifiedController = require("./classified.controller");
 
+// fetch all posts in classified
+router.get("/all", classifiedController.showAllListPost);
 
 // return all posts approved or posts match query: search
 router.get("/posts-approved", classifiedController.showListPostAprroved); 

@@ -17,11 +17,10 @@ export default {
 
 <style scoped>
 #home {
-    /* margin-top: 60px; */
-    position: fixed;
+    position: absolute;
     width: 96%;
-    top: 60px;
-    left: 70px;
+    margin: 60px 0 0 70px;
+    /* overflow: none; */
 }
 #content {
     background-color: #f3f3f3;
