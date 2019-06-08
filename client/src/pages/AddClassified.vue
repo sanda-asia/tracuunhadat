@@ -112,7 +112,7 @@
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                 <div class="form-group">
                                     <label>Image Gallery</label>
-                                    <input type="file" class="file" name="images" multiple data-show-upload="false" data-show-caption="false" data-show-remove="false" accept="image/jpeg,image/png" data-browse-class="btn btn-o btn-default" data-browse-label="Browse Images" @change="handleFilesUpload">
+                                    <input type="file" class="file" name="images" multiple data-show-upload="false" data-show-caption="false" data-show-remove="false" accept="image/jpeg,image/png,image/png" data-browse-class="btn btn-o btn-default" data-browse-label="Browse Images" @change="handleFilesUpload">
                                     <p class="help-block">You can select multiple images at once</p>
                                 </div>
                             </div>
@@ -150,7 +150,7 @@ export default {
             address: '',
             time_post: '',
             level: '',
-            files:[], 
+            images:[], 
         };
     },
 
@@ -170,37 +170,35 @@ export default {
     methods:{
         async submitPost(){
 
-            // let formData = new FormData();
-            // for( var i = 0; i < this.files.length; i++ ){
-            //     let file = this.files[i];
-            //     formData.append('files[' + i + ']', file);
-            // }
-            // console.log(formData)
-            // await axios({
-            //     method: 'POST',
-            //     url: `http://localhost:3000/user/${this.$route.params.id}/upload`,
-            //     data: formData,
-            //     headers: {
-            //         'Content-Type': 'multipart/form-data',
-            //         'x-access-token' : localStorage.getItem('token')
-            //     },
-            // })
-            // .then(function (response) {
-            //     console.log(response);
-            // })
-            // .catch(function (error) {
-            //     console.log(error);
-            // });
+            let formData = new FormData();
+            for( var i = 0; i < this.images.length; i++ ){
+                let file = this.images[i];
+                formData.append('images[' + i + ']', file);
+            }
+            console.log(formData)
+            await axios({
+                method: 'POST',
+                url: `http://localhost:3000/user/${this.$route.params.id}/upload`,
+                data: formData,
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'x-access-token' : localStorage.getItem('token')
+                },
+            })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
 
-            // await axios.post(`http://localhost:3000/user/${this.$route.params.id}/upload`,formData)
-            // .then(response=> alert(response))
             if(this.title && this.price && this.area && this.content && this.category && this.requirement && this.address && this.time_post && this.level){
                 let nameImg = [];
 
                 let date = Date.now;
 
-                for( var i = 0; i < this.files.length; i++ ){
-                    nameImg.push(`${date}_${this.files[i].name}`);
+                for( var i = 0; i < this.images.length; i++ ){
+                    nameImg.push(`${date}_${this.images[i].name}`);
 
                 }
                 await axios({
@@ -249,7 +247,7 @@ export default {
         },
         handleFilesUpload(event){
             console.log(event)
-            this.files = event.target.files;
+            this.images = event.target.files;
         },
     },
     created(){
