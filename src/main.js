@@ -20,12 +20,6 @@ Vue.config.productionTip = false;
 import headerPage from './components/Header';
 Vue.component('header-page', headerPage);
 
-import Map from './components/Map';
-Vue.component('map-place', Map);
-
-import ContentHome from './layouts/ContentHome';
-Vue.component('content-home', ContentHome);
-
 import MiniPoster from './layouts/MiniPoster';
 Vue.component('mini-poster', MiniPoster);
 
@@ -41,8 +35,6 @@ Vue.component('pagination', Pagination);
 import leftNav from './components/Leftnav';
 Vue.component('left-nav', leftNav);
 
-import LoginModal from './components/LoginModal';
-Vue.component('login-modal', LoginModal);
 Vue.use(Resource);
 
 /* eslint-disable no-new */

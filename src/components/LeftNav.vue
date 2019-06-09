@@ -76,5 +76,13 @@ export default {
 </script>
 
 <style>
-
+#leftSide {
+    background-color: #213837;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 70px;
+    z-index: 100;
+    height: 100%;
+}
 </style>

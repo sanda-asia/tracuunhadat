@@ -1,13 +1,11 @@
 <template>
-    <!-- Modal -->
-    <div id="myModal1" class="modal fade" role="dialog">
-        <div class="modal-dialog fixed-modal">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-body">
+    <!-- Content -->
+
+    <div id="wrapper" class="full">
+        <div id="content" class="max">
+            <div class="row widthPage">
                     <div class="row" style="height:100%">
                         <div class="col-md-8" id="scroll-able">
-                            
                             <div class="wrapper-left-pop-up detail-info-poster">
                                 <ol class="breadcrumb">
                                     <li><a href="#"><span class="icon-home"></span> Home</a></li>
@@ -31,37 +29,37 @@
                                         </ol>
                                         <div class="carousel-inner">
                                             <div class="item active">
-                                                <a href="#"><img :src="require('../assets/images/1.jpg')" alt="First slide"></a>
+                                                <a href="#"><img :src="require('../../assets/images/1.jpg')" alt="First slide"></a>
                                                 <div class="container">
                                                     <div class="carousel-caption">
-                                                        <img :src="require('../assets/images/1.jpg')" alt="image">
+                                                        <img :src="require('../../assets/images/1.jpg')" alt="image">
                                                         <div class="opac"></div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="item">
-                                                <a href="#"><img :src="require('../assets/images/1.jpg')" alt="Second slide"></a>
+                                                <a href="#"><img :src="require('../../assets/images/1.jpg')" alt="Second slide"></a>
                                                 <div class="container">
                                                     <div class="carousel-caption">
-                                                        <img :src="require('../assets/images/1.jpg')" alt="image">
+                                                        <img :src="require('../../assets/images/1.jpg')" alt="image">
                                                         <div class="opac"></div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="item">
-                                                <a href="#"><img :src="require('../assets/images/1.jpg')" alt="Third slide"></a>
+                                                <a href="#"><img :src="require('../../assets/images/1.jpg')" alt="Third slide"></a>
                                                 <div class="container">
                                                     <div class="carousel-caption">
-                                                        <img :src="require('../assets/images/1.jpg')" alt="image">
+                                                        <img :src="require('../../assets/images/1.jpg')" alt="image">
                                                         <div class="opac"></div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="item">
-                                                <a href="#"><img :src="require('../assets/images/1.jpg')" alt="Fourth slide"></a>
+                                                <a href="#"><img :src="require('../../assets/images/1.jpg')" alt="Fourth slide"></a>
                                                 <div class="container">
                                                     <div class="carousel-caption">
-                                                        <img :src="require('../assets/images/1.jpg')" alt="image">
+                                                        <img :src="require('../../assets/images/1.jpg')" alt="image">
                                                         <div class="opac"></div>
                                                     </div>
                                                 </div>
@@ -72,7 +70,7 @@
                                     </div>
                                 </div>
                                 <div class="">
-                                    <h2 style="font-size: 18px"> {{ poster.title }}</h2>
+                                    <h2 style="font-size: 15px"> {{ poster.title }}</h2>
                                     <div class="m-text-description-poster"> 
                                         <div class="m-price-poster"><span class="fa fa-money"></span> {{poster.price}}</div>
                                         <div class="area-poster"><span class="icon-frame"></span>
@@ -101,23 +99,15 @@
                                         </div>
                                     </div>
                                     <h3>Tổng Quan</h3>
-                                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium excepturi, repellat non earum soluta culpa, sint dolores ad molestiae vero qui error eveniet. Fuga blanditiis repellat hic. Neque, ipsa quaerat!</p>
-                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis, pariatur nesciunt temporibus laudantium necessitatibus distinctio incidunt non maiores enim iusto ad officiis consequatur excepturi vitae itaque ducimus. Quae, rem? Placeat!</p>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio placeat quas nemo iure quis facilis vero, quisquam ad id quam ut, dolorum voluptatem alias sunt, et tenetur eos! Saepe, eum!</p>
-                                    <h3>Tiện ích</h3>
-                                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium excepturi, repellat non earum soluta culpa, sint dolores ad molestiae vero qui error eveniet. Fuga blanditiis repellat hic. Neque, ipsa quaerat!</p>
-                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis, pariatur nesciunt temporibus laudantium necessitatibus distinctio incidunt non maiores enim iusto ad officiis consequatur excepturi vitae itaque ducimus. Quae, rem? Placeat!</p>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio placeat quas nemo iure quis facilis vero, quisquam ad id quam ut, dolorum voluptatem alias sunt, et tenetur eos! Saepe, eum!</p>
-                                    
+                                    <p>{{poster.content}}</p>
                                 </div> 
                             </div>
-
                         </div>
                         <div class="col-md-4">
                             <div class="detail-user">
                                 <div class="userWidget-1">
                                     <div class="avatar">
-                                        <img :src="require('../assets/images/img1.png')" alt="avatar">
+                                        <img :src="require('../../assets/images/img1.png')" alt="avatar">
                                         <div class="ops">
                                             <a href="#" class="btn btn-icon btn-round btn-o btn-white btn-sm"><span class="fa fa-envelope-o"></span></a>
                                             <a href="#" class="btn btn-icon btn-round btn-o btn-white btn-sm"><span class="fa fa-heart-o"></span></a>
@@ -154,77 +144,75 @@
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
-
         </div>
+        <div class="clearfix"></div>
     </div>
 </template>
 
-<script>
-import img from '../assets/images/img.png';
-export default {
-    props: ['poster'],
 
+<script>
+import axios from 'axios'
+
+export default {
+    name: "ClassifiedView",
+    data() {
+        return {
+            poster: ''
+        };
+    },
+
+    created(){
+        axios.get(`http://localhost:3000/classified/post-details/${this.$route.params.id}`)
+        .then(res=>{
+            this.poster = res.data.data
+        })
+        .catch(err => alert(err.message))
+    },
+
+    mounted(){
+    },
 }
 </script>
 
 <style scoped>
-    .images-poster{
-        margin-bottom: 20px;
-    }
-    .profile-img {
-        border-radius: 50%;
-    }
 
-    @media (min-width: 768px){
-        .modal-dialog {
-            /* width: 600px; */
-            margin: 0px auto;
-        }
-        .modal-open .modal {
-            overflow-x: hidden;
-            overflow-y: hidden;
-        }
-        .fixed-modal {
-            position: fixed;
-            /* margin-top: 0; */
-            left: 0;
-            right: 0;
-            height: 100%;
-        }
-        .modal-content {
-            position: fixed;
-            background-color: #fff;
-            background-clip: padding-box;
-            /* border: 1px solid #999; */
-            border: 1px solid rgba(0, 0, 0, .2);
-            border-radius: 3px;
-            outline: 0;
-            left: 0;
-            right: 0;
-            height: 100%;
-        }
-        .modal-body {
-            position: relative;
-            padding: 15px;
-            height: 100%;
-        }
-        
-        #scroll-able{
-            overflow-y: scroll;
-            height: 100%;
-        }
+#content {
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+}
+.userWidget-1 .title {
+    font-size: 15px !important;
+}
+#content h2 {
+    font-size: 15px;
+    line-height: 25px;
+    margin: 0;
+    /* padding: 0 0 0 10px; */
+    font-weight: bold;
+    border-bottom: none;
+    text-align: left;
+}
+
+.tab-content {
+    height: 100%;
+    /* overflow: hidden; */
+}
+@media (min-width: 768px) {
+    .widthPage{
+        width: 80%;
+        /* margin: auto; */
+        margin: 20px auto;
+        background-color: white;
+        padding: 20px;
+
     }
-    .description, .amenities, .share, .similar {
-        padding: 0;
+}
+@media (max-width: 480px) {
+    .widthPage{
+        width: 100%; 
+        /* margin: auto; */
     }
-    #content h2 {
-        margin: 0;
-        border-bottom: none;
-    }
-    .share {
-        text-align: left;
-        margin: 20px 0;
-    }
+}
 </style>

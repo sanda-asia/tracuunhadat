@@ -6,6 +6,7 @@ import BlogAdmin from '@/pages/Blog/BlogAdmin';
 import BlogAdd from '@/pages/Blog/BlogAdd';
 import Admin from '@/pages/Admin/Admin';
 import ClassifiedAdmin from '@/pages/Admin/ClassifiedAdmin'
+import ClassifiedView from '@/pages/Admin/ClassifiedView'
 import AddClassified from '@/pages/AddClassified';
 import Home from '@/pages/Home';
 import User from '@/pages/User';
@@ -17,39 +18,11 @@ export default new Router({
       path: '/',
       name: 'Home',
       component: Home,
-      // children: [
-      //   {
-      //     path: '/',
-      //     name: 'AllPoster',
-      //     alias: '/home/all',
-      //     component: ListPoster,
-      //   },
-      //   {
-      //     path: '/home/buy',
-      //     name: 'PosterForBuy',
-      //     component: ListPoster,
-      //   },
-      //   {
-      //     path: '/home/sell',
-      //     name: 'PosterForSell',
-      //     component: ListPoster,
-      //   },
-      //   {
-      //     path: '/home/rent',
-      //     name: 'PosterForRent',
-      //     component: ListPoster,
-      //   },
-      // ]
     },
     {
       path:'/rao-vat',
       name : 'Classified',
       component: Home,
-    },
-    {
-      path:'/admin/rao-vat',
-      name : 'ClassifiedAdmin',
-      component: ClassifiedAdmin,
     },
     {
       path: '/nhan-dinh',
@@ -75,6 +48,16 @@ export default new Router({
       path: '/admin',
       name: 'Admin',
       component: Admin,
+    },
+    {
+      path:'/admin/rao-vat',
+      name : 'ClassifiedAdmin',
+      component: ClassifiedAdmin,
+    },
+    {
+      path:'/admin/rao-vat/:id',
+      name : 'ClassifiedView',
+      component: ClassifiedView,
     },
     {
       path: '/admin/blog',

@@ -3,6 +3,7 @@ mongoose.set('useFindAndModify', false);
 const BlogSchema = mongoose.Schema({
     headerBlog: String,
     content: String,
+    province: String,
     imageSrc: [{
         type: String
     }],

@@ -48,10 +48,12 @@ module.exports = {
       res.json(result);
    },
    showAllListPost: (req,res)=>{
-      Classified.find({},(err, data)=>{
-         if(err) throw new Error(err.message);
+      Classified.find({})
+      .sort({time_created: -1})
+      .then(data=>{
          res.json({data : data});
       })
+      .catch(err => console.log(err.message));
    },
 
    updatePost : async(req, res) =>{

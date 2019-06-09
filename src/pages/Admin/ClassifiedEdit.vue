@@ -4,7 +4,7 @@
             <div id="mapView" class="mob-min"><div class="mapPlaceholder"><span class="fa fa-spin fa-spinner"></span> Loading map...</div></div>
             <div id="content" class="mob-max">
                 <div class="rightContainer">
-                    <h1>Thêm tin đăng mới</h1>
+                    <h1>Cập nhập tin đăng</h1>
                     <form role="form" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
                             <label>Tiêu đề</label>
@@ -128,12 +128,13 @@
 </template>
 
 <script>
-import selectAddress from '../data.json'
+import selectAddress from '../../data.json'
 import axios from 'axios'
 import swal from 'sweetalert'
 import jwt_decode from 'jwt-decode'
 
 export default {
+    name: 'ClassifiedEdit',
     data() {
         return {
             selectAddress: selectAddress,
@@ -151,33 +152,44 @@ export default {
             time_post: '',
             level: '',
             images:[], 
+            post: '',
         };
+    },
+    async created(){
+        for(let index in selectAddress){
+            this.provinces.push(selectAddress[index].name);
+        } 
+        await axios.get(`http://localhost:3000/classified/post-details/${this.$route.params.id}`)
+        .then(res=>{
+            // this.post = res.data.data;
+            this.title = res.data.data.title;
+            this.price = res.data.data.price;
+            this.area = res.data.data.area;
+            this.content = res.data.data.content;
+            this.category = res.data.data.category;
+            this.requirement = res.data.data.requirement;
+            this.address = res.data.data.address;
+            this.time_post = res.data.data.time_post;
+            this.level = res.data.data.level;
+            this.images = res.data.data.images;
+        })
+        .catch(err => alert(err.message))
     },
 
     mounted(){
-        // this.$router.go();
-        if(localStorage.getItem('token') != null){
-            if(jwt_decode(localStorage.getItem('token')).data._id != this.$route.params.id){
-                this.$router.push({name : 'Home'});
-            }else{
-                console.log('ok');
-            }
-        }else{
-            this.$router.push({name : 'Home'});
-        }
+
     },
 
     methods:{
         async submitPost(){
 
             let formData = new FormData();
-            // // let files = []
+            let files = []
             for( var i = 0; i < this.images.length; i++ ){
-                // let file = this.images[i];
-                // files.push(file);
-                formData.append(`images`, this.images[i]);
+                let file = this.images[i];
+                files.push(file);
             }
-            
+            formData.append('images', files);
             console.log(formData);
             await axios({
                 method: 'POST',
@@ -195,7 +207,7 @@ export default {
                 console.log(error);
             });
 
-            if(this.title && this.price && this.area && this.content && this.category && this.requirement && this.address && this.time_post && this.level){
+            // if(){
                 let nameImg = [];
 
                 let date = Date.now();
@@ -205,10 +217,9 @@ export default {
 
                 }
                 await axios({
-                    method: 'POST',
-                    url: 'http://localhost:3000/classified/posts',
+                    method: 'PUT',
+                    url: `http://localhost:3000/classified/posts/${this.$route.params.id}`,
                     data: {
-                        // id_user: this.$route.params.id,
                         title: this.title,
                         price: this.price,
                         area: this.area,
@@ -241,22 +252,17 @@ export default {
                 .catch(function (error) {
                     console.log(error);
                 });
-            } else{
-                swal(
-                    'Vui lòng nhập đầy đủ thông tin!',
-                );
-            }
+            // } else{
+            //     swal(
+            //         'Vui lòng nhập đầy đủ thông tin!',
+            //     );
+            // }
 
         },
         handleFilesUpload(event){
             console.log(event)
             this.images = event.target.files;
         },
-    },
-    created(){
-        for(let index in selectAddress){
-            this.provinces.push(selectAddress[index].name);
-        } 
     },
 
     watch:{

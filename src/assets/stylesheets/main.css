@@ -105,10 +105,12 @@
 
 .m-header-poster {
     text-align: left;
-    font-weight: bold;
+    /* font-weight: bold; */
     color: #000000;
     text-overflow: ellipsis;
     margin: 0;
+    font-size: 15px;
+    line-height: 25px;
 }
 
 .m-text-description-poster {

@@ -1,6 +1,6 @@
 <template>
     <div id="wrapper" class="full" style="height: 258px;">
-        <div id="content" class="max" style="height: 259px;">
+        <div id="content" style="height: 259px;">
             <div class="tables">
                 <div class="panel panel-default">
                     <div class="panel-heading">Danh Sách Tin đăng</div>
@@ -39,8 +39,8 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Tiêu đề</th>
-                                    <th>Giá</th>
-                                    <th>Diện tích</th>
+                                    <th>Địa chỉ</th>
+                                    <th>Loại</th>
                                     <th>Level</th>
                                     <th>Trạng thái</th>
                                     <th>Actions</th>
@@ -50,9 +50,9 @@
                                 <tr v-for="post in listPost">
                                     <td style="width:10%">{{post._id}}</td>
                                     <td style="width:40%">{{post.title}}</td>
-                                    <td style="width:10%">{{post.price}}</td>
-                                    <td style="width:10%">{{post.area}}</td>
-                                    <td style="width:10%">{{post.level}}</td>
+                                    <td style="width:15%">{{post.address}}</td>
+                                    <td style="width:10%">{{post.category}}</td>
+                                    <td style="width:5%">{{post.level}}</td>
                                     <td style="width:10%">
                                         <span v-if="post.status == 1" class="label label-success">ACTIVE</span>
                                         <span v-else class="label label-info">PENDING</span>
@@ -63,7 +63,8 @@
                                             Action <span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">Xem, sửa tin đăng</a></li>
+                                                <li><router-link :to="{name: 'ClassifiedView', params: {id: post._id}}">Xem tin đăng</router-link></li>
+                                                <li><router-link :to="{name:'ClassifiedEdit', params: {id: post._id}}">Sửa tin đăng</router-link></li>
                                                 <li><a href="#" @click="approvedPost(post._id)">Duyệt tin</a></li>
                                             </ul>
                                         </div>
@@ -136,6 +137,9 @@
             </div>
         </div>
         <div class="clearfix"></div>
+        
+            
+        <modal-pop-up :poster="post"/>
     </div>
 </template>
 
@@ -165,6 +169,8 @@ export default {
             listPost: [],
             listPostApproved: [],
             listPostPendding: [],
+            post: '',
+            approved: ''
         }
     },
     created(){
@@ -235,14 +241,27 @@ export default {
             axios.put(`http://localhost:3000/classified/posts-approve/${id}`)
             .then(response =>{
                 swal('Tin đăng đã được duyệt');
-                this.$router.go();
+                this.approved = id
+            });
+        }, 
+        selectPost(id){
+            axios.get(`http://localhost:3000/classified/post-details/${id}`)
+            .then(response =>{
+                this.post = response.data.data;
             });
         }
     },
     watch:{
         selectStatus(){
             this.fetchList();
+        },
+        approved: function(){
+            this.fetchList();
+            this.post.status = 1;
         }
+    },
+    updated(){
+        // document.getElementsByClassName('label label-info')[]
     }
 }
 </script>
@@ -251,14 +270,18 @@ export default {
 #wrapper {
     left: 70px;
     top: 60px;
+    position: absolute;
     margin: 0;
-    /* padding: 20px; */
-    position: fixed;
 }
 
-.panel .table-overflow {
-    /* margin-bottom: 0; */
-    margin: 10px;
+#content {
+    background-color: #f3f3f3;
+    width: 100%;
+    height: 100px;
+    border-top: 1px solid #e8e8e8;
+    float: right;
+    -webkit-overflow-scrolling: touch;
+    margin-right: 0px;
 }
 
 </style>

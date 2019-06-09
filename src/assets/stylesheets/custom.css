@@ -69,8 +69,9 @@ span.post-read-more {
 
 /* share */
 .share {
-    text-align: center;
-    margin-top: 20px;
+    text-align: left;
+    /* margin-top: 20px; */
+    padding: 0;
 }
 
 .share p {

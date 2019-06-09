@@ -135,10 +135,12 @@ module.exports = {
             } else{
                 res.json({
                     status: true,
+                    name_images: arrImg,
                     message: "upload image successfully"
                 });
             }
         });
+        // res.json({status: true})
     }
 
 }

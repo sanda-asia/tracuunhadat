@@ -19,7 +19,7 @@ var upload = multer({ storage: storage });
 router.post("/dang-nhap", userController.login);
 
 //upload
-router.post("/:id/upload",upload.array('images',5), userController.upload);
+router.post("/:id/upload",upload.array('images'), userController.upload);
 
 //đăng kí
 router.post("/dang-ky", userController.register);
