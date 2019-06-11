@@ -1,46 +1,42 @@
-/* eslint-disable import/no-unresolved */
-/* eslint-disable import/newline-after-import */
-/* eslint-disable import/first */
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-// import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap-vue/dist/bootstrap-vue.css';
-import BootstrapVue from 'bootstrap-vue';
+import Vue from "vue";
+import App from "./App.vue";
+import router from "./router";
 
-import Vue from 'vue';
-import App from './App';
-import router from './router';
-import Resource from 'vue-resource';
-import Vuetify from 'vuetify' 
+import MaterialKit from "./plugins/material-kit";
+
+import * as VueGoogleMaps from "vue2-google-maps";
+import Vuetify from 'vuetify'
+
+import 'vuetify/dist/vuetify.min.css'
 
 Vue.use(Vuetify)
 
+
 Vue.config.productionTip = false;
 
-import headerPage from './components/Header';
-Vue.component('header-page', headerPage);
+Vue.use(MaterialKit);
 
-import MiniPoster from './layouts/MiniPoster';
-Vue.component('mini-poster', MiniPoster);
+const NavbarStore = {
+  showNavbar: false
+};
 
-import ModalPopUp from './layouts/ModalPopUp';
-Vue.component('modal-pop-up', ModalPopUp);
 
-import LoginAndRegister from './layouts/LoginAndRegister';
-Vue.component('login-and-register', LoginAndRegister);
-
-import Pagination from './components/Pagination';
-Vue.component('pagination', Pagination);
-
-import leftNav from './components/Leftnav';
-Vue.component('left-nav', leftNav);
-
-Vue.use(Resource);
-
-/* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  components: { App },
-  template: '<App/>',
+Vue.use(VueGoogleMaps, {
+  load: {
+    // key: "NHAP-API-KEY-O-DAY",
+    libraries: "places"
+  }
 });
+
+Vue.mixin({
+  data() {
+    return {
+      NavbarStore
+    };
+  }
+});
+
+new Vue({
+  router,
+  render: h => h(App)
+}).$mount("#app");
