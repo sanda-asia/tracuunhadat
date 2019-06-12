@@ -24,7 +24,7 @@
                         </div>    
                         <div class="clearfix"></div>
                         <div class="address-poster">
-                        <i class="fas fa-map-marked"></i> Location : TPHCM
+                          <i class="fas fa-map-marked"></i> Location : TPHCM
                         </div>
                     </div>
                     <i class="far fa-bookmark icon-bookmark"></i>
@@ -81,7 +81,7 @@ export default {
 .m-price-poster{
     float: left;
     width: 50%;
-    color: red;
+    color: #c90927;
     font-size: 18px;
     font-weight: bold;
 }

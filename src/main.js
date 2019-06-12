@@ -8,6 +8,9 @@ import * as VueGoogleMaps from "vue2-google-maps";
 import Vuetify from 'vuetify'
 
 import 'vuetify/dist/vuetify.min.css'
+import VueFacebook from 'vue-facebook';
+
+Vue.use(VueFacebook)
 
 Vue.use(Vuetify)
 

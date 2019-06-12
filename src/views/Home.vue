@@ -123,16 +123,16 @@ export default {
 
 #mapView{
     width: 50%;
-    position: fixed;
+    position: absolute;
     left: 0;
-    top: 70px
+    top: 0
 }
 
 #contentHome{
     width: 50%;
-    position: fixed;
+    position: absolute;
     right: 0;
-    top: 70px;
+    top: 0;
 }
 
 @media all and (min-width: 991px) {

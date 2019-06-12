@@ -268,7 +268,6 @@ export default {
 
 
 .wrapper{
-  margin: 70px 0 0 0;
   height: 697px;
   overflow-y: scroll;
   background-color: white;

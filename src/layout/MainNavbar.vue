@@ -4,7 +4,7 @@
         <div class="md-toolbar-section-start">
           <h3 class="md-title">
             <!-- Primary Color -->
-            <img src="https://static.reverland.com/images/logo-r-white.svg"/>
+            <img style="width:50px" src="https://static.reverland.com/images/logo-r-white.svg"/>
           </h3>
         </div>
         <div class="md-toolbar-section-end">

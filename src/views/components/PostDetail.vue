@@ -2,284 +2,400 @@
     <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <div class="container bootstrap snippet">
-    <div class="row">
-  		<div class="col-sm-10"><h1>User name</h1></div>
-    	<div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="http://www.gravatar.com/avatar/28fd20ccec6865e2d5f0e1f4446eb7bf?s=100"></a></div>
-    </div>
-    <div class="row">
-  		<div class="col-sm-3"><!--left col-->
-              
+                    <!-- Page Content -->
+                <div class="container">
 
-      <div class="text-center">
-        <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
-        <h6>Upload a different photo...</h6>
-        <input type="file" class="text-center center-block file-upload">
-      </div></hr><br>
+                <div class="row">
 
-               
-          <div class="panel panel-default">
-            <div class="panel-heading">Website <i class="fa fa-link fa-1x"></i></div>
-            <div class="panel-body"><a href="http://bootnipets.com">bootnipets.com</a></div>
-          </div>
-          
-          
-          <ul class="list-group">
-            <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Shares</strong></span> 125</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Likes</strong></span> 13</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Posts</strong></span> 37</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Followers</strong></span> 78</li>
-          </ul> 
-               
-          <div class="panel panel-default">
-            <div class="panel-heading">Social Media</div>
-            <div class="panel-body">
-            	<i class="fa fa-facebook fa-2x"></i> <i class="fa fa-github fa-2x"></i> <i class="fa fa-twitter fa-2x"></i> <i class="fa fa-pinterest fa-2x"></i> <i class="fa fa-google-plus fa-2x"></i>
-            </div>
-          </div>
-          
-        </div><!--/col-3-->
-    	<div class="col-sm-9">
-            <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-                <li><a data-toggle="tab" href="#messages">Menu 1</a></li>
-                <li><a data-toggle="tab" href="#settings">Menu 2</a></li>
-              </ul>
+                    <!-- Blog Entries Column -->
+                    <div class="col-md-9 detail" >
 
-              
-          <div class="tab-content">
-            <div class="tab-pane active" id="home">
-                <hr>
-                  <form class="form" action="##" method="post" id="registrationForm">
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="first_name"><h4>First name</h4></label>
-                              <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" title="enter your first name if any.">
+                      <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                          <li class="breadcrumb-item"><a href="#">Home</a></li>
+                          <li class="breadcrumb-item"><a href="#">Library</a></li>
+                          <li class="breadcrumb-item active" aria-current="page">Data</li>
+                        </ol>
+                      </nav>
+
+                      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                          <div class="carousel-item active">
+                            <img src="https://via.placeholder.com/850x450" class="d-block w-100" alt="...">
+                          </div>
+                          <div class="carousel-item">
+                            <img src="https://via.placeholder.com/850x450" class="d-block w-100" alt="...">
+                          </div>
+                          <div class="carousel-item">
+                            <img src="https://via.placeholder.com/850x450" class="d-block w-100" alt="...">
+                          </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Next</span>
+                        </a>
+                      </div>
+
+                      <h1 class="text-h1">Bán nền KDC PHÚ AN đường A4 TDC lộ 28m quá đẹp</h1>
+                      <div class="m-text-description-poster"> 
+                          <div class="m-price-poster"><i class="fas fa-money-bill-wave"></i> 2.000.000 VND</div>
+                          <div class="area-poster">
+                            <span class="icon-frame"></span>
+                            150m<sup>2</sup>
+                          </div>
+                          <div class="box-icon">
+                            <i class="far fa-bookmark icon-bookmark"></i>
+                          </div>
+                          <div class="clearfix"></div>
+                          <div class="address-poster">
+                            <i class="fas fa-map-marked"></i> Location : TPHCM
                           </div>
                       </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                            <label for="last_name"><h4>Last name</h4></label>
-                              <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name if any.">
-                          </div>
+                      <div>
+                          <h4>Giới thiệu SaFira Khang Điền</h4>
+                          <p>
+                            Sau thành công vang dội cả về bán hàng lẫn tiến độ thi công ở dự án căn hộ Quận 9 Jamila, Khang Điền tiếp tục triển khai thêm dự án căn hộ thứ 2 của mình tại Quận 9, đó là Safira Khang Điền (tên cũ Sapphire). Sở hữu thế mạnh về tiềm lực kinh tế, vững vàng về kinh nghiệm, các sản phẩm mang thương hiệu nhà Khang Điền luôn tiên phong đón đầu xu hướng của thị trường, đáp ứng sự mong mỏi của khách hàng. Và điều này được khẳng định thêm lần nữa qua dự án căn hộ Quận 9 cao cấp Safira với thông điệp 'Khơi nguồn năng lượng - Hạnh phúc tràn đầy".
+
+                            
+
+                            Theo Rever tìm hiểu, tính đến Tháng 12/2018, tiến độ Safira đang diễn ra khá tốt, nhà thầu An Phong đang tích cực thi công nhiều hạng mục ở cả 4 block dự án. Cụ thể, tiến độ thi công các block dự án Safira Khang Điền như sau:
+
+                            
+
+                            - Block A: Thi công bê tông sàn trệt
+
+
+                            - Block B: Thi công bê tông sàn trệt
+
+
+                            - Block C: Thi công Coffa, cốt thép, bê tông sàn tầng 3
+
+
+                            - Block D: Thi công Coffa, cột thép sàn tầng 3
+                          </p>
+                          <h4>Giới thiệu SaFira Khang Điền</h4>
+                          <p>
+                            Sau thành công vang dội cả về bán hàng lẫn tiến độ thi công ở dự án căn hộ Quận 9 Jamila, Khang Điền tiếp tục triển khai thêm dự án căn hộ thứ 2 của mình tại Quận 9, đó là Safira Khang Điền (tên cũ Sapphire). Sở hữu thế mạnh về tiềm lực kinh tế, vững vàng về kinh nghiệm, các sản phẩm mang thương hiệu nhà Khang Điền luôn tiên phong đón đầu xu hướng của thị trường, đáp ứng sự mong mỏi của khách hàng. Và điều này được khẳng định thêm lần nữa qua dự án căn hộ Quận 9 cao cấp Safira với thông điệp 'Khơi nguồn năng lượng - Hạnh phúc tràn đầy".
+
+                            
+
+                            Theo Rever tìm hiểu, tính đến Tháng 12/2018, tiến độ Safira đang diễn ra khá tốt, nhà thầu An Phong đang tích cực thi công nhiều hạng mục ở cả 4 block dự án. Cụ thể, tiến độ thi công các block dự án Safira Khang Điền như sau:
+
+                            
+
+                            - Block A: Thi công bê tông sàn trệt
+
+
+                            - Block B: Thi công bê tông sàn trệt
+
+
+                            - Block C: Thi công Coffa, cốt thép, bê tông sàn tầng 3
+
+
+                            - Block D: Thi công Coffa, cột thép sàn tầng 3
+                          </p>
                       </div>
-          
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="phone"><h4>Phone</h4></label>
-                              <input type="text" class="form-control" name="phone" id="phone" placeholder="enter phone" title="enter your phone number if any.">
-                          </div>
-                      </div>
-          
-                      <div class="form-group">
-                          <div class="col-xs-6">
-                             <label for="mobile"><h4>Mobile</h4></label>
-                              <input type="text" class="form-control" name="mobile" id="mobile" placeholder="enter mobile number" title="enter your mobile number if any.">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="email"><h4>Email</h4></label>
-                              <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email.">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="email"><h4>Location</h4></label>
-                              <input type="email" class="form-control" id="location" placeholder="somewhere" title="enter a location">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="password"><h4>Password</h4></label>
-                              <input type="password" class="form-control" name="password" id="password" placeholder="password" title="enter your password.">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                            <label for="password2"><h4>Verify</h4></label>
-                              <input type="password" class="form-control" name="password2" id="password2" placeholder="password2" title="enter your password2.">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                           <div class="col-xs-12">
-                                <br>
-                              	<button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                               	<button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+                      <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-width="100%" data-numposts="10"></div>
+                    </div>
+
+                    <!-- Sidebar Widgets Column -->
+                    <div class="col-md-3">
+                        <div class="card">
+                          <div class="card-header">
+                            <div class="profile_pic">
+                              <img src="https://bootsnipp.com/img/avatars/92ff0456eb6106d0c1ae8ab5f1fe0afe2d2d25f2.jpg">
                             </div>
-                      </div>
-              	</form>
-              
-              <hr>
-              
-             </div><!--/tab-pane-->
-             <div class="tab-pane" id="messages">
-               
-               <h2></h2>
-               
-               <hr>
-                  <form class="form" action="##" method="post" id="registrationForm">
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="first_name"><h4>First name</h4></label>
-                              <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" title="enter your first name if any.">
                           </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                            <label for="last_name"><h4>Last name</h4></label>
-                              <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name if any.">
-                          </div>
-                      </div>
-          
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="phone"><h4>Phone</h4></label>
-                              <input type="text" class="form-control" name="phone" id="phone" placeholder="enter phone" title="enter your phone number if any.">
-                          </div>
-                      </div>
-          
-                      <div class="form-group">
-                          <div class="col-xs-6">
-                             <label for="mobile"><h4>Mobile</h4></label>
-                              <input type="text" class="form-control" name="mobile" id="mobile" placeholder="enter mobile number" title="enter your mobile number if any.">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="email"><h4>Email</h4></label>
-                              <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email.">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="email"><h4>Location</h4></label>
-                              <input type="email" class="form-control" id="location" placeholder="somewhere" title="enter a location">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="password"><h4>Password</h4></label>
-                              <input type="password" class="form-control" name="password" id="password" placeholder="password" title="enter your password.">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                            <label for="password2"><h4>Verify</h4></label>
-                              <input type="password" class="form-control" name="password2" id="password2" placeholder="password2" title="enter your password2.">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                           <div class="col-xs-12">
-                                <br>
-                              	<button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                               	<button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+                          <div class="card-body">
+                            <div class="d-lfex justify-content-center flex-column">
+                              <div class="name_container">
+                                <div class="name">Samim</div>
+                              </div>
+                              <div class="address">Kuala Lumpur, Malaysia</div>
                             </div>
-                      </div>
-              	</form>
-               
-             </div><!--/tab-pane-->
-             <div class="tab-pane" id="settings">
-            		
-               	
-                  <hr>
-                  <form class="form" action="##" method="post" id="registrationForm">
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="first_name"><h4>First name</h4></label>
-                              <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" title="enter your first name if any.">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                            <label for="last_name"><h4>Last name</h4></label>
-                              <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name if any.">
-                          </div>
-                      </div>
-          
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="phone"><h4>Phone</h4></label>
-                              <input type="text" class="form-control" name="phone" id="phone" placeholder="enter phone" title="enter your phone number if any.">
-                          </div>
-                      </div>
-          
-                      <div class="form-group">
-                          <div class="col-xs-6">
-                             <label for="mobile"><h4>Mobile</h4></label>
-                              <input type="text" class="form-control" name="mobile" id="mobile" placeholder="enter mobile number" title="enter your mobile number if any.">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="email"><h4>Email</h4></label>
-                              <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email.">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="email"><h4>Location</h4></label>
-                              <input type="email" class="form-control" id="location" placeholder="somewhere" title="enter a location">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="password"><h4>Password</h4></label>
-                              <input type="password" class="form-control" name="password" id="password" placeholder="password" title="enter your password.">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                            <label for="password2"><h4>Verify</h4></label>
-                              <input type="password" class="form-control" name="password2" id="password2" placeholder="password2" title="enter your password2.">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                           <div class="col-xs-12">
-                                <br>
-                              	<button class="btn btn-lg btn-success pull-right" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                               	<!--<button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>-->
+                            <div class="info_container">
+                              <div class="info">
+                                <p>followers</p>
+                                <p>2.89M</p>								
+                              </div>
+                              <div class="info">
+                                <p>followings</p>
+                                <p>456</p>							
+                              </div>
+                              <div class="info">
+                                <p>posts</p>
+                                <p>3.56K</p>						
+                              </div>			
                             </div>
-                      </div>
-              	</form>
-              </div>
-               
-              </div><!--/tab-pane-->
-          </div><!--/tab-content-->
+                            <div class="follow">
+                              <div class="follow_btn">Nhấn để hiển thị số</div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Side Widget -->
+                        <div class="card my-4">
+                            <img class="card-img-top" src="https://2.bp.blogspot.com/-vvG5hMTFOro/W6RaoxdAikI/AAAAAAAAK1k/jezYdP7fvfYvt15Jv8a0agrGQE2lMU8YgCKgBGAs/s1600/MASAI-2.jpg" alt="Card image cap">
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- /.row -->
 
-        </div><!--/col-9-->
-    </div>
+                </div>
+                <!-- /.container -->
             </div>
         </div>
     </div>
 </template>
-
 <script>
+import noUiSlider from "nouislider";
 
+export default {
+  
+    mounted () {
+        window.FB.XFBML.parse();
+    },
+};
 </script>
 
 <style scoped>
-    
+
+.modal-dialog.modal-lg {
+    max-width: 80%;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: 0 auto;
+}
+.modal-content {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: .3rem;
+    outline: 0;
+}
+
+.detail{
+    overflow-y: scroll;
+    /* height: 670px; */
+    height: 100%;
+}
+
+.text-h1{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.icon-bookmark{
+    font-size: 30px;
+}
+
+.m-price-poster{
+    float: left;
+    width: 50%;
+    color: #c90927;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.area-poster{
+    float: left;
+    width: 40%;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.box-icon{
+    float: left;
+    width: 10%;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.m-text-description-poster{
+  margin: 25px 0;
+}
+
+@media only screen and (min-width: 1264px){
+.container {
+    max-width: 100%;
+    height: 100%;
+}}
+
+			.card-header{
+				background-image: url('http://www.latestseotutorial.com/wp-content/uploads/2016/12/love-dp-for-facebook.jpg') !important;
+				padding: 0 !important;
+				background-position: center;
+				background-repeat: no-repeat;
+				background-size: cover;
+				height: 150px;
+				position: relative;
+				display: flex;
+				justify-content: center;
+				text-align:center;
+			}
+			.card{
+				overflow: hidden;
+				border:0 !important;
+			}
+			.profile_pic{
+				position: absolute;
+				bottom: -50px;
+				height: 112px;
+				width: 112px;
+				padding: 5px;
+				border: 2px solid #f39c12;
+				border-radius: 50%;
+			}
+			.card-body{
+				padding-top: 55px !important;
+			}
+			.profile_pic img{
+				height: 100px;
+				width: 100px;
+				border-radius: 50%;
+			}
+			.name_container{
+				display: flex;
+				justify-content: center;
+			
+			}
+			.name{
+				font-size: 20px;
+				font-weight: 700;
+				color: gray;
+				position: relative;
+			}
+			.name::after{
+				font-family: "Font Awesome 5 Free";
+				content: '\f058';
+				position: absolute;
+				right: -15px;
+				top:0;
+				font-size: 15px;
+				font-weight: 700;
+				color: #4CAF50;
+			}
+			.address{
+				display: flex;
+				justify-content: center;
+				font-size: 12px;
+				color: gray;
+			}
+			.follow{
+				padding-top: 20px;
+				display: flex;
+				justify-content: center;
+			}
+			.follow_btn{
+				background: #2196F3;
+				padding: 7px;
+				color: #fff;
+				border-radius: 12px;
+				cursor: pointer;
+			}
+
+			.follow_btn::before{
+				font-family: "Font Awesome 5 Free";
+				content: "\f234";
+				font-weight: 600;
+				margin-right: 5px;
+			
+
+
+			}
+			.follow_btn:hover{
+				background: #f39c12;
+			}
+			.info_container{
+				padding-top: 20px;
+				display: flex;
+				justify-content: space-around;
+				flex-direction: row;
+			}
+			.info{
+				display: flex;
+				flex-direction: column;
+        padding: 0px;
+			}
+			.info p:first-child{
+				margin-bottom: 0;
+				font-size: 12px;
+				color: gray;
+				text-transform: uppercase;
+				text-align: center;
+			}
+			.info p:last-child{
+				margin-bottom: 0;
+				font-size: 20px;
+				font-weight: 700;
+				color: gray;
+				text-transform: uppercase;
+				text-align: center;
+			}
+			.card-footer{
+				padding: 0 !important;
+				background: #fff !important;
+				display: flex;
+				border-top: 0 !important;
+			}
+			.message{
+				display: flex;
+				justify-content: center;
+				padding: 10px;
+				width: 50%;
+				text-transform: uppercase;
+				background: #f39c12;
+				color: #fff;
+				cursor: pointer;
+				border-bottom-right-radius: calc(0.25rem - 1px);
+			}
+
+			.message::before{
+				font-family: "Font Awesome 5 Free";
+				content: "\f27a";
+				font-weight: 600;
+				margin-right: 5px;
+			}
+		.view_profile{
+				display: flex;
+				justify-content: center;
+				padding: 10px;
+				width: 50%;
+				text-transform: uppercase;
+				background: #e74c3c;
+				color: #fff;
+				cursor: pointer;
+				border-bottom-left-radius: calc(0.25rem - 1px);
+				
+			}
+			.view_profile::before{
+				font-family: "Font Awesome 5 Free";
+				content: "\f406";
+				margin-right: 5px;
+				font-weight: 600;
+			}
+
 </style>
