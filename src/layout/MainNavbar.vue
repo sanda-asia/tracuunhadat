@@ -2,7 +2,10 @@
     <md-toolbar class="nav-custom">
       <div class="md-toolbar-row">
         <div class="md-toolbar-section-start">
-          <h3 class="md-title">Primary Color</h3>
+          <h3 class="md-title">
+            <!-- Primary Color -->
+            <img src="https://static.reverland.com/images/logo-r-white.svg"/>
+          </h3>
         </div>
         <div class="md-toolbar-section-end">
           <md-button
@@ -21,22 +24,22 @@
                 <p>Trang Chủ</p>
               </md-list-item>
 
-              <md-list-item href="#">
+              <md-list-item href="javascript:void(0)" @click="toClassified">
                 <md-icon>explore</md-icon>
                 <p>Tin Đăng</p>
               </md-list-item>
 
-              <md-list-item href="javascript:void(0)">
+              <md-list-item href="javascript:void(0)" @click="toProject">
                 <md-icon>settings</md-icon>
                 <p>Dự Án</p>
               </md-list-item>
 
-              <md-list-item href="javascript:void(0)">
+              <md-list-item href="javascript:void(0)" @click="toAgent">
                 <md-icon>account_circle</md-icon>
                 <p>Danh Bạ</p>
               </md-list-item>
               
-              <md-list-item href="#/">
+              <md-list-item href="javascript:void(0)" @click="toBlog">
                 <md-icon>explore</md-icon>
                 <p>Nhận Định</p>
               </md-list-item>
@@ -91,7 +94,22 @@ export default {
       this.$router.push('/landing');
     },
     toHome(){
-      this.$router.push('/home');
+      this.$router.push('/');
+    },
+    toClassified(){
+      this.$router.push('/rao-vat');
+    },
+    
+    toProject(){
+      this.$router.push('/du-an');
+    },
+    
+    toBlog(){
+      this.$router.push('/nhan-dinh');
+    },
+    
+    toAgent(){
+      this.$router.push('/danh-ba');
     }
   }
 };

@@ -1,10 +1,8 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Index from "./views/Index.vue";
 import Home from "./views/Home.vue";
-import Landing from "./views/Landing.vue";
-import Login from "./views/Login.vue";
-import Profile from "./views/Profile.vue";
+import Blog from "./views/Blog.vue";
+import BlogDetail from "./views/BlogDetail.vue";
 import MainNavbar from "./layout/MainNavbar.vue";
 import MainFooter from "./layout/MainFooter.vue";
 
@@ -14,48 +12,24 @@ export default new Router({
   routes: [
     {
       path: "/",
-      name: "index",
-      components: { default: Index, header: MainNavbar, footer: MainFooter },
-      props: {
-        header: { colorOnScroll: 400 },
-        footer: { backgroundColor: "black" }
-      }
-    },
-    {
-      path: "/home",
       name: "home",
       components: { default: Home, header: MainNavbar, footer: MainFooter },
-      props: {
-        header: { colorOnScroll: 400 },
-        footer: { backgroundColor: "black" }
-      }
     },
     {
-      path: "/landing",
-      name: "landing",
-      components: { default: Landing, header: MainNavbar, footer: MainFooter },
-      props: {
-        header: { colorOnScroll: 400 },
-        footer: { backgroundColor: "black" }
-      }
+      path: "/rao-vat",
+      name: "classified",
+      components: { default: Home, header: MainNavbar, footer: MainFooter },
     },
     {
-      path: "/login",
-      name: "login",
-      components: { default: Login, header: MainNavbar, footer: MainFooter },
-      props: {
-        header: { colorOnScroll: 400 }
-      }
+      path: "/nhan-dinh",
+      name: "blog",
+      components: { default: Blog, header: MainNavbar, footer: MainFooter },
     },
     {
-      path: "/profile",
-      name: "profile",
-      components: { default: Profile, header: MainNavbar, footer: MainFooter },
-      props: {
-        header: { colorOnScroll: 400 },
-        footer: { backgroundColor: "black" }
-      }
-    }
+      path: "/nhan-dinh/:title",
+      name: "blogDetail",
+      components: { default: BlogDetail, header: MainNavbar, footer: MainFooter },
+    },
   ],
   scrollBehavior: to => {
     if (to.hash) {
