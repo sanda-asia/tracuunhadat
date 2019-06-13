@@ -3,39 +3,37 @@ module.exports = {
         let listImages = [];
         if (req.files) {
             for( i = 0; i< req.files.length; i++) {
-                listImages.push(req.files[i].path);
+                listImages.push(req.files[i].filename);
             }
         }
         const newBlog = new Blog({
             headerBlog: req.body.headerBlog,
             content: req.body.content,
+            province: req.body.province,
             imageSrc: listImages,
-            // author: req.user.data._id,
         });
         newBlog.save()
             .then(result => {
-                res.status(201).json({
+                res.status(200).json({
                     message: 'Created blog successfully!',
                     createdBlog: newBlog,
                 });
             })
             .catch(err => {
-                res.status(500).json({
-                    error : err
-                });
+                // res.status(500).json({
+                //     error : err.message
+                // });
+                console.log(err.message)
             });
     },
     getListBlog: (req, res, next)=> {
         Blog.find()
+            .sort({timePost:-1})
             .exec()
             .then(docs => {
                 const response = {
                     count : docs.length,
-                    listBlog : docs.map(doc => {
-                        return {
-                            blog: doc
-                        }
-                    }),
+                    listBlog : docs,
                 };
                 res.status(200).json(response);
             })
@@ -74,6 +72,7 @@ module.exports = {
         const blogUpdated = {
             headerBlog: req.body.headerBlog,
             content: req.body.content,
+            province: req.body.province,
             imageSrc: listImages,
             timePost: Date.now(),
         };

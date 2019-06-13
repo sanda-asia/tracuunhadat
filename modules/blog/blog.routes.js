@@ -3,7 +3,7 @@ const blogController = require('./blog.controller');
 const multer = require('multer');
 const storage = multer.diskStorage({
     destination: function (req, file, callback) {
-      callback(null, 'public/upload/blog');
+      callback(null, './static/upload/blog');
     },
     filename: function (req, file, callback) {
       callback(null, Date.now()+ file.originalname);
@@ -21,7 +21,7 @@ const upload = multer({
 router.get('/', blogController.getListBlog);
 
 // Create blog
-router.post('/tao-blog', upload.any(), blogController.createBlog);
+router.post('/tao-blog', upload.array('images'), blogController.createBlog);//upload.any(),
 
 // Get blog by ID
 router.get('/:id', blogController.getBlogById);
