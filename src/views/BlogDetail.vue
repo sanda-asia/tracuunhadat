@@ -137,7 +137,7 @@ export default {
 
 
 .wrapper{
-  height: 697px;
+  height: 90vh;
   overflow-y: scroll;
 }
 

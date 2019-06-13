@@ -6,6 +6,7 @@ import BlogDetail from "./views/BlogDetail.vue";
 import Profile from "./views/Profile.vue";
 import MainNavbar from "./layout/MainNavbar.vue";
 import MainFooter from "./layout/MainFooter.vue";
+import Admin from "./views/Admin.vue";
 
 Vue.use(Router);
 
@@ -32,10 +33,18 @@ export default new Router({
       components: { default: BlogDetail, header: MainNavbar, footer: MainFooter },
     },
     {
+<<<<<<< HEAD
       path: "/profile/:id",
       name: "profile",
       components: { default: Profile, header: MainNavbar, footer: MainFooter },
     },
+=======
+      path: "/admin",
+      name: "admin",
+      components: { default: Admin, header: MainNavbar, footer: MainFooter },
+    },
+    
+>>>>>>> 8e9fad10d72b968322e7ff1b91b8133d35152cc6
   ],
   scrollBehavior: to => {
     if (to.hash) {
