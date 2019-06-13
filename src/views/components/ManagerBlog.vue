@@ -126,7 +126,7 @@ import axios from 'axios'
   }
 </script>
 
-<style lang="scss">
+<style scoped>
 .section-download {
   .md-button + .md-button {
     margin-left: 5px;
