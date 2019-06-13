@@ -2,6 +2,26 @@
   <div class="wrapper">
         <div class="lists" style="width: 90%; margin: auto;">
             <div>
+                <section class="search-sec">
+                    <div class="px-0">
+                        <form action="#" method="post" novalidate="novalidate" class="width-full">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 p-0">
+                                        <input type="text" class="form-control search-slt" placeholder="Enter Pickup City">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                                        <select class="form-control search-slt" id="exampleFormControlSelect1">
+                                            <option>Tỉnh - Thành Phố</option>
+                                            <option>Example one</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                                        <button type="button" class="btn btn-danger wrn-btn">Search</button>
+                                    </div>
+                                </div>
+                        </form>
+                    </div>
+                </section>
               <h3>
                 <span>Thành Phố Đà Nẵng</span>
               </h3>
@@ -259,7 +279,7 @@ export default {
   }
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .section-download {
   .md-button + .md-button {
     margin-left: 5px;
@@ -359,4 +379,47 @@ span.post-read-more {
     display: flex;
   }
 }
+
+.search-sec{
+    padding: 2rem;
+    margin-bottom: 20px;
+}
+.search-slt{
+    display: block;
+    width: 100%;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: #55595c;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    height: calc(3rem + 2px) !important;
+    border-radius:0;
+}
+.wrn-btn{
+    width: 100%;
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: capitalize;
+    height: calc(3rem + 2px) !important;
+    border-radius:0;
+}
+@media (min-width: 992px){
+    .search-sec{
+        position: relative;
+        background: rgba(26, 70, 104, 0.51);
+    }
+}
+
+@media (max-width: 992px){
+    .search-sec{
+        background: #1A4668;
+    }
+}
+
+.width-full{
+    width: 100%;
+}
+
+
 </style>

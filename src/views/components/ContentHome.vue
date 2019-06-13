@@ -1,10 +1,10 @@
 <template>
   <div class="scroll-able">
     <v-tabs v-model="active" slider-color="black">
-      <v-tab v-for="n in 3" :key="n" ripple>
-        Item {{ n }}
+      <v-tab v-for="n in requirement" :key="n" ripple>
+        {{ n }}
       </v-tab>
-      <v-tab-item v-for="n in 3" :key="n">
+      <v-tab-item v-for="n in requirement" :key="n">
         <v-card flat>
           <div class="results-list">
             <div class="row row-post">
@@ -48,6 +48,7 @@ export default {
   name: "content-home",
   data() {
     return {
+      requirement: ['Tất Cả','Cần Mua', 'Cần Bán','Cho Thuê', 'Cần Thuê']
     };
   },
   methods: {
@@ -63,6 +64,9 @@ export default {
 <style scoped lang="scss">
 .results-list{
 
+}
+a.v-tabs__item {
+    color: black !important;
 }
 .row-post{
     width: 100%;
