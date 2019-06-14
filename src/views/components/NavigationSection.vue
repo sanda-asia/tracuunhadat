@@ -305,4 +305,11 @@ export default {
 };
 </script>
 
-<style lang="css"></style>
+<style lang="css">
+.md-list-item a .md-ripple {
+    padding: 5px 16px !important;
+    margin: 5px 0;
+    border-radius: 3px;
+}
+
+</style>

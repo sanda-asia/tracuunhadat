@@ -25,7 +25,6 @@
                                 <span class="post-read-more">
                                     <svg class="svgIcon-use" width="25" height="25" viewBox="0 0 25 25">
                                         <path d="M19 6c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v14.66h.012c.01.103.045.204.12.285a.5.5 0 0 0 .706.03L12.5 16.85l5.662 4.126a.508.508 0 0 0 .708-.03.5.5 0 0 0 .118-.285H19V6zm-6.838 9.97L7 19.636V6c0-.55.45-1 1-1h9c.55 0 1 .45 1 1v13.637l-5.162-3.668a.49.49 0 0 0-.676 0z" fill-rule="evenodd">
-
                                         </path>
                                     </svg>
                                 </span>
@@ -92,7 +91,7 @@
                         <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
                         <p>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
                     </div>
-                    
+                    <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-width="100%" data-numposts="10"></div>
 
                 </div>
                 
@@ -120,9 +119,10 @@ export default {
   methods: {
   },
   computed: {
-  },
-  mounted() {
-  },
+  },    
+  mounted () {
+        window.FB.XFBML.parse();
+    },
   beforeDestroy() {
   }
 };

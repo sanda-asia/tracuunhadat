@@ -11,12 +11,12 @@
         <div class="md-layout-item md-size-66 mx-auto">
           <md-button class="md-primary">Default</md-button>
           <md-button class="md-primary md-round">Round</md-button>
-          <md-button class="md-primary"
-            ><md-icon>favorite</md-icon> With Icon</md-button
-          >
-          <md-button class="md-primary md-just-icon md-round"
-            ><md-icon>favorite</md-icon></md-button
-          >
+          <md-button class="md-primary">
+            <md-icon>favorite</md-icon> With Icon
+          </md-button>
+          <md-button class="md-primary md-just-icon md-round">
+            <md-icon>favorite</md-icon>
+          </md-button>
           <md-button class="md-primary md-simple">Simple</md-button>
         </div>
       </div>

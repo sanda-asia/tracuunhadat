@@ -41,7 +41,8 @@ export default {
     position: absolute;
     left: 0;
     right: 0;
-    top: 70px;
+    top: 10vh;
+    height: 90vh;
 }
 ::-webkit-scrollbar-track
 {
