@@ -40,6 +40,9 @@ import axios from 'axios'
 import Editor from '@tinymce/tinymce-vue'
 export default{
    props: ['item'],
+   components: {
+      editor: Editor
+   },
    data(){
       return{
          headerBlog: '',
@@ -115,17 +118,15 @@ export default{
                // 'x-access-token' : localStorage.getItem('token')
             },
          })
+         .then(req => this.$emit('onSubmit'))
+         .catch(err => console.log(error));
          
-         this.$emit('onSubmit');
+         
       },
       handleUploadFile(event){
          this.images = event.target.files;
          console.log(event.target.files);
       }
-   },
-
-   components: {
-      editor: Editor
    }
 }
 </script>

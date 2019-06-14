@@ -72,7 +72,14 @@ import axios from 'axios'
       blogs: [],
       itemSelected: ''
     }),
-
+    watch: {
+      isAddOrEdit(val){
+        if(!val){
+          this.initialize();
+          this.itemSelected = ''
+        }
+      }
+    },
     created () {
       this.initialize()
     },
