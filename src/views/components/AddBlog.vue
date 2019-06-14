@@ -6,22 +6,25 @@
             <input type="text" class="form-control" id="FormControlInput1" v-model="headerBlog" placeholder="Tiêu đề bài viết">
          </div>
          <div class="form-group">
+            <label for="FormControlInput2">Tác giả</label>
+            <input type="text" class="form-control" id="FormControlInput2" v-model="author">
+         </div>
+         <div class="form-group">
             <label for="exampleFormControlSelect1">Tỉnh - Thành phố</label>
-            <select class="form-control " id="exampleFormControlSelect1" v-model="selectProvince">
-               <option value="-1">Tất Cả</option>
-               <option v-for="(province, index) in provinces" :key = "province.index" :value="index">{{province.name}}</option>
+            <select class="form-control " id="exampleFormControlSelect1" v-model="province">
+               <option value="Tất cả">Tất Cả</option>
+               <option v-for="(province, index) in provinces" 
+                        :key = "index" 
+                        :value="province.name">
+               {{province.name}}
+               </option>
             </select>
          </div>
-         <!-- <div class="form-group">
-            <label for="FormControlTextarea1">Nội dung</label>
-            <textarea class="form-control" id="FormControlTextarea1" v-model="content"></textarea>
-         </div> -->
-
          <div class="form-group">
             <editor v-model="content" api-key="API_KEY" :init="init"></editor>
          </div>
          <div class="form-group">
-            <label for="FormControlInput1">Tiêu Đề</label>
+            <label for="FormControlInput1">Ảnh đại diện</label>
             <input type="file" class="form-control" @change="handleUploadFile"/>
          </div>
          <div class="form-group">
@@ -43,14 +46,12 @@ export default{
          content: '',
          images: [],
          provinces,
-         selectProvince: -1,
-         province: '',
+         province: 'Tất cả',
+         author: 'Admin',
          init:{
             plugins: 'print preview fullpage powerpaste searchreplace autolink directionality advcode visualblocks visualchars fullscreen image link media mediaembed template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount tinymcespellchecker a11ychecker imagetools textpattern help formatpainter permanentpen pageembed tinycomments mentions linkchecker',
             toolbar: 'formatselect | bold italic strikethrough forecolor backcolor permanentpen formatpainter | link image media pageembed | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent | removeformat | addcomment',
             image_advtab: true,
-            /* without images_upload_url set, Upload tab won't show up*/
-            // images_upload_url: 'postAcceptor.php',
             images_upload_handler: function (blobInfo, success, failure) {
                 let formData = new FormData();
                 formData.append('images', blobInfo.blob());
@@ -76,28 +77,37 @@ export default{
    },
 
    created(){
-      if(this.item){
-         console.log(this.item)
-         this.headerBlog = this.item.headerBlog;
-         this.content = this.item.content;
-         this.selectProvince = 3; 
+      if(this.$props.item){
+         this.headerBlog = this.$props.item.headerBlog;
+         this.content = this.$props.item.content;
+         this.author = this.$props.item.author; 
+         this.province = this.$props.item.province;
       }
    },
 
    methods : {
       onSubmit(){
-         let url = "http://localhost:3000/blog/tao-blog";
-
          let formData = new FormData();
          for(var i = 0; i < this.images.length; i++){
             formData.append('images', this.images[i]);
          }
-
          formData.append('headerBlog', this.headerBlog);
          formData.append('content', this.content);
-         console.log(formData)
+         formData.append('author', this.author);
+         formData.append('province', this.province);
+
+         let url = ''
+         let method = ''
+         if(this.$props.item){
+            url = `http://localhost:3000/blog/${this.$props.item._id}/update`,
+            method = 'PATCH'
+         }
+         else{
+            url = "http://localhost:3000/blog/tao-blog";
+            method = 'POST'
+         }
          axios({
-            method: 'POST',
+            method,
             url,
             data: formData,
             headers: {
@@ -105,7 +115,7 @@ export default{
                // 'x-access-token' : localStorage.getItem('token')
             },
          })
-
+         
          this.$emit('onSubmit');
       },
       handleUploadFile(event){

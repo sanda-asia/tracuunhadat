@@ -10,6 +10,7 @@ module.exports = {
             headerBlog: req.body.headerBlog,
             content: req.body.content,
             province: req.body.province,
+            author: req.body.author,
             imageSrc: listImages,
         });
         newBlog.save()
@@ -73,10 +74,11 @@ module.exports = {
             headerBlog: req.body.headerBlog,
             content: req.body.content,
             province: req.body.province,
+            author: req.body.author,
             imageSrc: listImages,
             timePost: Date.now(),
         };
-        Blog.findByIdAndUpdate(req.params.id)
+        Blog.findByIdAndUpdate(req.params.id, blogUpdated)
             .exec()
             .then(result => {
                 res.status(200).json({
@@ -103,5 +105,4 @@ module.exports = {
                 });
             });
     }
-
 }
