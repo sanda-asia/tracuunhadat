@@ -15,7 +15,7 @@ const ClassifiedSchema = mongoose.Schema({
    }],
    status: {
       type: Number,
-      default: 0 //0: pending
+      default: 0 //0: pending, 1: approved, 2 refuse
    },
    id_user: {
       type: mongoose.Schema.Types.ObjectId,

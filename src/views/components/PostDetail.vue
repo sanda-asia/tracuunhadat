@@ -12,9 +12,9 @@
 
                       <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                          <li class="breadcrumb-item"><a href="#">Home</a></li>
-                          <li class="breadcrumb-item"><a href="#">Library</a></li>
-                          <li class="breadcrumb-item active" aria-current="page">Data</li>
+                          <li class="breadcrumb-item"><a href="#">Trang Chủ</a></li>
+                          <li class="breadcrumb-item"><a href="#">Rao Vặt</a></li>
+                          <li class="breadcrumb-item active" aria-current="page">{{postDetail.title}}</li>
                         </ol>
                       </nav>
 
@@ -45,19 +45,19 @@
                         </a>
                       </div>
 
-                      <h1 class="text-h1">Bán nền KDC PHÚ AN đường A4 TDC lộ 28m quá đẹp</h1>
+                      <h1 class="text-h1">{{postDetail.title}}</h1>
                       <div class="m-text-description-poster"> 
-                          <div class="m-price-poster"><i class="fas fa-money-bill-wave"></i> 2.000.000 VND</div>
+                          <div class="m-price-poster"><i class="fas fa-money-bill-wave"></i>{{postDetail.price.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}}</div>
                           <div class="area-poster">
                             <span class="icon-frame"></span>
-                            150m<sup>2</sup>
+                            {{postDetail.area}}m<sup>2</sup>
                           </div>
                           <div class="box-icon">
                             <i class="far fa-bookmark icon-bookmark"></i>
                           </div>
                           <div class="clearfix"></div>
                           <div class="address-poster">
-                            <i class="fas fa-map-marked"></i> Location : TPHCM
+                            <i class="fas fa-map-marked"></i> Location : {{postDetail.address}}
                           </div>
                       </div>
                       <div>
@@ -118,11 +118,11 @@
                           <div class="card-body">
                             <div class="d-lfex justify-content-center flex-column">
                               <div class="name_container">
-                                <div class="name">Samim</div>
+                                <div class="name">{{postDetail.id_user.username}}</div>
                               </div>
-                              <div class="address">Kuala Lumpur, Malaysia</div>
+                              <div class="address">{{postDetail.id_user.address}}</div>
                             </div>
-                            <div class="info_container">
+                            <!-- <div class="info_container">
                               <div class="info">
                                 <p>followers</p>
                                 <p>2.89M</p>								
@@ -135,8 +135,8 @@
                                 <p>posts</p>
                                 <p>3.56K</p>						
                               </div>			
-                            </div>
-                            <div class="follow">
+                            </div> -->
+                            <div class="">
                               <div class="follow_btn">Nhấn để hiển thị số</div>
                             </div>
                           </div>
@@ -158,12 +158,30 @@
 </template>
 <script>
 import noUiSlider from "nouislider";
+import EventBus from '../../EventBus'
 
 export default {
-  
-    mounted () {
-        window.FB.XFBML.parse();
-    },
+  data(){
+    return{
+      postDetail: null,
+      // url_comment: `http://localhost:8080/rao-vat/`,
+    }
+  },
+  created(){
+    EventBus.$on('detailPost', this.handler);
+  },
+  mounted () {
+    window.FB.XFBML.parse();
+  },
+  methods:{
+    handler(e){
+      // alert('recieved: ', e)
+      this.postDetail = e;
+    }
+  },
+  destroyed() {
+    EventBus.$off('detailPost', this.handler);
+  },
 };
 </script>
 

@@ -7,27 +7,27 @@
       <v-tab-item v-for="n in requirement" :key="n">
         <v-card flat>
           <div class="results-list">
-            <div class="row row-post">
-                <div class="col-4 img-poster" style="padding-left:0px;">
+            <div v-for="post in listClassified" :key="post._id" class="row row-post">
+                <div class="col-4 img-poster" style="padding-left:0px;" @click="showDetail(post)">
                     <button type="button" data-toggle="modal" data-target=".bd-example-modal-lg">
                         <img src="https://file4.batdongsan.com.vn/resize/745x510/2016/06/14/20160614135439-e5f6.jpg" />
                     </button>
                 </div>
                 <div class="col-8 description-poster" >
-                    <button type="button" data-toggle="modal" data-target=".bd-example-modal-lg">
-                        <h4 class="m-header-poster">This will create a new app with basic BootstrapVue settings to get your project started.</h4>
+                    <button type="button" data-toggle="modal" data-target=".bd-example-modal-lg" @click="showDetail(post)">
+                        <h4 class="m-header-poster">{{post.title}}</h4>
                     </button>
                     <div class="m-text-description-poster"> 
-                        <div class="m-price-poster"><i class="fas fa-money-bill-wave"></i> 2.000.000 VND</div>
+                        <div class="m-price-poster"><i class="fas fa-money-bill-wave"></i> {{post.price.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}} VND</div>
                         <div class="area-poster"><span class="icon-frame"></span>
-                            150m<sup>2</sup>
+                            {{post.area}}m<sup>2</sup>
                         </div>    
                         <div class="clearfix"></div>
                         <div class="address-poster">
-                          <i class="fas fa-map-marked"></i> Location : TPHCM
+                          <i class="fas fa-map-marked"></i> Location : {{post.address}}
                         </div>
                     </div>
-                    <i class="far fa-bookmark icon-bookmark"></i>
+                    <i class="far fa-bookmark icon-bookmark" @click="savePost"></i>
                 </div>
             </div>
           </div>
@@ -40,6 +40,8 @@
 
 <script>
 import PostDetail from './PostDetail'
+import axios from 'axios'
+import EventBus from '../../EventBus'
 
 export default {
   components: {
@@ -48,10 +50,22 @@ export default {
   name: "content-home",
   data() {
     return {
-      requirement: ['Tất Cả','Cần Mua', 'Cần Bán','Cho Thuê', 'Cần Thuê']
+      requirement: ['Tất Cả','Cần Mua', 'Cần Bán','Cho Thuê', 'Cần Thuê'],
+      listClassified: []
     };
   },
+  created(){
+    axios({
+      url: 'http://localhost:3000/classified/posts-approved',
+      method: 'get',
+    })
+    .then(res => this.listClassified = res.data.data)
+    .catch(err => console.log(err.message))
+  },
   methods: {
+    showDetail(post){
+      EventBus.$emit('detailPost', post)
+    }
   },
   computed: {
   },
@@ -63,10 +77,12 @@ export default {
 
 <style scoped lang="scss">
 .results-list{
-
+    height: 96vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 a.v-tabs__item {
-    color: black !important;
+    color: #000 !important;
 }
 .row-post{
     width: 100%;
@@ -100,11 +116,6 @@ a.v-tabs__item {
     width: 100%;
     height: auto;
     padding: 0;
-}
-.results-list{
-    height: 679px;
-    overflow-y: scroll;
-    overflow-x: hidden;
 }
 
 

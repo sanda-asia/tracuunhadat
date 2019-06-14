@@ -127,11 +127,6 @@ import axios from 'axios'
 </script>
 
 <style scoped>
-.section-download {
-  .md-button + .md-button {
-    margin-left: 5px;
-  }
-}
 
 
 .wrapper{

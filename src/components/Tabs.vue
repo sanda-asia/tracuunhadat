@@ -78,4 +78,14 @@ export default {
 };
 </script>
 
-<style lang="css"></style>
+<style lang="scss" scoped>
+.tabs-custom{
+   width: 90%;
+   margin: auto;
+}
+.tab-content {
+   width: 100%;
+   height: 90vh;
+   overflow-y: scroll;
+}
+</style>

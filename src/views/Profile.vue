@@ -17,10 +17,10 @@
                             </div>
                             <div class="address">Kuala Lumpur, Malaysia</div>
                           </div>
-                          <!-- <div class="follow">
-                            <div class="follow_btn">Follow</div>
-                          </div> -->
-                          <div class="info_container">
+                          <div class="follow">
+                            <div class="follow_btn">Chỉnh sửa trang cá nhân</div>
+                          </div>
+                          <!-- <div class="info_container">
                             <div class="info">
                               <p>followers</p>
                               <p>2.89M</p>								
@@ -33,141 +33,118 @@
                               <p>posts</p>
                               <p>3.56K</p>						
                             </div>			
-                          </div>
+                          </div> -->
                         </div>
                       </div>
                   </div>
                   
                   <div class="profile-work">
-                      <p>WORK LINK</p>
-                      <a href="">Website Link</a><br/>
-                      <a href="">Bootsnipp Profile</a><br/>
-                      <a href="">Bootply Profile</a>
-                      <p>SKILLS</p>
-                      <a href="">Web Designer</a><br/>
-                      <a href="">Web Developer</a><br/>
-                      <a href="">WordPress</a><br/>
-                      <a href="">WooCommerce</a><br/>
-                      <a href="">PHP, .Net</a><br/>
+                            <h5>
+                                Giới thiệu
+                            </h5>
+                            <p>
+                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore alias necessitatibus recusandae nisi, molestiae quae eveniet! Odio repudiandae, dignissimos cumque ullam ipsum dolores praesentium tenetur, quaerat adipisci dicta expedita veritatis.
+                            </p>
+                            <p class="proile-rating">RANKINGS : <span>8/10</span></p>
                   </div>
               </div>
               <div class="col-md-9">
                 <div class="row">
+                    
                     <div class="col-md-10">
                         <div class="profile-head">
-                                    <h5>
-                                        Kshiti Ghelani
-                                    </h5>
-                                    <h6>
-                                        Web Developer and Designer
-                                    </h6>
-                                    <p class="proile-rating">RANKINGS : <span>8/10</span></p>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                                    <a class="nav-link active" id="sale-tab" data-toggle="tab" href="#sale" role="tab" aria-controls="sale" aria-selected="true">Tin đăng</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Timeline</a>
+                                    <a class="nav-link" id="pending-tab" data-toggle="tab" href="#pending" role="tab" aria-controls="pending" aria-selected="false">Chờ duyệt</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="refuse-tab" data-toggle="tab" href="#refuse" role="tab" aria-controls="refuse" aria-selected="false">Từ chối</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="listTransaction-tab" data-toggle="tab" href="#listTransaction" role="tab" aria-controls="listTransaction" aria-selected="false">Lịch sử Giao dịch</a>
+                                </li>
+                                
                             </ul>
                         </div>
                     </div>
                     <div class="col-md-2">
                         <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
                     </div>
+                    
                 </div>
                 <div class="row">
                   <div class="col-md-12">
                       <div class="tab-content profile-tab" id="myTabContent">
-                          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                              <div class="row">
-                                  <div class="col-md-6">
-                                      <label>User Id</label>
-                                  </div>
-                                  <div class="col-md-6">
-                                      <p>Kshiti123</p>
-                                  </div>
-                              </div>
-                              <div class="row">
-                                  <div class="col-md-6">
-                                      <label>Name</label>
-                                  </div>
-                                  <div class="col-md-6">
-                                      <p>Kshiti Ghelani</p>
-                                  </div>
-                              </div>
-                              <div class="row">
-                                  <div class="col-md-6">
-                                      <label>Email</label>
-                                  </div>
-                                  <div class="col-md-6">
-                                      <p>kshitighelani@gmail.com</p>
-                                  </div>
-                              </div>
-                              <div class="row">
-                                  <div class="col-md-6">
-                                      <label>Phone</label>
-                                  </div>
-                                  <div class="col-md-6">
-                                      <p>123 456 7890</p>
-                                  </div>
-                              </div>
-                              <div class="row">
-                                  <div class="col-md-6">
-                                      <label>Profession</label>
-                                  </div>
-                                  <div class="col-md-6">
-                                      <p>Web Developer and Designer</p>
-                                  </div>
-                              </div>
+                          <div class="tab-pane fade show active" id="sale" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="results-list">
+                                <div v-for="post in listClassified" :key="post._id" class="row row-post">
+                                    <div class="col-4 img-poster" style="padding-left:0px;">
+                                        <button type="button" data-toggle="modal" data-target=".bd-example-modal-lg">
+                                            <img src="https://file4.batdongsan.com.vn/resize/745x510/2016/06/14/20160614135439-e5f6.jpg" />
+                                        </button>
+                                    </div>
+                                    <div class="col-8 description-poster" >
+                                        <button type="button" data-toggle="modal" data-target=".bd-example-modal-lg">
+                                            <h4 class="m-header-poster">{{post.title}}</h4>
+                                        </button>
+                                        <div class="m-text-description-poster"> 
+                                            <div class="m-price-poster"><i class="fas fa-money-bill-wave"></i> {{post.price.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}} VND</div>
+                                            <div class="area-poster"><span class="icon-frame"></span>
+                                                {{post.area}}m<sup>2</sup>
+                                            </div>    
+                                            <div class="clearfix"></div>
+                                            <div class="address-poster">
+                                            <i class="fas fa-map-marked"></i> Location : {{post.address}}
+                                            </div>
+                                        </div>
+                                        <i class="far fa-bookmark icon-bookmark" @click="savePost"></i>
+                                    </div>
+                                </div>
+                            </div>
                           </div>
-                          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                              <div class="row">
-                                  <div class="col-md-6">
-                                      <label>Experience</label>
-                                  </div>
-                                  <div class="col-md-6">
-                                      <p>Expert</p>
-                                  </div>
-                              </div>
-                              <div class="row">
-                                  <div class="col-md-6">
-                                      <label>Hourly Rate</label>
-                                  </div>
-                                  <div class="col-md-6">
-                                      <p>10$/hr</p>
-                                  </div>
-                              </div>
-                              <div class="row">
-                                  <div class="col-md-6">
-                                      <label>Total Projects</label>
-                                  </div>
-                                  <div class="col-md-6">
-                                      <p>230</p>
-                                  </div>
-                              </div>
-                              <div class="row">
-                                  <div class="col-md-6">
-                                      <label>English Level</label>
-                                  </div>
-                                  <div class="col-md-6">
-                                      <p>Expert</p>
-                                  </div>
-                              </div>
-                              <div class="row">
-                                  <div class="col-md-6">
-                                      <label>Availability</label>
-                                  </div>
-                                  <div class="col-md-6">
-                                      <p>6 months</p>
-                                  </div>
-                              </div>
-                              <div class="row">
-                                  <div class="col-md-12">
-                                      <label>Your Bio</label><br/>
-                                      <p>Your detail description</p>
-                                  </div>
-                              </div>
+                          <div class="tab-pane fade show active" id="pending" role="tabpanel" aria-labelledby="pending-tab">
+                              day la pendding tab
+                          </div>
+                          <div class="tab-pane fade show active" id="refuse" role="tabpanel" aria-labelledby="refuse-tab">
+                              day la refuse tab
+                          </div>
+                          <div class="tab-pane fade show active" id="listTransaction" role="tabpanel" aria-labelledby="listTransaction-tab">
+                                <v-card>
+                                    <v-card-title>
+                                    Lịch sử giao dịch
+                                    <v-spacer></v-spacer>
+                                    <v-text-field
+                                        v-model="search"
+                                        append-icon="search"
+                                        label="Search"
+                                        single-line
+                                        hide-details
+                                    ></v-text-field>
+                                    </v-card-title>
+                                    <v-data-table
+                                    :headers="headers"
+                                    :items="desserts"
+                                    :search="search"
+                                    >
+                                    <template v-slot:items="props">
+                                        <td class="text-xs-left">{{ props.item._id }}</td>
+                                        <td class="text-xs-left">{{ props.item.content }}</td>
+                                        <td class="text-xs-left">{{ props.item.date }}</td>
+                                        <td class="text-xs-left">{{ props.item.amount }}</td>
+                                    </template>
+                                    <template v-slot:no-results>
+                                        <v-alert :value="true" color="error" icon="warning">
+                                        Your search for "{{ search }}" found no results.
+                                        </v-alert>
+                                    </template>
+                                    </v-data-table>
+                                </v-card>
+                          </div>
+                          <div class="tab-pane fade show active" id="edit" role="tabpanel" aria-labelledby="edit-tab">
+                              day la edit tab
                           </div>
                       </div>
                   </div>
@@ -179,8 +156,52 @@
 </template>
 
 <script>
+import PostDetail from './components/PostDetail'
+import axios from 'axios'
 
+export default {
+  components: {
+    PostDetail
+  },
+  data() {
+    return {
+        listClassified: [],
+        search: '',
+        headers: [
+          { text: 'ID', align: 'left', sortable: false, value: '_id', width:'20%'},
+          { text: 'Nội dung giao dịch', align: 'left', value: 'content', sortable: false, width:'40%'},
+          { text: 'Ngày giao dịch', align: 'left', value: 'date', sortable: false, width:'20%'},
+          { text: 'Số tiền', align: 'left', value: 'amount', sortable: false,width:'20%'}
+        ],
+        desserts: [
+            {
+                _id: '5465123',
+                content: 'Thanh toans bai so 1',
+                date: '14/06/2019',
+                amount: '10.000'
+            }
+        ],
+    };
+  },
+  created(){
+    axios({
+      url: 'http://localhost:3000/classified/posts',
+      method: 'get',
+    })
+    .then(res => this.listClassified = res.data.data)
+    .catch(err => console.log(err.message))
+  },
+  methods: {
+  },
+  computed: {
+  },
+  mounted() {
+
+  }
+};
 </script>
+
+
 
 <style lang="scss" scoped>
 body{
@@ -259,8 +280,9 @@ body{
     border-bottom:2px solid #0062cc;
 }
 .profile-work{
-    padding: 14%;
-    margin-top: -15%;
+    padding: 5%;
+    margin-top: 1%;
+    border: 1px solid #ccc;
 }
 .profile-work p{
     font-size: 12px;
@@ -395,5 +417,51 @@ body{
   text-transform: uppercase;
   text-align: center;
 }
+
+.results-list{
+
+}
+a.v-tabs__item {
+    color: black !important;
+}
+.row-post{
+    width: 100%;
+    margin: 0 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.m-header-poster{
+    margin: 0 0 30px 0;
+    text-align: left;
+    padding-right: 15px;
+    font-size: 16px;
+}
+
+.m-price-poster{
+    float: left;
+    width: 50%;
+    color: #c90927;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.icon-bookmark{
+    position: absolute;
+    right: 50px;
+    bottom: 20px;
+    font-size: 30px;
+}
+.img-poster{
+    width: 100%;
+    height: auto;
+    padding: 0;
+}
+.results-list{
+    height: 679px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
 
 </style>

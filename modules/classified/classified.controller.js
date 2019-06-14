@@ -49,6 +49,7 @@ module.exports = {
    },
    showAllListPost: (req,res)=>{
       Classified.find({})
+      .populate('id_user')
       .sort({time_created: -1})
       .then(data=>{
          res.json({data : data});

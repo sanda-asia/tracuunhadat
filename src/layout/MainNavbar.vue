@@ -29,12 +29,12 @@
                 <p>Tin Đăng</p>
               </md-list-item>
 
-              <md-list-item href="javascript:void(0)" @click="toProject">
+              <md-list-item href="javascript:void(0)" @click="">
                 <md-icon>settings</md-icon>
                 <p>Dự Án</p>
               </md-list-item>
 
-              <md-list-item href="javascript:void(0)" @click="toAgent">
+              <md-list-item href="javascript:void(0)" @click="">
                 <md-icon>account_circle</md-icon>
                 <p>Danh Bạ</p>
               </md-list-item>
@@ -44,9 +44,10 @@
                 <p>Nhận Định</p>
               </md-list-item>
 
-              <md-list-item href="javascript:void(0)" @click="toLanding">
-                <md-icon>settings</md-icon>
-                <p>Settings</p>
+              <md-list-item href="javascript:void(0)" @click="">
+                <!-- <md-icon>settings</md-icon> -->
+                <!-- <p>Settings</p> -->
+                <md-button class="md-success md-md">Tham Gia Ngay</md-button>
               </md-list-item>
             </md-list>
           </div>
@@ -120,7 +121,12 @@ export default {
   margin: 0;
   position: fixed;
   top:0;
+  height: 10vh;
   background-color: #2e5dad !important;
+}
+
+.md-list-item-content .md-ripple{
+  padding: 0;
 }
 @media (min-width: 1200px){
 .md-toolbar-row, .section .container, .footer .container {
