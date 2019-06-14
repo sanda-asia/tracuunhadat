@@ -7,7 +7,10 @@ const BlogSchema = mongoose.Schema({
     imageSrc: [{
         type: String
     }],
-    // author: String,
+    author: {
+        type: String,
+        default: 'Admin'
+    },
     timePost: {
         type: Date,
         default: Date.now
