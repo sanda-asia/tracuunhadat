@@ -7,6 +7,7 @@ import Profile from "./views/Profile.vue";
 import MainNavbar from "./layout/MainNavbar.vue";
 import MainFooter from "./layout/MainFooter.vue";
 import Admin from "./views/Admin.vue";
+import AddClassified from "./views/AddClassified.vue";
 
 Vue.use(Router);
 
@@ -41,6 +42,11 @@ export default new Router({
       path: "/profile/:id",
       name: "profile",
       components: { default: Profile, header: MainNavbar, footer: MainFooter },
+    },
+    {
+      path: "/add",
+      name: "addClassified",
+      components: { default: AddClassified, header: MainNavbar, footer: MainFooter },
     }
     
   ],

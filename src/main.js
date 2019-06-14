@@ -9,6 +9,7 @@ import Vuetify from 'vuetify'
 
 import 'vuetify/dist/vuetify.min.css'
 import VueFacebook from 'vue-facebook';
+import Editor from '@tinymce/tinymce-vue'
 
 Vue.use(VueFacebook)
 
@@ -30,6 +31,9 @@ Vue.use(VueGoogleMaps, {
     libraries: "places"
   }
 });
+
+
+// Vue.component('editor', Editor);
 
 Vue.mixin({
   data() {
