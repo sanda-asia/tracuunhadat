@@ -127,9 +127,9 @@ export default {
     created(){
         this.initialize()
     },
-    // mounted () {
-    //     window.FB.XFBML.parse();
-    // },
+    mounted () {
+        window.FB.XFBML.parse();
+    },
 };
 </script>
 <style lang="scss">
