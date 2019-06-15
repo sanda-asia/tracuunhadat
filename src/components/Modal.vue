@@ -3,9 +3,6 @@
     <div class="modal-mask">
       <div class="modal-wrapper">
         <div class="modal-container" v-click-outside="closeModal">
-          <div class="modal-header">
-            <slot name="header"></slot>
-          </div>
 
           <div class="modal-body text-center">
             <slot name="body"></slot>

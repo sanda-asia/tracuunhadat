@@ -18,7 +18,6 @@
 
           <div class="md-collapse">
             <md-list>
-
               <md-list-item href="javascript:void(0)" @click="toHome">
                 <md-icon>account_circle</md-icon>
                 <p>Trang Chủ</p>
@@ -44,11 +43,50 @@
                 <p>Nhận Định</p>
               </md-list-item>
 
-              <md-list-item href="javascript:void(0)" @click="">
-                <!-- <md-icon>settings</md-icon> -->
-                <!-- <p>Settings</p> -->
-                <md-button class="md-success md-md">Tham Gia Ngay</md-button>
+              <md-list-item href="javascript:void(0)" @click="getClassicModal()">
+                <md-button
+                class="md-success md-md"
+                ><md-icon>library_books</md-icon>Đăng nhập</md-button
+              >
               </md-list-item>
+              <li class="md-list-item">
+                <a
+                  href="javascript:void(0)"
+                  class="md-list-item-router md-list-item-container md-button-clean dropdown"
+                >
+                  <div class="md-list-item-content">
+                    <drop-down direction="down" class="profile-photo">
+                      <div
+                        class="profile-photo-small"
+                        slot="title"
+                        data-toggle="dropdown"
+                      >
+                        <img class="img-profile" :src="img" alt="Circle Image" />
+                      </div>
+                      <ul class="dropdown-menu dropdown-menu-right">
+                        <li class="profile-choose">
+                          <a href="#pablo" class="dropdown-item ">Cài đặt</a>
+                        </li>
+                        <li class="profile-choose">
+                          <a href="#pablo" class="dropdown-item "
+                            >Trang cá nhân</a
+                          >
+                        </li>
+                        <li class="profile-choose">
+                          <a href="#pablo" class="dropdown-item "
+                            >Thông báo</a
+                          >
+                        </li>
+                        <li class="profile-choose">
+                          <a href="#pablo" class="dropdown-item "
+                            >Đăng xuất</a
+                          >
+                        </li>
+                      </ul>
+                    </drop-down>
+                  </div>
+                </a>
+              </li>
             </md-list>
           </div>
         </div>
@@ -57,6 +95,11 @@
 </template>
 
 <script>
+import jwt_decode from 'jwt-decode';
+import axios from 'axios'
+import Login from './../views/Login'
+import profile_img from './../assets/img/profile_default_image.jpg'
+
 export default {
   data() {
     return {
@@ -70,8 +113,26 @@ export default {
         "Kelly Kapoor",
         "Ryan Howard",
         "Kevin Malone"
-      ]
+      ],
+      exitsToken : localStorage.getItem('token') || null,
+      user: '',
+      userT: '',
+      notifications: [
+        'Mike, John responded to your email',
+        'You have 5 new tasks',
+        'You\'re now a friend with Andrew',
+        'Another Notification',
+        'Another One'
+      ],
     };
+  },
+  created(){
+        const userToken = jwt_decode(this.exitsToken);
+        const userId = userToken.data._id;
+        this.fetchUser(userId)
+  },
+  components: {
+    login : Login,
   },
   props: {
     image: {
@@ -80,7 +141,7 @@ export default {
     },
     img: {
       type: String,
-      default: require("@/assets/img/faces/avatar.jpg")
+      default: require("@/assets/img/profile_default_image.jpg")
     }
   },
   computed: {
@@ -97,6 +158,9 @@ export default {
     toHome(){
       this.$router.push('/');
     },
+    toLogin(){
+      this.$router.push('/login');
+    },
     toClassified(){
       this.$router.push('/rao-vat');
     },
@@ -111,12 +175,38 @@ export default {
     
     toAgent(){
       this.$router.push('/danh-ba');
+    },
+    getClassicModal(){
+      this.$emit('changeClassicModel',true);
+    },
+    logout(){
+            localStorage.removeItem('token');
+            this.$router.go();
+    },
+    fetchUser(userId){
+        return axios({
+            method: 'get',
+            url: `http://localhost:3000/user/${userId}`,
+        })
+            .then((response) => {
+                this.user = response.data
+            })
+            .catch((error) => {
+                console.log(error)
+            })
     }
   }
 };
 </script>
 
 <style scoped>
+.img-profile{
+  border: 1px solid grey;
+}
+a.dropdown-item {
+    font-size: 16px !important;
+    margin-left: 0px !important;
+}
 .nav-custom {
   margin: 0;
   position: fixed;
