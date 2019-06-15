@@ -2,17 +2,18 @@
   <div id="material-kit">
     <div id="fb-root"></div>
     <div :class="{ 'nav-open': NavbarStore.showNavbar }">
-      <router-view name="header" />
+      <router-view name="header" v-on:changeClassicModel="updateClassicModel($event)"/>
       <div class="clearfix"></div>
       <div id="content">
-        <router-view />
+        <router-view/>
+        <login :a="classicModel" v-on:changeModel="changeModel($event)" />
       </div>
-      <!-- <router-view name="footer" /> -->
     </div>
   </div>
 </template>
 
 <script>
+import Login from './views/Login.vue'
 export default {
   created: function() {
     window.fbAsyncInit = function() {
@@ -31,6 +32,22 @@ export default {
           js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.1';
           fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
+  },
+  data(){
+    return {
+      classicModel: false,
+    }
+  },
+  components:{
+    login: Login,
+  },
+  methods:{
+    updateClassicModel(classicModel){
+        this.classicModel = classicModel;
+    },
+    changeModel(value){
+      this.classicModel = value
+    }
   }
 }
 </script>
