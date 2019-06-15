@@ -8,13 +8,9 @@
         vertical
       ></v-divider>
       <v-spacer></v-spacer>
-      <v-btn color="primary" dark class="mb-2" @click="isAdd = !isAdd">{{(isAdd !== true ) ? 'New Item' : 'List Item' }}</v-btn>
-      <!-- <v-btn color="primary" dark class="mb-2" @click="isAdd = !isAdd">New Item</v-btn> -->
-
+      <v-btn color="primary" dark class="mb-2" @click="switchComponent">{{isAddOrEdit ? 'List Item' : 'New Item' }}</v-btn>
     </v-toolbar>
-    
-    
-    <div v-if="!isAdd">
+    <div v-if="!isAddOrEdit">
         <v-data-table
           :headers="headers"
           :items="blogs"
@@ -22,7 +18,7 @@
         >
           <template v-slot:items="props">
             <td>{{ props.item.headerBlog }}</td>
-            <td class="text-xs-left" v-html="props.item.summaryContent"></td>
+            <td class="text-xs-left" >{{ props.item.province }}</td>
             <td class="text-xs-left">{{ (new Date(props.item.timePost)).toLocaleDateString() }}</td>
             <td class="justify-center layout px-0">
               <v-icon
@@ -46,7 +42,9 @@
         </v-data-table>
     </div>
     <div v-else>
-      <add-blog @onSubmit = "switchComponent" :item="blogs[selectItem]"/>
+      <add-blog @onSubmit = "switchComponent" 
+          :item="itemSelected"
+      />
     </div>
   </div>
 </template>
@@ -59,7 +57,7 @@ import axios from 'axios'
       AddBlog
     },
     data: () => ({
-      isAdd: false,
+      isAddOrEdit: false,
       headers: [
         {
           text: 'Tiêu đề',
@@ -67,37 +65,24 @@ import axios from 'axios'
           sortable: false,
           value: 'headerBlog'
         },
-        { text: 'Nội dung', value: 'content', sortable: false },
+        { text: 'Tỉnh - Thành phố', value: 'province', sortable: false },
         { text: 'Thời gian đăng', value: 'timePost' },
         { text: 'Actions', value: 'headerBlog', sortable: false }
       ],
       blogs: [],
-      selectItem: '',
+      itemSelected: ''
     }),
-    watch:{
-      isAdd(){
-        this.initialize();
-        axios.get('http://localhost:3000/blog')
-          .then(res => {
-            this.blogs = res.data.listBlog;
-            this.$props.item = res.data.listBlog;
-          })
-          .catch(err => console.log(err));
+    watch: {
+      isAddOrEdit(val){
+        if(!val){
+          this.initialize();
+          this.itemSelected = ''
+        }
       }
     },
-
     created () {
       this.initialize()
-      console.log(this.isAdd)
     },
-    // computed:{
-    //   summaryContent(){
-    //     if(this.blogs[1].length < 5)
-    //       return content ;
-    //     return content + '...';
-    //   }
-    // },
-
     methods: {
       initialize () {
         axios.get('http://localhost:3000/blog')
@@ -105,11 +90,12 @@ import axios from 'axios'
           .catch(err => console.log(err));
       },
       switchComponent(){
-        this.isAdd = false;
+        this.isAddOrEdit = !this.isAddOrEdit;
       },
+      
       editItem (item) {
-        this.selectItem = this.blogs.indexOf(item);
-        this.isAdd = !this.isAdd;
+        this.itemSelected = item;
+        this.isAddOrEdit = !this.isAddOrEdit;
       },
 
       deleteItem (id_blog) {
@@ -120,31 +106,12 @@ import axios from 'axios'
             .then(res => this.initialize())
             .catch(err => console.log(err));
         }
-      },
-
+      }
     }
   }
 </script>
 
 <style scoped>
-
-
-.wrapper{
-}
-
-#mapView{
-    width: 50%;
-    position: fixed;
-    left: 0;
-    top: 70px
-}
-
-#contentHome{
-    width: 50%;
-    position: fixed;
-    right: 0;
-    top: 70px;
-}
 
 @media all and (min-width: 991px) {
   .btn-container {

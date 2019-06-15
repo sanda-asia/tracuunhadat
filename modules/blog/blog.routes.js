@@ -21,13 +21,13 @@ const upload = multer({
 router.get('/', blogController.getListBlog);
 
 // Create blog
-router.post('/tao-blog', upload.array('images'), blogController.createBlog);//upload.any(),
+router.post('/tao-blog', upload.array('images'), blogController.createBlog);
 
 // Get blog by ID
 router.get('/:id', blogController.getBlogById);
 
 // Update blog
-router.patch('/:id/update', blogController.updateById);
+router.patch('/:id/update', upload.array('images'), blogController.updateById);
 
 // Delete blog
 router.delete('/:id/delete', blogController.deleteBlog);

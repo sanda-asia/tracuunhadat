@@ -8,6 +8,7 @@ import MainNavbar from "./layout/MainNavbar.vue";
 import MainFooter from "./layout/MainFooter.vue";
 import Admin from "./views/Admin.vue";
 import Login from "./views/Login.vue";
+import AddClassified from "./views/AddClassified.vue";
 Vue.use(Router);
 
 export default new Router({
@@ -50,6 +51,11 @@ export default new Router({
         header: { colorOnScroll: 400 }
       }
     },
+    {
+      path: "/add",
+      name: "addClassified",
+      components: { default: AddClassified, header: MainNavbar, footer: MainFooter },
+    }
     
   ],
   scrollBehavior: to => {

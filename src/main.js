@@ -12,6 +12,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 import BootstrapVue from 'bootstrap-vue';
 
 import VueFacebook from 'vue-facebook';
+import Editor from '@tinymce/tinymce-vue'
 
 Vue.use(VueFacebook)
 Vue.use(BootstrapVue);
@@ -34,6 +35,9 @@ Vue.use(VueGoogleMaps, {
     libraries: "places"
   }
 });
+
+
+// Vue.component('editor', Editor);
 
 Vue.mixin({
   data() {

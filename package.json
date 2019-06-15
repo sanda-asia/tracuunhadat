@@ -9,6 +9,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "dev": "npm run serve",
+    "start": "nodemon server.js ",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm run dev"
   },
   "dependencies": {
@@ -34,8 +35,10 @@
     "vue-carousel": "0.17.0",
     "vue-clickaway": "2.2.2",
     "vue-facebook": "^1.0.2",
+    "vue-image-lightbox-carousel": "^1.0.7",
     "vue-lazyload": "1.2.6",
     "vue-material": "1.0.0-beta-10.2",
+    "vue-popperjs": "^2.0.4",
     "vue-resource": "^1.5.1",
     "vue-router": "3.0.2",
     "vue2-google-maps": "^0.10.6",
