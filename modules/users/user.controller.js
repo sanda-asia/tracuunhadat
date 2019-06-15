@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 const jwt = require("jsonwebtoken");
 const CONSTANTS = require("../../config/constants");
 const bcrypt = require("bcryptjs");
@@ -47,6 +48,7 @@ module.exports = {
             password: bcrypt.hashSync(req.body.password),
             email: req.body.email,
             phone_number: req.body.phone_number,
+            avatar: 'http://chittagongit.com/images/profile-icon-white/profile-icon-white-7.jpg',
             amount: 100000, // default 100k
             role: 1
         });
