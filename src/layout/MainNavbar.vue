@@ -43,41 +43,45 @@
                 <p>Nhận Định</p>
               </md-list-item>
 
-              <md-list-item href="javascript:void(0)" @click="getClassicModal()">
+              <md-list-item href="javascript:void(0)" @click="getClassicModal()" v-if="exitsToken == null">
                 <md-button
                 class="md-success md-md"
                 ><md-icon>library_books</md-icon>Đăng nhập</md-button
               >
               </md-list-item>
-              <li class="md-list-item">
+              <li class="md-list-item" v-else>
                 <a
                   href="javascript:void(0)"
                   class="md-list-item-router md-list-item-container md-button-clean dropdown"
                 >
                   <div class="md-list-item-content">
-                    <drop-down direction="down" class="profile-photo">
+                    <drop-down direction="down" :class="profileClass" >
                       <div
                         class="profile-photo-small"
                         slot="title"
                         data-toggle="dropdown"
+                        @click="toggleProfile()"
                       >
-                        <img class="img-profile" :src="img" alt="Circle Image" />
+                        <img class="img-profile" :src="user.avatar"/>
+                        <span class="user-name">{{user.username}}</span>
                       </div>
-                      <ul class="dropdown-menu dropdown-menu-right">
+                      <ul class="dropdown-menu dropdown-menu-right" >
                         <li class="profile-choose">
                           <a href="#pablo" class="dropdown-item ">Cài đặt</a>
                         </li>
                         <li class="profile-choose">
+                          <router-link :to="{name: 'User', params: {id : user._id} }">
                           <a href="#pablo" class="dropdown-item "
                             >Trang cá nhân</a
                           >
+                          </router-link>
                         </li>
                         <li class="profile-choose">
                           <a href="#pablo" class="dropdown-item "
                             >Thông báo</a
                           >
                         </li>
-                        <li class="profile-choose">
+                        <li class="profile-choose" @click="logout()">
                           <a href="#pablo" class="dropdown-item "
                             >Đăng xuất</a
                           >
@@ -103,6 +107,8 @@ import profile_img from './../assets/img/profile_default_image.jpg'
 export default {
   data() {
     return {
+      isActive: false,
+      profileClass: 'profile-photo dropdown',
       selectedEmployee: "",
       employees: [
         "Jim Halpert",
@@ -152,6 +158,18 @@ export default {
     }
   },
   methods:{
+    toggleProfile(){
+      if (this.profileClass=='profile-photo dropdown') {
+        this.profileClass='profile-photo open dropdown show'
+      }
+      else if (this.profileClass=='profile-photo open dropdown show'){
+        this.profileClass='profile-photo open dropdown show'
+      }
+    },
+    closeDropdown(){
+      this.isActive = false
+      console.log('click out side')
+    },
     toLanding(){
       this.$router.push('/landing');
     },
@@ -200,6 +218,15 @@ export default {
 </script>
 
 <style scoped>
+ul.dropdown-menu.dropdown-menu-right {
+    display: none !important;
+}
+ul.dropdown-menu.dropdown-menu-right.show {
+    display: block !important;
+}
+.hide {
+  display: none;
+}
 .img-profile{
   border: 1px solid grey;
 }
@@ -217,6 +244,25 @@ a.dropdown-item {
 
 .md-list-item-content .md-ripple{
   padding: 0;
+}
+
+.profile-photo-small {
+    margin-top: 10px;
+}
+.md-toolbar .profile-photo-small{
+  border-radius: 0px;
+  width: 140px;
+}
+.img-profile{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+span.user-name {
+    font-weight: bold;
+    font-size: 14px;
+    margin-left: 6px;
+    text-transform: none;
 }
 @media (min-width: 1200px){
 .md-toolbar-row, .section .container, .footer .container {

@@ -13,7 +13,9 @@ import BootstrapVue from 'bootstrap-vue';
 
 import VueFacebook from 'vue-facebook';
 import Editor from '@tinymce/tinymce-vue'
-
+import vClickOutside from 'v-click-outside'
+ 
+Vue.use(vClickOutside)
 Vue.use(VueFacebook)
 Vue.use(BootstrapVue);
 
