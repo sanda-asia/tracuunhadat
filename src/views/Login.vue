@@ -174,6 +174,8 @@ export default {
                     },
                 })
                 .then((response) => {
+                    console.log(this.usernameLogin)
+                    console.log(this.passwordLogin)
                     console.log(response.data)
                     if (response.data.status === false) {
                         this.temp = 'Username or Password is incorrect!'

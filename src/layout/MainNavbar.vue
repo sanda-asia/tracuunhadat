@@ -61,16 +61,18 @@
                   class="md-list-item-router md-list-item-container md-button-clean dropdown"
                 >
                   <div class="md-list-item-content">
-                    <drop-down direction="down" class="profile-photo">
+                    <drop-down direction="down" :class="profileClass" >
                       <div
                         class="profile-photo-small"
                         slot="title"
                         data-toggle="dropdown"
+                        @click="toggleProfile()"
                       >
-                        <img class="img-profile" src="https://scontent.fsgn3-1.fna.fbcdn.net/v/t1.0-1/c2.0.785.785a/64345967_869088223442340_4595245085481762816_n.jpg?_nc_cat=111&_nc_oc=AQllk6GAFu8ALSVI8WIT1hQOJ__pK4-1BzgRHrWny2OdtgwxSJmMu-KVuoEEbt4lSpQ&_nc_ht=scontent.fsgn3-1.fna&oh=4bd0d6953574b15851aaca41f0afbce9&oe=5D78A4B4" alt="Circle Image" />
+                        <img class="img-profile" :src="user.avatar"/>
+                        <span class="user-name">{{user.username}}</span>
                       </div>
-                      <ul class="dropdown-menu dropdown-menu-right">
-                        <li class="">
+                      <ul class="dropdown-menu dropdown-menu-right" >
+                        <li class="profile-choose">
                           <router-link :to="{name: 'addClassified', params:{idUser: user._id}}" class="dropdown-item ">Đăng Bài</router-link>
                         </li>
                         <li class="profile-choose">
@@ -124,6 +126,21 @@ export default {
     login : Login,
   },
   methods:{
+    toggleProfile(){
+      if (this.profileClass=='profile-photo dropdown') {
+        this.profileClass='profile-photo open dropdown show'
+      }
+      else if (this.profileClass=='profile-photo open dropdown show'){
+        this.profileClass='profile-photo open dropdown show'
+      }
+    },
+    closeDropdown(){
+      this.isActive = false
+      console.log('click out side')
+    },
+    toLanding(){
+      this.$router.push('/landing');
+    },
     toHome(){
       this.$router.push('/');
     },
@@ -169,12 +186,15 @@ export default {
 </script>
 
 <style scoped>
-
-.md-toolbar .profile-photo-small{
-  width: 100%;
-  height: 100%;
+ul.dropdown-menu.dropdown-menu-right {
+    display: none !important;
 }
-
+ul.dropdown-menu.dropdown-menu-right.show {
+    display: block !important;
+}
+.hide {
+  display: none;
+}
 .img-profile{
   border: 1px solid grey;
   width: 50px;
@@ -206,6 +226,25 @@ ul.dropdown-menu.dropdown-menu-right.show {
 
 ul.dropdown-menu.dropdown-menu-right {
     display: none;
+}
+
+.profile-photo-small {
+    /* margin-top: 10px; */
+}
+.md-toolbar .profile-photo-small{
+  border-radius: 0px;
+  width: 140px;
+}
+.img-profile{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+span.user-name {
+    font-weight: bold;
+    font-size: 14px;
+    margin-left: 6px;
+    text-transform: none;
 }
 @media (min-width: 1200px){
 .md-toolbar-row, .section .container, .footer .container {

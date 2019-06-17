@@ -12,10 +12,10 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 import BootstrapVue from 'bootstrap-vue';
 
 import VueFacebook from 'vue-facebook';
-import VueLazyload from 'vue-lazyload'
 
-Vue.use(VueLazyload)
-
+import vClickOutside from 'v-click-outside'
+ 
+Vue.use(vClickOutside)
 Vue.use(VueFacebook)
 Vue.use(BootstrapVue);
 

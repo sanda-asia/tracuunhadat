@@ -55,8 +55,7 @@ export default new Router({
       path: "/add/:idUser",
       name: "addClassified",
       components: { default: AddClassified, header: MainNavbar, footer: MainFooter },
-    }
-    
+    },
   ],
   scrollBehavior: to => {
     if (to.hash) {
