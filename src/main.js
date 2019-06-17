@@ -12,7 +12,9 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 import BootstrapVue from 'bootstrap-vue';
 
 import VueFacebook from 'vue-facebook';
-import Editor from '@tinymce/tinymce-vue'
+import VueLazyload from 'vue-lazyload'
+
+Vue.use(VueLazyload)
 
 Vue.use(VueFacebook)
 Vue.use(BootstrapVue);

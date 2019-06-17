@@ -43,13 +43,19 @@
                 <p>Nhận Định</p>
               </md-list-item>
 
-              <md-list-item href="javascript:void(0)" @click="getClassicModal()">
-                <md-button
-                class="md-success md-md"
-                ><md-icon>library_books</md-icon>Đăng nhập</md-button
-              >
-              </md-list-item>
-              <li class="md-list-item">
+              <li v-if="user == null" class="md-list-item" @click="getClassicModal()">
+                <a
+                  href="javascript:void(0)"
+                  class="md-list-item-router md-list-item-container md-button-clean"
+                >
+                  <div class="md-list-item-content">
+                    <md-button class="md-success">
+                      Đăng Nhập
+                    </md-button>
+                  </div>
+                </a>
+              </li>
+              <li v-else class="md-list-item">
                 <a
                   href="javascript:void(0)"
                   class="md-list-item-router md-list-item-container md-button-clean dropdown"
@@ -61,26 +67,17 @@
                         slot="title"
                         data-toggle="dropdown"
                       >
-                        <img class="img-profile" :src="img" alt="Circle Image" />
+                        <img class="img-profile" src="https://scontent.fsgn3-1.fna.fbcdn.net/v/t1.0-1/c2.0.785.785a/64345967_869088223442340_4595245085481762816_n.jpg?_nc_cat=111&_nc_oc=AQllk6GAFu8ALSVI8WIT1hQOJ__pK4-1BzgRHrWny2OdtgwxSJmMu-KVuoEEbt4lSpQ&_nc_ht=scontent.fsgn3-1.fna&oh=4bd0d6953574b15851aaca41f0afbce9&oe=5D78A4B4" alt="Circle Image" />
                       </div>
                       <ul class="dropdown-menu dropdown-menu-right">
-                        <li class="profile-choose">
-                          <a href="#pablo" class="dropdown-item ">Cài đặt</a>
+                        <li class="">
+                          <router-link :to="{name: 'addClassified', params:{idUser: user._id}}" class="dropdown-item ">Đăng Bài</router-link>
                         </li>
                         <li class="profile-choose">
-                          <a href="#pablo" class="dropdown-item "
-                            >Trang cá nhân</a
-                          >
+                          <router-link :to="{name: 'profile', params:{id: user._id}}" class="dropdown-item ">Trang Cá Nhân</router-link>
                         </li>
-                        <li class="profile-choose">
-                          <a href="#pablo" class="dropdown-item "
-                            >Thông báo</a
-                          >
-                        </li>
-                        <li class="profile-choose">
-                          <a href="#pablo" class="dropdown-item "
-                            >Đăng xuất</a
-                          >
+                        <li class="">
+                          <a href="#" class="dropdown-item" @click="logout">Đăng xuất</a>
                         </li>
                       </ul>
                     </drop-down>
@@ -103,58 +100,30 @@ import profile_img from './../assets/img/profile_default_image.jpg'
 export default {
   data() {
     return {
-      selectedEmployee: "",
-      employees: [
-        "Jim Halpert",
-        "Dwight Schrute",
-        "Michael Scott",
-        "Pam Beesly",
-        "Angela Martin",
-        "Kelly Kapoor",
-        "Ryan Howard",
-        "Kevin Malone"
-      ],
       exitsToken : localStorage.getItem('token') || null,
-      user: '',
-      userT: '',
-      notifications: [
-        'Mike, John responded to your email',
-        'You have 5 new tasks',
-        'You\'re now a friend with Andrew',
-        'Another Notification',
-        'Another One'
-      ],
+      user: ''
     };
   },
   created(){
-        const userToken = jwt_decode(this.exitsToken);
-        const userId = userToken.data._id;
-        this.fetchUser(userId)
+    try {
+        if(!localStorage.getItem('token')){
+            // this.$router.push({name: 'home'})
+            this.user = null;
+        } else {
+            this.user = jwt_decode(this.exitsToken).data;
+            this.fetchUser(this.user._id)
+            for(let index in selectAddress){
+                this.provinces.push(selectAddress[index].name);
+            } 
+        }
+    } catch (error) {
+        this.user = null;
+    }
   },
   components: {
     login : Login,
   },
-  props: {
-    image: {
-      type: String,
-      default: require("@/assets/img/bg.jpg")
-    },
-    img: {
-      type: String,
-      default: require("@/assets/img/profile_default_image.jpg")
-    }
-  },
-  computed: {
-    bgImage() {
-      return {
-        backgroundImage: `url(${this.image})`
-      };
-    }
-  },
   methods:{
-    toLanding(){
-      this.$router.push('/landing');
-    },
     toHome(){
       this.$router.push('/');
     },
@@ -180,28 +149,36 @@ export default {
       this.$emit('changeClassicModel',true);
     },
     logout(){
-            localStorage.removeItem('token');
-            this.$router.go();
+      localStorage.removeItem('token');
+      this.$router.go();
     },
     fetchUser(userId){
         return axios({
             method: 'get',
             url: `http://localhost:3000/user/${userId}`,
         })
-            .then((response) => {
-                this.user = response.data
-            })
-            .catch((error) => {
-                console.log(error)
-            })
+        .then((response) => {
+            this.user = response.data
+        })
+        .catch((error) => {
+            console.log(error)
+        })
     }
   }
 };
 </script>
 
 <style scoped>
+
+.md-toolbar .profile-photo-small{
+  width: 100%;
+  height: 100%;
+}
+
 .img-profile{
   border: 1px solid grey;
+  width: 50px;
+  height: 50px;
 }
 a.dropdown-item {
     font-size: 16px !important;
@@ -215,8 +192,20 @@ a.dropdown-item {
   background-color: #2e5dad !important;
 }
 
-.md-list-item-content .md-ripple{
-  padding: 0;
+.md-list-item{
+  padding: 4px;
+}
+
+.md-list-item .md-list-item-content:not(.md-ripple){
+  margin: 5px;
+}
+
+ul.dropdown-menu.dropdown-menu-right.show {
+    display: block;
+}
+
+ul.dropdown-menu.dropdown-menu-right {
+    display: none;
 }
 @media (min-width: 1200px){
 .md-toolbar-row, .section .container, .footer .container {

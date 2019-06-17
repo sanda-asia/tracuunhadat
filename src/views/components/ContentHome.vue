@@ -24,7 +24,7 @@
                         </div>    
                         <div class="clearfix"></div>
                         <div class="address-poster">
-                          <i class="fas fa-map-marked"></i> Location : {{post.address}}
+                          <i class="fas fa-map-marked"></i> {{post.address}}
                         </div>
                     </div>
                     <i class="far fa-bookmark icon-bookmark" @click="savePost"></i>

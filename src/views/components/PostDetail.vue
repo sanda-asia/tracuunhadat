@@ -61,50 +61,9 @@
                           </div>
                       </div>
                       <div>
-                          <h4>Giới thiệu SaFira Khang Điền</h4>
-                          <p>
-                            Sau thành công vang dội cả về bán hàng lẫn tiến độ thi công ở dự án căn hộ Quận 9 Jamila, Khang Điền tiếp tục triển khai thêm dự án căn hộ thứ 2 của mình tại Quận 9, đó là Safira Khang Điền (tên cũ Sapphire). Sở hữu thế mạnh về tiềm lực kinh tế, vững vàng về kinh nghiệm, các sản phẩm mang thương hiệu nhà Khang Điền luôn tiên phong đón đầu xu hướng của thị trường, đáp ứng sự mong mỏi của khách hàng. Và điều này được khẳng định thêm lần nữa qua dự án căn hộ Quận 9 cao cấp Safira với thông điệp 'Khơi nguồn năng lượng - Hạnh phúc tràn đầy".
-
-                            
-
-                            Theo Rever tìm hiểu, tính đến Tháng 12/2018, tiến độ Safira đang diễn ra khá tốt, nhà thầu An Phong đang tích cực thi công nhiều hạng mục ở cả 4 block dự án. Cụ thể, tiến độ thi công các block dự án Safira Khang Điền như sau:
-
-                            
-
-                            - Block A: Thi công bê tông sàn trệt
-
-
-                            - Block B: Thi công bê tông sàn trệt
-
-
-                            - Block C: Thi công Coffa, cốt thép, bê tông sàn tầng 3
-
-
-                            - Block D: Thi công Coffa, cột thép sàn tầng 3
-                          </p>
-                          <h4>Giới thiệu SaFira Khang Điền</h4>
-                          <p>
-                            Sau thành công vang dội cả về bán hàng lẫn tiến độ thi công ở dự án căn hộ Quận 9 Jamila, Khang Điền tiếp tục triển khai thêm dự án căn hộ thứ 2 của mình tại Quận 9, đó là Safira Khang Điền (tên cũ Sapphire). Sở hữu thế mạnh về tiềm lực kinh tế, vững vàng về kinh nghiệm, các sản phẩm mang thương hiệu nhà Khang Điền luôn tiên phong đón đầu xu hướng của thị trường, đáp ứng sự mong mỏi của khách hàng. Và điều này được khẳng định thêm lần nữa qua dự án căn hộ Quận 9 cao cấp Safira với thông điệp 'Khơi nguồn năng lượng - Hạnh phúc tràn đầy".
-
-                            
-
-                            Theo Rever tìm hiểu, tính đến Tháng 12/2018, tiến độ Safira đang diễn ra khá tốt, nhà thầu An Phong đang tích cực thi công nhiều hạng mục ở cả 4 block dự án. Cụ thể, tiến độ thi công các block dự án Safira Khang Điền như sau:
-
-                            
-
-                            - Block A: Thi công bê tông sàn trệt
-
-
-                            - Block B: Thi công bê tông sàn trệt
-
-
-                            - Block C: Thi công Coffa, cốt thép, bê tông sàn tầng 3
-
-
-                            - Block D: Thi công Coffa, cột thép sàn tầng 3
-                          </p>
+                          <p v-html="postDetail.content"></p>
                       </div>
-                      <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-width="100%" data-numposts="10"></div>
+                      <div class="fb-comments" :data-href="`https://http://localhost:8080/rao-vat/${postDetail}`" data-width="100%" data-numposts="10"></div>
                     </div>
 
                     <!-- Sidebar Widgets Column -->

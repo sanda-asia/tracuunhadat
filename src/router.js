@@ -52,7 +52,7 @@ export default new Router({
       }
     },
     {
-      path: "/add",
+      path: "/add/:idUser",
       name: "addClassified",
       components: { default: AddClassified, header: MainNavbar, footer: MainFooter },
     }

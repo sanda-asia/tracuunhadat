@@ -86,7 +86,7 @@
                             <label for="">Tỉnh - Thành Phố</label>
                             <select class="form-control" v-model="selectProvince" required>
                                 <option value="-1">Tất Cả</option>
-                                <option v-for="(province, index) in provinces" :value="index">{{province}}</option>
+                                <option v-for="(province, index) in provinces" :key="index" :value="index">{{province}}</option>
                             </select>
                         </div>
                     </div>
@@ -95,7 +95,7 @@
                             <label for="">Quận - Huyện</label>
                             <select class="form-control" v-model="selectDistrict" required>
                                 <option value="-1">Tất Cả</option>
-                                <option v-for="(district, index) in districts" :value="index">{{district}}</option>
+                                <option v-for="(district, index) in districts" :key="index" :value="index">{{district}}</option>
                             </select>
                         </div>
                     </div>
@@ -110,16 +110,11 @@
                     <label>Tags</label>
                     <input type="text" class="form-control" id="tags" placeholder="Add a tag" style="display: none;">
                 </div> -->
-                <!-- <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="form-group">
-                            <label>Image Gallery</label>
-                            <input type="file" class="file" name="images" multiple data-show-upload="false" data-show-caption="false" data-show-remove="false" accept="image/jpeg,image/png,image/png" data-browse-class="btn btn-o btn-default" data-browse-label="Browse Images" @change="handleFilesUpload">
-                            <p class="help-block">You can select multiple images at once</p>
+                            <label>Hình ảnh</label>
+                            <input type="file" class="form-control" multiple @change="handleFilesUpload">
                         </div>
-                    </div>
-                </div> -->
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for=""></label>
                     <vue-upload-multiple-image
                     @upload-success="uploadImageSuccess"
@@ -128,10 +123,10 @@
                     @data-change="dataChange"
                     :data-images="images"
                     ></vue-upload-multiple-image>
-                </div>
+                </div> -->
                 <div class="form-group">
                     <!-- <button type="button" class="btn btn-green btn-lg" @click="submitPost">Add Property</button> -->
-                    <md-button class="md-info" @click="">Đăng Bài</md-button>
+                    <md-button class="md-info" @click="submitPost">Đăng Bài</md-button>
                 </div>
             </form>
         </div>
@@ -146,6 +141,7 @@ import GoogleMap from "./components/GoogleMap";
 import VueUploadMultipleImage from '../components/VueUploadMultipleImage'
 import Editor from '@tinymce/tinymce-vue';
 import selectAddress from '../data.json'
+import jwt_decode from 'jwt-decode'
 
 export default {
     // components: {
@@ -164,29 +160,6 @@ export default {
             init:{
                 plugins: 'print preview fullpage powerpaste searchreplace autolink directionality advcode visualblocks visualchars fullscreen image link media mediaembed template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount tinymcespellchecker a11ychecker imagetools textpattern help formatpainter permanentpen pageembed tinycomments mentions linkchecker',
                 toolbar: 'formatselect | bold italic strikethrough forecolor backcolor permanentpen formatpainter | link image media pageembed | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent | removeformat | addcomment',
-                // image_advtab: true,
-                /* without images_upload_url set, Upload tab won't show up*/
-                // images_upload_url: 'postAcceptor.php',
-                // images_upload_handler: function (blobInfo, success, failure) {
-                //     let formData = new FormData();
-                //     formData.append('images', blobInfo.blob());
-                //     axios({
-                //         method: 'POST',
-                //         url: `http://localhost:3000/user/5cfa9da027691e3944568ac4/upload`,
-                //         data: formData,
-                //         headers: {
-                //             'Content-Type': 'multipart/form-data',
-                //             'x-access-token' : localStorage.getItem('token')
-                //         },
-                //     })
-                //     .then(function (response) {
-                //         console.log(response);
-                //         success(`http://localhost:3000/upload/users/${response.data.name_images[0]}`)
-                //     })
-                //     .catch(function (error) {
-                //         console.log(error);
-                //     });
-                // }
             },
             content: '',
             title: '',
@@ -202,30 +175,118 @@ export default {
             selectProvince: -1,
             districts: [],
             selectDistrict: -1,
+            user: null,
         }
     },
     methods: {
-        uploadImageSuccess(formData, index, fileList) {
-        console.log('data', formData, index, fileList)
-        // Upload image api
-        // axios.post('http://your-url-upload', { data: formData }).then(response => {
-        //   console.log(response)
-        // })
+        // uploadImageSuccess(formData, index, fileList) {
+            
+        //     formData.append('images', fileList);
+        //     console.log('data', formData, index, fileList);
+        //     axios({
+        //         method: 'POST',
+        //         url: `http://localhost:3000/user/${this.user._id}/upload`,
+        //         data: formData,
+        //         headers: {
+        //             'Content-Type': 'multipart/form-data',
+        //             'x-access-token' : localStorage.getItem('token'),
+        //         },
+        //     })
+        //     .then(function (response) {
+        //         console.log(response.data);
+        //         // success(`http://localhost:3000/upload/users/${response.data.name_images[0]}`)
+        //     })
+        //     .catch(function (error) {
+        //         console.log(error.message);
+        //     });
+        // },
+        // beforeRemove (index, done, fileList) {
+        //     console.log('index', index, fileList)
+        //     var r = confirm("remove image")
+        //     if (r == true) {
+        //         done()
+        //     } else {
+        //     }
+        // },
+        // editImage (formData, index, fileList) {
+        //     console.log('edit data', formData, index, fileList)
+        // },
+        // dataChange (data) {
+        //     console.log(data)
+        // }
+        async submitPost(){
+            let formData = new FormData();
+            for( var i = 0; i < this.images.length; i++ ){
+                formData.append(`images`, this.images[i]);
+            }
+            await axios({
+                method: 'POST',
+                url: `http://localhost:3000/user/${this.user._id}/upload`,
+                data: formData,
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'x-access-token' : localStorage.getItem('token')
+                },
+            })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+            if(this.title && this.price && this.area && this.content && this.category && this.requirement && this.address && this.time_post && this.level){
+                let nameImg = [];
+                let date = Date.now();
+                for( var i = 0; i < this.images.length; i++ ){
+                    nameImg.push(`${date}_${this.images[i].name}`);
+                }
+                await axios({
+                    method: 'POST',
+                    url: 'http://localhost:3000/classified/posts',
+                    data: {
+                        // id_user: this.$route.params.id,
+                        title: this.title,
+                        price: this.price,
+                        area: this.area,
+                        content: this.content,
+                        category: this.category,
+                        requirement: this.requirement,
+                        address: `${this.address}, ${this.districts[this.selectDistrict]}, ${this.provinces[this.selectProvince]}`,
+                        time_post: this.time_post,
+                        level: this.level,
+                        images: nameImg
+                    },
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-access-token' : localStorage.getItem('token') || null
+                    },
+                })
+                .then(function (response) {
+                    console.log(response);
+                    if(response.data.status == false){
+                        swal(
+                            'Bạn cần đăng nhập để đăng bài!',
+                        );
+                    }else{
+                        swal(
+                            'Tin đăng đã được gửi!',
+                        );
+                        router.push({name: 'Home'})
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            } else{
+                swal(
+                    'Vui lòng nhập đầy đủ thông tin!',
+                );
+            }
         },
-        beforeRemove (index, done, fileList) {
-        console.log('index', index, fileList)
-        var r = confirm("remove image")
-        if (r == true) {
-            done()
-        } else {
-        }
+        handleFilesUpload(event){
+            console.log(event)
+            this.images = event.target.files;
         },
-        editImage (formData, index, fileList) {
-        console.log('edit data', formData, index, fileList)
-        },
-        dataChange (data) {
-        console.log(data)
-        }
     },
     watch:{
         selectProvince(){
@@ -241,10 +302,26 @@ export default {
         }
     },
     
-    created(){
-        for(let index in selectAddress){
-            this.provinces.push(selectAddress[index].name);
-        } 
+    beforeCreate(){
+
+    },
+
+    created(){ 
+        try {
+            if(!localStorage.getItem('token')){
+                this.$router.push({name: 'home'})
+            } else {
+                this.user = jwt_decode(localStorage.getItem('token')).data;
+                if(this.user._id != this.$route.params.idUser){
+                    this.$router.push({name: 'home'})
+                }
+                for(let index in selectAddress){
+                    this.provinces.push(selectAddress[index].name);
+                } 
+            }
+        } catch (error) {
+            this.$router.push({name: 'home'})
+        }
     },
 
 }
