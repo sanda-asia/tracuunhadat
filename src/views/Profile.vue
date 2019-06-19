@@ -7,19 +7,23 @@
                       <div class="card">
                         <div class="card-header">
                           <div class="profile_pic">
-                            <img src="https://bootsnipp.com/img/avatars/92ff0456eb6106d0c1ae8ab5f1fe0afe2d2d25f2.jpg">
+                            <img :src="user.avatar">
                           </div>
                         </div>
                         <div class="card-body">
                           <div class="d-lfex justify-content-center flex-column">
                             <div class="name_container">
-                              <div class="name">Samim</div>
+                              <div class="name">{{user.username}}</div>
                             </div>
-                            <div class="address">Kuala Lumpur, Malaysia</div>
+                            <div class="address">{{user.address}}</div>
                           </div>
                           <div class="follow">
-                            <div class="follow_btn">Chỉnh sửa trang cá nhân</div>
+                            <!-- <div class="follow_btn">Chỉnh sửa trang cá nhân</div> -->
+                            <button v-if="isUser" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                               Chỉnh Sửa Trang Cá Nhân
+                            </button>
                           </div>
+                            
                           <!-- <div class="info_container">
                             <div class="info">
                               <p>followers</p>
@@ -39,80 +43,67 @@
                   </div>
                   
                   <div class="profile-work">
-                            <h5>
-                                Giới thiệu
-                            </h5>
-                            <p>
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore alias necessitatibus recusandae nisi, molestiae quae eveniet! Odio repudiandae, dignissimos cumque ullam ipsum dolores praesentium tenetur, quaerat adipisci dicta expedita veritatis.
-                            </p>
-                            <p class="proile-rating">RANKINGS : <span>8/10</span></p>
+                    <h5>
+                        Giới thiệu
+                    </h5>
+                    <p>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore alias necessitatibus recusandae nisi, molestiae quae eveniet! Odio repudiandae, dignissimos cumque ullam ipsum dolores praesentium tenetur, quaerat adipisci dicta expedita veritatis.
+                    </p>
+                      <p class="proile-rating">RANKINGS : <span>8/10</span></p>
                   </div>
               </div>
               <div class="col-md-9">
-                <div class="row">
+                <div v-if="isUser" class="row">
+                  <div class="col-6">
+                    <h5>Tài khoản thanh toán</h5>
+                    <p>Số dư khả dụng: <span>{{user.amount.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}} VND</span></p>
+                  </div>
+                  <div class="col-6">
                     
-                    <div class="col-md-10">
-                        <div class="profile-head">
-                            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" id="sale-tab" data-toggle="tab" href="#sale" role="tab" aria-controls="sale" aria-selected="true">Tin đăng</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="pending-tab" data-toggle="tab" href="#pending" role="tab" aria-controls="pending" aria-selected="false">Chờ duyệt</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="refuse-tab" data-toggle="tab" href="#refuse" role="tab" aria-controls="refuse" aria-selected="false">Từ chối</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="listTransaction-tab" data-toggle="tab" href="#listTransaction" role="tab" aria-controls="listTransaction" aria-selected="false">Lịch sử Giao dịch</a>
-                                </li>
-                                
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
-                    </div>
-                    
+                    <p class="proile-rating">RANKINGS : <span>8/10</span></p>
+                  </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-12">
-                      <div class="tab-content profile-tab" id="myTabContent">
-                          <div class="tab-pane fade show active" id="sale" role="tabpanel" aria-labelledby="home-tab">
-                            <div class="results-list">
-                                <div v-for="post in listClassified" :key="post._id" class="row row-post">
-                                    <div class="col-4 img-poster" style="padding-left:0px;">
-                                        <button type="button" data-toggle="modal" data-target=".bd-example-modal-lg">
-                                            <img src="https://file4.batdongsan.com.vn/resize/745x510/2016/06/14/20160614135439-e5f6.jpg" />
-                                        </button>
+                     <div class="scroll-able">
+                          <v-tabs v-model="active" slider-color="black">
+                            <v-tab v-for="(n) in requirement" :key="n" ripple>
+                              {{ n }}
+                            </v-tab>
+                            <v-tab v-if="isUser" ripple>Lịch sử Giao dịch</v-tab>
+                            <v-tab-item v-for="(n,index) in requirement" :key="n">
+                              <v-card flat>
+                                <div class="results-list">
+                                  <div v-for="post in listClassified[index]" :key="post._id"> 
+                                    <div class="row row-post">
+                                      <div class="col-4 img-poster" style="padding-left:0px;" @click="showDetail(post)">
+                                          <button type="button" data-toggle="modal" data-target=".bd-example-modal-lg">
+                                              <img :src="`http://localhost:3000/upload/classified/${post.images[0]}`" />
+                                          </button>
+                                      </div>
+                                      <div class="col-8 description-poster" >
+                                          <button type="button" data-toggle="modal" data-target=".bd-example-modal-lg" @click="showDetail(post)">
+                                              <h4 class="m-header-poster">{{post.title}}</h4>
+                                          </button>
+                                          <div class="m-text-description-poster"> 
+                                              <div class="m-price-poster"><i class="fas fa-money-bill-wave"></i> {{post.price.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}} VND</div>
+                                              <div class="area-poster"><span class="icon-frame"></span>
+                                                  {{post.area}}m<sup>2</sup>
+                                              </div>    
+                                              <div class="clearfix"></div>
+                                              <div class="address-poster">
+                                                <i class="fas fa-map-marked"></i> {{post.address}}
+                                              </div>
+                                          </div>
+                                          <i class="far fa-bookmark icon-bookmark" ></i>
+                                      </div>
                                     </div>
-                                    <div class="col-8 description-poster" >
-                                        <button type="button" data-toggle="modal" data-target=".bd-example-modal-lg">
-                                            <h4 class="m-header-poster">{{post.title}}</h4>
-                                        </button>
-                                        <div class="m-text-description-poster"> 
-                                            <div class="m-price-poster"><i class="fas fa-money-bill-wave"></i> {{post.price.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}} VND</div>
-                                            <div class="area-poster"><span class="icon-frame"></span>
-                                                {{post.area}}m<sup>2</sup>
-                                            </div>    
-                                            <div class="clearfix"></div>
-                                            <div class="address-poster">
-                                            <i class="fas fa-map-marked"></i> Location : {{post.address}}
-                                            </div>
-                                        </div>
-                                        <i class="far fa-bookmark icon-bookmark" @click="savePost"></i>
-                                    </div>
+                                  </div>
                                 </div>
-                            </div>
-                          </div>
-                          <div class="tab-pane fade show active" id="pending" role="tabpanel" aria-labelledby="pending-tab">
-                              day la pendding tab
-                          </div>
-                          <div class="tab-pane fade show active" id="refuse" role="tabpanel" aria-labelledby="refuse-tab">
-                              day la refuse tab
-                          </div>
-                          <div class="tab-pane fade show active" id="listTransaction" role="tabpanel" aria-labelledby="listTransaction-tab">
-                                <v-card>
+                              </v-card>
+                            </v-tab-item>
+                            <v-tab-item v-if="isUser">
+                               <!-- <div class="row"> -->
+                                 <v-card>
                                     <v-card-title>
                                     Lịch sử giao dịch
                                     <v-spacer></v-spacer>
@@ -130,10 +121,10 @@
                                     :search="search"
                                     >
                                     <template v-slot:items="props">
-                                        <td class="text-xs-left">{{ props.item._id }}</td>
-                                        <td class="text-xs-left">{{ props.item.content }}</td>
-                                        <td class="text-xs-left">{{ props.item.date }}</td>
-                                        <td class="text-xs-left">{{ props.item.amount }}</td>
+                                        <td class="text-xs-left">1</td>
+                                        <td class="text-xs-left">{{ props.item.transaction_content }}</td>
+                                        <td class="text-xs-left">{{ (new Date( props.item.created_at)).toLocaleDateString() }}</td>
+                                        <td class="text-xs-left">{{ props.item.transaction_amount }}</td>
                                     </template>
                                     <template v-slot:no-results>
                                         <v-alert :value="true" color="error" icon="warning">
@@ -142,15 +133,38 @@
                                     </template>
                                     </v-data-table>
                                 </v-card>
-                          </div>
-                          <div class="tab-pane fade show active" id="edit" role="tabpanel" aria-labelledby="edit-tab">
-                              day la edit tab
-                          </div>
-                      </div>
-                  </div>
+                               <!-- </div> -->
+                            </v-tab-item>
+                          </v-tabs>
+                        </div>
                 </div>
               </div>
           </div>       
+        </div>
+        <post-detail/>
+          <!-- The Modal -->
+        <div class="modal" id="myModal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+            
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Modal Heading</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              
+              <!-- Modal body -->
+              <div class="modal-body">
+                Modal body..
+              </div>
+              
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              </div>
+              
+            </div>
+          </div>
         </div>
   </div>
 </template>
@@ -158,6 +172,8 @@
 <script>
 import PostDetail from './components/PostDetail'
 import axios from 'axios'
+import EventBus from '../EventBus'
+import jwtDecode from 'jwt-decode'
 
 export default {
   components: {
@@ -172,27 +188,69 @@ export default {
           { text: 'Nội dung giao dịch', align: 'left', value: 'content', sortable: false, width:'40%'},
           { text: 'Ngày giao dịch', align: 'left', value: 'date', sortable: false, width:'20%'},
           { text: 'Số tiền', align: 'left', value: 'amount', sortable: false,width:'20%'}
-        ],
-        desserts: [
-            {
-                _id: '5465123',
-                content: 'Thanh toans bai so 1',
-                date: '14/06/2019',
-                amount: '10.000'
-            }
-        ],
+        ],   
+        requirement: ['Tất Cả','Đã Duyệt', 'Chờ Duyệt','Từ Chối'],
+        active: '',
+        user: '',
+        isUser: false,
+        desserts:[],  
     };
   },
   created(){
-    axios({
-      url: 'http://localhost:3000/classified/posts',
-      method: 'get',
-    })
-    .then(res => this.listClassified = res.data.data)
-    .catch(err => console.log(err.message))
+    this.fetchListPostApprove();
+    this.fetchListTransaction();
+    this.getProfile();
+    this.checkOwner();
   },
   methods: {
-  },
+    fetchListPostApprove(){
+      axios({
+        url: `http://localhost:3000/user/${this.$route.params.id}/list-classified`,
+        method: 'get',
+      })
+      .then(res => {
+        this.listClassified[0] = res.data.id_classified;
+        this.listClassified[1] = res.data.id_classified.filter(item => item.status == 1);
+        this.listClassified[2] = res.data.id_classified.filter(item => item.status == 0);
+        this.listClassified[3] = res.data.id_classified.filter(item => item.status == 2);
+      })
+      .catch(err => console.log(err.message))
+    },
+    fetchListTransaction(){
+      axios({
+        url: `http://localhost:3000/user/${this.$route.params.id}/transaction`,
+        method: 'get',
+        headers: {
+            'Content-Type': 'application/json',
+            'x-access-token' : localStorage.getItem('token') || null
+        },
+      })
+      .then(res => this.desserts = res.data.transaction)
+      .catch(err => console.log(err.message))
+    },
+    showDetail(post){
+      post.id_user = this.user;
+      EventBus.$emit('detailPost', post)
+    },
+    getProfile(){
+      axios.get(`http://localhost:3000/user/${this.$route.params.id}`)
+      .then( res =>{
+        this.user = res.data;
+      })
+      .catch(err => console.log(err.message))
+    },
+    checkOwner(){
+      console.log(this.$route.params.id);
+      if(this.$route.params.id == jwtDecode(localStorage.getItem('token')).data._id){
+        this.isUser = true;
+        console.log("1")
+      } else{
+        this.isUser = false;
+        console.log("2")
+      }
+    }
+
+},
   computed: {
   },
   mounted() {
@@ -458,7 +516,7 @@ a.v-tabs__item {
     padding: 0;
 }
 .results-list{
-    height: 679px;
+    height: 100vh;
     overflow-y: scroll;
     overflow-x: hidden;
 }

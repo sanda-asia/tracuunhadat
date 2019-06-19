@@ -215,47 +215,25 @@ export default {
         //     console.log(data)
         // }
         async submitPost(){
-            let formData = new FormData();
-            for( var i = 0; i < this.images.length; i++ ){
-                formData.append(`images`, this.images[i]);
-            }
-            await axios({
-                method: 'POST',
-                url: `http://localhost:3000/user/${this.user._id}/upload`,
-                data: formData,
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                    'x-access-token' : localStorage.getItem('token')
-                },
-            })
-            .then(function (response) {
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-            if(this.title && this.price && this.area && this.content && this.category && this.requirement && this.address && this.time_post && this.level){
-                let nameImg = [];
-                let date = Date.now();
+            if(this.title && this.price && this.area && this.content && 
+            this.category && this.requirement && this.address && this.time_post && this.level){
+                let formData = new FormData();
                 for( var i = 0; i < this.images.length; i++ ){
-                    nameImg.push(`${date}_${this.images[i].name}`);
-                }
+                    formData.append(`images`, this.images[i]);
+                }   
+                formData.append('title', this.title);
+                formData.append('price', this.price);
+                formData.append('area', this.area);
+                formData.append('content', this.content);
+                formData.append('category', this.category);
+                formData.append('requirement', this.requirement);
+                formData.append('address', `${this.address}, ${this.districts[this.selectDistrict]}, ${this.provinces[this.selectProvince]}`)
+                formData.append('time_post', this.time_post);
+                formData.append('level', this.level);
                 await axios({
                     method: 'POST',
                     url: 'http://localhost:3000/classified/posts',
-                    data: {
-                        // id_user: this.$route.params.id,
-                        title: this.title,
-                        price: this.price,
-                        area: this.area,
-                        content: this.content,
-                        category: this.category,
-                        requirement: this.requirement,
-                        address: `${this.address}, ${this.districts[this.selectDistrict]}, ${this.provinces[this.selectProvince]}`,
-                        time_post: this.time_post,
-                        level: this.level,
-                        images: nameImg
-                    },
+                    data: formData,
                     headers: {
                         'Content-Type': 'application/json',
                         'x-access-token' : localStorage.getItem('token') || null

@@ -20,20 +20,18 @@
 
                       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
-                          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                          <li v-for="(image, index) in postDetail.images" :key="index" data-target="#carouselExampleIndicators" :data-slide-to="index" :class="index == 0 ? 'active' : ''"></li>
                         </ol>
                         <div class="carousel-inner">
-                          <div class="carousel-item active">
+                          <div v-for="(image, index) in postDetail.images" :key="index" :class="index == 0 ? 'carousel-item active' : 'carousel-item'">
+                            <img :src="`http://localhost:3000/upload/classified/${image}`" class="d-block w-100" alt="...">
+                          </div>
+                          <!-- <div class="carousel-item">
                             <img src="https://via.placeholder.com/850x450" class="d-block w-100" alt="...">
                           </div>
                           <div class="carousel-item">
                             <img src="https://via.placeholder.com/850x450" class="d-block w-100" alt="...">
-                          </div>
-                          <div class="carousel-item">
-                            <img src="https://via.placeholder.com/850x450" class="d-block w-100" alt="...">
-                          </div>
+                          </div> -->
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -63,7 +61,7 @@
                       <div>
                           <p v-html="postDetail.content"></p>
                       </div>
-                      <div class="fb-comments" :data-href="`https://http://localhost:8080/rao-vat/${postDetail}`" data-width="100%" data-numposts="10"></div>
+                      <fb-comment :url="`https://localhost:8080/rao-vat/${postDetail}`"></fb-comment>
                     </div>
 
                     <!-- Sidebar Widgets Column -->
@@ -95,8 +93,11 @@
                                 <p>3.56K</p>						
                               </div>			
                             </div> -->
-                            <div class="">
-                              <div class="follow_btn">Nhấn để hiển thị số</div>
+                            <div class="follow">
+                              <!-- <div class="follow_btn" @click="showPhone">{{phone}}</div> -->
+                              <button type="button" class="btn btn-primary"  @click="showPhone">
+                                  {{phone}}
+                              </button>
                             </div>
                           </div>
                         </div>
@@ -118,11 +119,16 @@
 <script>
 import noUiSlider from "nouislider";
 import EventBus from '../../EventBus'
+import FbComment from './FacebookComment'
 
 export default {
+  components:{
+    FbComment
+  },
   data(){
     return{
       postDetail: null,
+      phone : 'Nhấn để hiển thị số'
       // url_comment: `http://localhost:8080/rao-vat/`,
     }
   },
@@ -130,12 +136,15 @@ export default {
     EventBus.$on('detailPost', this.handler);
   },
   mounted () {
-    window.FB.XFBML.parse();
+    // FB.XFBML.parse();
   },
   methods:{
     handler(e){
       // alert('recieved: ', e)
       this.postDetail = e;
+    },
+    showPhone(){
+      this.phone = this.postDetail.id_user.phone_number;
     }
   },
   destroyed() {
