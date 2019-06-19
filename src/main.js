@@ -11,12 +11,10 @@ import 'vuetify/dist/vuetify.min.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import BootstrapVue from 'bootstrap-vue';
 
-import VueFacebook from 'vue-facebook';
 
 import vClickOutside from 'v-click-outside'
  
 Vue.use(vClickOutside)
-Vue.use(VueFacebook)
 Vue.use(BootstrapVue);
 
 Vue.use(Vuetify)

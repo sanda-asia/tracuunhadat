@@ -35,6 +35,7 @@ import { Tabs } from "@/components";
 import ManagerBlog from "./components/ManagerBlog"
 import ManagerClassified from "./components/ManagerClassified"
 import PostDetail from './components/PostDetail'
+import jwt_decode from 'jwt-decode'
 
 export default {
   components: {
@@ -46,11 +47,30 @@ export default {
   name: "blog",
   data() {
     return {
+      user: ''
     };
   },
   methods: {
   },
   computed: {
+  },
+  created(){
+    try {
+      if(!localStorage.getItem('token')){
+          this.$router.push({name: 'home'})
+          console.log("1")
+      } else {
+          this.user = jwt_decode(localStorage.getItem('token')).data;
+          if(this.user.role !== false){
+              this.$router.push({name: 'home'})
+              console.log("2")
+          }
+      }
+    } catch (error) {
+        this.$router.push({name: 'home'})
+        console.log("3")
+        console.log(error)
+    }
   },
   mounted() {
   },

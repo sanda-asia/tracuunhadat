@@ -10,7 +10,7 @@
             <div v-for="post in listClassified" :key="post._id" class="row row-post">
                 <div class="col-4 img-poster" style="padding-left:0px;" @click="showDetail(post)">
                     <button type="button" data-toggle="modal" data-target=".bd-example-modal-lg">
-                        <img src="https://file4.batdongsan.com.vn/resize/745x510/2016/06/14/20160614135439-e5f6.jpg" />
+                        <img :src="`http://localhost:3000/upload/classified/${post.images[0]}`" />
                     </button>
                 </div>
                 <div class="col-8 description-poster" >
@@ -27,7 +27,7 @@
                           <i class="fas fa-map-marked"></i> {{post.address}}
                         </div>
                     </div>
-                    <i class="far fa-bookmark icon-bookmark" @click="savePost"></i>
+                    <i class="far fa-bookmark icon-bookmark" ></i>
                 </div>
             </div>
           </div>
@@ -51,7 +51,8 @@ export default {
   data() {
     return {
       requirement: ['Tất Cả','Cần Mua', 'Cần Bán','Cho Thuê', 'Cần Thuê'],
-      listClassified: []
+      listClassified: [],
+      active: ''
     };
   },
   created(){

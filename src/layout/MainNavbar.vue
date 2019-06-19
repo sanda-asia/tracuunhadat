@@ -103,7 +103,8 @@ export default {
   data() {
     return {
       exitsToken : localStorage.getItem('token') || null,
-      user: ''
+      user: '',
+      profileClass: "profile-photo dropdown"
     };
   },
   created(){
@@ -113,10 +114,6 @@ export default {
             this.user = null;
         } else {
             this.user = jwt_decode(this.exitsToken).data;
-            this.fetchUser(this.user._id)
-            for(let index in selectAddress){
-                this.provinces.push(selectAddress[index].name);
-            } 
         }
     } catch (error) {
         this.user = null;
@@ -169,18 +166,6 @@ export default {
       localStorage.removeItem('token');
       this.$router.go();
     },
-    fetchUser(userId){
-        return axios({
-            method: 'get',
-            url: `http://localhost:3000/user/${userId}`,
-        })
-        .then((response) => {
-            this.user = response.data
-        })
-        .catch((error) => {
-            console.log(error)
-        })
-    }
   }
 };
 </script>
