@@ -28,7 +28,7 @@ router.post("/dang-ky", userController.register);
 router.get("/:id", userController.getProfile);
 
 //Lấy danh sách tin đăng được duyệt
-router.get("/:id/list/checked", userController.getAllListClassifiedChecked);
+router.get("/:id/list-classified", userController.getAllListClassified);
 
 // Lấy lịch sử giao dich
 router.get("/:id/transaction",auth, userController.getTransaction);

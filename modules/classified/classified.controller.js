@@ -7,6 +7,12 @@ function calculateBalance(current_balance,time_post, level_post = 1){
 module.exports = {
    createPost : async (req,res) =>{
       try{
+         let listImages = [];
+         if (req.files) {
+               for( i = 0; i< req.files.length; i++) {
+                  listImages.push(req.files[i].filename);
+               }
+         }
          let newClassified = {
             id_user: req.user.data._id,
             title: req.body.title,
@@ -17,7 +23,7 @@ module.exports = {
             category: req.body.category,
             requirement : req.body.requirement,
             address: req.body.address,
-            images : req.body.images,
+            images : listImages,
             time_post: req.body.time_post,
          };
 
@@ -199,6 +205,23 @@ module.exports = {
       res.json(result);
    },
 
+   refusePost: async (req,res) =>{
+      try {
+         let classified_refuse = await Classified.findOneAndUpdate(
+            { _id: req.params.id },
+            { status: 2}
+         );
+         res.json({
+            'status': true,
+            'message': 'the post was refused'
+         })
+      } catch (error) {
+         res.json({
+            'status': false,
+            'message': error.message
+         })
+      }
+   },
    showListPostAprroved: async (req,res) =>{
       try {
          let listPostApproved = null;
@@ -285,10 +308,14 @@ module.exports = {
    showPostApproved: async(req, res)=>{
       try {
          let pageNumber = parseInt(req.query.page) || 1;
-         let numberOfItems = 8;
+         let numberOfItems = 4;
          let begin = (pageNumber - 1) * numberOfItems;
-         let listPost = await Classified.find({status: 1})
-                              .sort({_id:-1}).limit(numberOfItems).skip(begin);
+         let listPost = []
+         for(let i = 3; i > 0 ; i--){
+            let listPostLevel = await Classified.find({status: 0, level: i})
+                                 .sort({_id:-1}).limit(numberOfItems).skip(begin);
+            listPost = listPost.concat(listPostLevel);
+         }
          var result = {
             "status": true,
             "data": listPost

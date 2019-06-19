@@ -79,12 +79,13 @@ module.exports = {
     },
     //lấy lịch sử giao dich
     getTransaction: async (req, res)=>{
-        res.json(req.user.data.transaction);
+        // res.json(req.user.data.transaction);
+        let list = await User.findOne({_id: req.params.id}).select('transaction')
+        res.json(list);
     },
 
-    getAllListClassifiedChecked: async (req, res)=>{
-        // let list = await User.findOne({_id: req.params.id,})
-        let list = await User.findOne({_id: req.params.id,status: 1}).populate("id_classified");
+    getAllListClassified: async (req, res)=>{
+        let list = await User.findOne({_id: req.params.id}).select('id_classified').populate("id_classified");
         res.json(list);
     },
 
