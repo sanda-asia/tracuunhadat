@@ -19,7 +19,7 @@ var upload = multer({ storage: storage });
 router.post("/dang-nhap", userController.login);
 
 //upload
-router.post("/:id/upload",upload.array('images'), userController.upload);
+router.post("/:id/upload",upload.single('image'), userController.upload);
 
 //đăng kí
 router.post("/dang-ky", userController.register);
@@ -36,6 +36,7 @@ router.get("/:id/transaction",auth, userController.getTransaction);
 
 // Cập nhập thông tin user
 router.put("/:id/", userController.putUser);
+
 
 // Yêu cầu hiện thị thông tin lên chuyên mục top môi giới
 router.get("/:id/show-agency", userController.showAgency);

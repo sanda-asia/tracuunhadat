@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const UserSchema = mongoose.Schema({
     username: String,
     fullname: String,
+    introduction: String,
     avatar: String,
     email: String,
     password: String,
@@ -20,10 +21,6 @@ const UserSchema = mongoose.Schema({
             default: Date.now
         }
     }],
-    photo_library: [{
-        type: String,
-    }]
-    ,
     save_list: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Classified'

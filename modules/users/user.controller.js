@@ -16,7 +16,8 @@ module.exports = {
                     fullname: user[0].fullname,
                     email: user[0].email,
                     phone_number: user[0].phone_number,
-                    role: user[0].role
+                    role: user[0].role,
+                    avatar: user[0].avatar
                 } }, CONSTANTS.SECRET_KEY, { expiresIn: 3600*60});
                 let result = {
                     "status": true,
@@ -44,11 +45,12 @@ module.exports = {
     register: async (req, res)=>{
         let newUser = await User.create({
             username: req.body.username,
-            fullname: req.body.fullname,
+            fullname: req.body.username,
+            introduction: "Vui Lòng cập nhập thông tin mô tả của bạn!",
             password: bcrypt.hashSync(req.body.password),
             email: req.body.email,
             phone_number: req.body.phone_number,
-            avatar: 'http://chittagongit.com/images/profile-icon-white/profile-icon-white-7.jpg',
+            avatar: 'profile-icon-white-7.jpg',
             amount: 100000, // default 100k
             role: 1
         });
@@ -92,11 +94,9 @@ module.exports = {
     // Cập nhập thông tin của user 
     putUser: async (req, res)=>{
         let updateUser = {
-            username: req.body.username,
             fullname:req.body.fullname,
-            password: bcrypt.hashSync(req.body.password),
-            email: req.body.email,
-            phone_number: req.body.phone_number
+            phone_number: req.body.phone_number,
+            introduction: req.body.introduction
         };
         let result = await User.findOneAndUpdate({_id: req.params.id}, updateUser);
         res.json({
@@ -119,18 +119,10 @@ module.exports = {
     },
 
     upload: (req, res) =>{
-        let length = req.files.length || 0;
-        let arrImg= [];
-        for(i=0;i<length;i++){
-            arrImg.push(req.files[i].filename);
-        }
         let updateImg = {
-            $push: {
-                photo_library: {
-                    $each: arrImg
-                }
-            }
+            avatar : req.file.filename
         };
+
         // console.log(arrImg)
         User.update({_id: req.params.id},updateImg, (err)=>{
             if(err){
@@ -138,7 +130,7 @@ module.exports = {
             } else{
                 res.json({
                     status: true,
-                    name_images: arrImg,
+                    name_images: req.file.filename,
                     message: "upload image successfully"
                 });
             }

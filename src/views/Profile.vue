@@ -7,13 +7,21 @@
                       <div class="card">
                         <div class="card-header">
                           <div class="profile_pic">
-                            <img :src="user.avatar">
+                            <!-- <img :src="user.avatar"> -->
+                            <div class="profile-img">
+                              <img v-if="!avatar" :src="`http://localhost:3000/upload/users/${user.avatar}`" alt=""/>
+                              <img v-else class="preview-img" alt=""/>
+                              <div class="file btn btn-lg btn-primary">
+                                  <i class="fas fa-cloud-upload-alt"></i>
+                                  <input type="file" name="file" @change="handleFileUpload"/>
+                              </div>
+                            </div>
                           </div>
                         </div>
                         <div class="card-body">
                           <div class="d-lfex justify-content-center flex-column">
                             <div class="name_container">
-                              <div class="name">{{user.username}}</div>
+                              <div class="name">{{user.fullname}}</div>
                             </div>
                             <div class="address">{{user.address}}</div>
                           </div>
@@ -47,7 +55,7 @@
                         Giới thiệu
                     </h5>
                     <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore alias necessitatibus recusandae nisi, molestiae quae eveniet! Odio repudiandae, dignissimos cumque ullam ipsum dolores praesentium tenetur, quaerat adipisci dicta expedita veritatis.
+                       {{user.introduction}}
                     </p>
                       <p class="proile-rating">RANKINGS : <span>8/10</span></p>
                   </div>
@@ -149,18 +157,38 @@
             
               <!-- Modal Header -->
               <div class="modal-header">
-                <h4 class="modal-title">Modal Heading</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
               </div>
               
               <!-- Modal body -->
               <div class="modal-body">
-                Modal body..
+                <form>
+                  <div class="form-group">
+                    <label for="exampleFormControlInput1">Username</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1" readonly v-model="user.username">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleFormControlInput1">Họ tên</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1" v-model="user.fullname">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleFormControlInput1">Số điên thoại</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1" readonly v-model="user.phone_number">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleFormControlInput1">Email</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1" readonly v-model="user.email">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Giới thiệu</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="user.introduction"></textarea>
+                  </div>
+                </form>
               </div>
               
               <!-- Modal footer -->
               <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" @click="updateUser">Cập Nhập</button>
               </div>
               
             </div>
@@ -192,6 +220,7 @@ export default {
         requirement: ['Tất Cả','Đã Duyệt', 'Chờ Duyệt','Từ Chối'],
         active: '',
         user: '',
+        avatar: false,
         isUser: false,
         desserts:[],  
     };
@@ -248,8 +277,28 @@ export default {
         this.isUser = false;
         console.log("2")
       }
-    }
-
+    },
+    updateUser(){
+      axios({
+        url: `http://localhost:3000/user/${this.$route.params.id}`,
+        method: 'put',
+        data: this.user
+      })
+      .then(res => {
+        this.$router.go()
+      })
+      .catch(err => console.log(err.message))
+    },
+    handleFileUpload(event){
+      var reader  = new FileReader();
+      reader.onload = function(event){
+        document.getElementsByClassName('preview-img')[0].src = reader.result;
+      }
+      this.avatar = event.target.files[0];
+      if (event.target.files[0]) {
+        reader.readAsDataURL(event.target.files[0]);
+      }
+    }, 
 },
   computed: {
   },
@@ -286,14 +335,15 @@ body{
     height: 100%;
 }
 .profile-img .file {
-    position: relative;
+    position: absolute;
     overflow: hidden;
-    margin-top: -20%;
-    width: 70%;
+    bottom: 0;
+    right: 0;
     border: none;
-    border-radius: 0;
     font-size: 15px;
     background: #212529b8;
+    border-radius: 50%;
+    opacity: 0.5;
 }
 .profile-img .file input {
     position: absolute;
@@ -520,6 +570,5 @@ a.v-tabs__item {
     overflow-y: scroll;
     overflow-x: hidden;
 }
-
 
 </style>

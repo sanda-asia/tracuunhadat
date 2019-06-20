@@ -69,13 +69,13 @@
                         <div class="card">
                           <div class="card-header">
                             <div class="profile_pic">
-                              <img src="https://bootsnipp.com/img/avatars/92ff0456eb6106d0c1ae8ab5f1fe0afe2d2d25f2.jpg">
+                              <img :src="`http://localhost:3000/upload/users/${postDetail.id_user.avatar}`">
                             </div>
                           </div>
                           <div class="card-body">
                             <div class="d-lfex justify-content-center flex-column">
                               <div class="name_container">
-                                <div class="name">{{postDetail.id_user.username}}</div>
+                                <div class="name">{{postDetail.id_user.fullname}}</div>
                               </div>
                               <div class="address">{{postDetail.id_user.address}}</div>
                             </div>
