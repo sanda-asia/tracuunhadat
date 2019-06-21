@@ -24,6 +24,8 @@ router.post("/:id/upload",upload.single('image'), userController.upload);
 //đăng kí
 router.post("/dang-ky", userController.register);
 
+router.get("/", userController.getAllUser);
+
 // get profile
 router.get("/:id", userController.getProfile);
 

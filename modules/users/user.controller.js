@@ -70,6 +70,13 @@ module.exports = {
         res.json(result);
     },
     // 
+
+    getAllUser: async (req, res)=>{
+        let listUser = await User.find({})
+                                .sort({_id:-1})
+        res.json(listUser)
+    },
+
     getProfile: (req, res)=>{
         User.findOne({_id:req.params.id},(err, user)=>{
             if(err){

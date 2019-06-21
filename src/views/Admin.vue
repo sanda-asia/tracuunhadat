@@ -2,8 +2,8 @@
   <div class="wrapper">
     <div class="md-layout-item tabs-customs">
       <tabs
-        :tab-name="['Dashboard', 'Blog', 'Rao Vặt']"
-        :tab-icon="['dashboard', 'schedule', 'schedule']"
+        :tab-name="['Dashboard', 'Blog', 'Rao Vặt', 'Người Dùng']"
+        :tab-icon="['dashboard', 'schedule', 'schedule','schedule']"
         plain
         flex-column
         nav-pills-icons
@@ -24,6 +24,9 @@
         <template slot="tab-pane-3">
           <manager-classified/>
         </template>
+        <template slot="tab-pane-4">
+          <manager-user/>
+        </template>
       </tabs>
     </div>
     <post-detail/>
@@ -34,6 +37,7 @@
 import { Tabs } from "@/components";
 import ManagerBlog from "./components/ManagerBlog"
 import ManagerClassified from "./components/ManagerClassified"
+import ManagerUser from "./components/ManagerUser"
 import PostDetail from './components/PostDetail'
 import jwt_decode from 'jwt-decode'
 
@@ -42,6 +46,7 @@ export default {
      Tabs,
      ManagerBlog,
      ManagerClassified,
+     ManagerUser,
      PostDetail
   },
   name: "blog",
