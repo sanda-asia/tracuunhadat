@@ -112,6 +112,9 @@ import { parse } from 'url';
         axios({
             url: 'http://localhost:3000/user/',
             method: 'get',
+            headers: {
+              'x-access-token' : localStorage.getItem('token')
+            }
         })
         .then(res => this.desserts = res.data)
         .catch(err => console.log(err.message))

@@ -142,6 +142,7 @@ export default {
 .wrapper{
   height: 90vh;
   overflow-y: scroll;
+  background-color: white;
 }
 
 .lists{
@@ -199,6 +200,12 @@ blockquote {
 .share p {
     margin-bottom: 10px;
     font-size: 17px;
+}
+
+
+.post-content p{
+    font-size: 18px;
+    line-height: 32px;
 }
 
 a.card h4, div.card h4 {

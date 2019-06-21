@@ -75,7 +75,9 @@
                           <div class="card-body">
                             <div class="d-lfex justify-content-center flex-column">
                               <div class="name_container">
-                                <div class="name">{{postDetail.id_user.fullname}}</div>
+                                <div class="name">
+                                  <router-link :to="{name: 'profile', params:{id: postDetail.id_user._id}}">{{postDetail.id_user.fullname}}</router-link>
+                                </div>
                               </div>
                               <div class="address">{{postDetail.id_user.address}}</div>
                             </div>

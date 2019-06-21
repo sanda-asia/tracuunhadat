@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const auth = require("../../services/auth.service");
-const checkPermision = require("../../services/checkPermision");
 const classifiedController = require("./classified.controller");
 const multer = require('multer');
 const storage = multer.diskStorage({
@@ -31,16 +30,16 @@ router.get("/posts/:requirement", classifiedController.showPostApproved);
 
 router.get("/post-details/:id", classifiedController.showPostDetails);
 
-router.post("/posts", auth, upload.array('images'), classifiedController.createPost); //auth
+router.post("/posts", auth.checkLogin, upload.array('images'), classifiedController.createPost); //auth
 
-router.put("/posts/:id", auth, classifiedController.updatePost); //auth
+router.put("/posts/:id", auth.checkLogin, classifiedController.updatePost); //auth
 
-router.put("/posts-approve/:id", classifiedController.aprrovePost); //isAdmin
+router.put("/posts-approve/:id", auth.checkAdmin, classifiedController.aprrovePost); //isAdmin
 
-router.put("/posts-refuse/:id", classifiedController.refusePost); //isAdmin
+router.put("/posts-refuse/:id", auth.checkAdmin, classifiedController.refusePost); //isAdmin
 
-router.put("/save-post/:id",auth, classifiedController.savePost); //auth
+router.put("/save-post/:id",auth.checkLogin, classifiedController.savePost); //auth
 
-router.delete("/posts/:id",auth, classifiedController.deletePost); //auth
+router.delete("/posts/:id",auth.checkLogin, classifiedController.deletePost); //auth
 
 module.exports = router;

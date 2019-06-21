@@ -63,8 +63,8 @@
               <div class="col-md-9">
                 <div v-if="isUser" class="row">
                   <div class="col-6">
-                    <h5>Tài khoản thanh toán</h5>
-                    <p>Số dư khả dụng: <span>{{user.amount.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}} VND</span></p>
+                    <h4>Tài khoản thanh toán</h4>
+                    <p>Số dư khả dụng: <span style="color: red; font-weight: Bold">{{user.amount.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}} VND</span></p>
                   </div>
                   <div class="col-6">
                     
@@ -132,7 +132,7 @@
                                         <td class="text-xs-left">1</td>
                                         <td class="text-xs-left">{{ props.item.transaction_content }}</td>
                                         <td class="text-xs-left">{{ (new Date( props.item.created_at)).toLocaleDateString() }}</td>
-                                        <td class="text-xs-left">{{ props.item.transaction_amount }}</td>
+                                        <td class="text-xs-left">{{ props.item.transaction_amount.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') }}</td>
                                     </template>
                                     <template v-slot:no-results>
                                         <v-alert :value="true" color="error" icon="warning">
@@ -282,7 +282,12 @@ export default {
       axios({
         url: `http://localhost:3000/user/${this.$route.params.id}`,
         method: 'put',
-        data: this.user
+        data: this.user,
+        headers: {
+            'Content-Type': 'application/json',
+            'x-access-token' : localStorage.getItem('token') || null
+        },
+
       })
       .then(res => {
         this.$router.go()
@@ -303,7 +308,6 @@ export default {
   computed: {
   },
   mounted() {
-
   }
 };
 </script>
