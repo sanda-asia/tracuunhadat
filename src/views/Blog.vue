@@ -2,26 +2,6 @@
   <div class="wrapper">
         <div class="lists" style="width: 90%; margin: auto;">
             <div>
-                <section class="search-sec">
-                    <div class="px-0">
-                        <form action="#" method="post" novalidate="novalidate" class="width-full">
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-12 p-0">
-                                        <input type="text" class="form-control search-slt" placeholder="Enter Pickup City">
-                                    </div>
-                                    <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                        <select class="form-control search-slt" id="exampleFormControlSelect1">
-                                            <option>Tỉnh - Thành Phố</option>
-                                            <option>Example one</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                        <button type="button" class="btn btn-danger wrn-btn">Search</button>
-                                    </div>
-                                </div>
-                        </form>
-                    </div>
-                </section>
               <h3>
                 <span>Tất cả</span>
               </h3>

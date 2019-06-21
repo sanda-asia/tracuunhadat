@@ -1,13 +1,13 @@
 <template>
   <div class="scroll-able">
     <v-tabs v-model="active" slider-color="black">
-      <v-tab v-for="n in requirement" :key="n" ripple>
+      <v-tab v-for="n in requirement" :key="n" ripple @click="fetchPost(n)" >
         {{ n }}
       </v-tab>
       <v-tab-item v-for="n in requirement" :key="n">
         <v-card flat>
           <div class="results-list">
-            <div v-for="post in listClassified" :key="post._id" class="row row-post">
+            <div v-for="(post) in listClassified" :key="post._id" class="row row-post">
                 <div class="col-4 img-poster" style="padding-left:0px;" @click="showDetail(post)">
                     <button type="button" data-toggle="modal" data-target=".bd-example-modal-lg">
                         <img :src="`http://localhost:3000/upload/classified/${post.images[0]}`" />
@@ -56,17 +56,20 @@ export default {
     };
   },
   created(){
-    axios({
-      url: 'http://localhost:3000/classified/posts-approved',
-      method: 'get',
-    })
-    .then(res => this.listClassified = res.data.data)
-    .catch(err => console.log(err.message))
+    this.fetchPost("Tất Cả")
   },
   methods: {
     showDetail(post){
       EventBus.$emit('detailPost', post)
-    }
+    },
+    fetchPost(requirement){
+      axios({
+        url: `http://localhost:3000/classified/posts/${requirement}`,
+        method: 'get',
+      })
+      .then(res => this.listClassified = res.data.data)
+      .catch(err => console.log(err.message))
+      }
   },
   computed: {
   },

@@ -182,13 +182,13 @@ export default {
                     } else {
                        this.temp = '';
                        localStorage.setItem('token',response.data.token);
-                       swal(
-                            `Welcome ${response.data.data.username}!`,
-                            'Login success!',
-                            'success',
-                        );
-                      this.classicModalHide()
-                  
+                      //  swal(
+                      //       `Welcome ${response.data.data.username}!`,
+                      //       'Login success!',
+                      //       'success',
+                      //   );
+                      // this.classicModalHide()
+                      this.$router.go()
                     }
                 }).catch((error) => {
                     console.log(error);

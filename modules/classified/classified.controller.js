@@ -307,12 +307,18 @@ module.exports = {
 
    showPostApproved: async(req, res)=>{
       try {
+         let requirement = req.params.requirement || null;
          let pageNumber = parseInt(req.query.page) || 1;
          let numberOfItems = 4;
          let begin = (pageNumber - 1) * numberOfItems;
          let listPost = []
-         for(let i = 3; i > 0 ; i--){
-            let listPostLevel = await Classified.find({status: 0, level: i})
+         for(let i = 2; i >= 0 ; i--){
+            if(requirement != 'Tất Cả'){
+               var queryFind = {status: 1,requirement: requirement, level: i}
+            } else{
+               var queryFind = {status: 1, level: i}
+            }
+            let listPostLevel = await Classified.find(queryFind).populate("id_user")
                                  .sort({_id:-1}).limit(numberOfItems).skip(begin);
             listPost = listPost.concat(listPostLevel);
          }

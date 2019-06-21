@@ -28,12 +28,12 @@
                 <p>Tin Đăng</p>
               </md-list-item>
 
-              <md-list-item href="javascript:void(0)" @click="">
+              <md-list-item href="javascript:void(0)" >
                 <md-icon>settings</md-icon>
                 <p>Dự Án</p>
               </md-list-item>
 
-              <md-list-item href="javascript:void(0)" @click="">
+              <md-list-item href="javascript:void(0)" >
                 <md-icon>account_circle</md-icon>
                 <p>Danh Bạ</p>
               </md-list-item>
@@ -68,8 +68,8 @@
                         data-toggle="dropdown"
                         @click="toggleProfile()"
                       >
-                        <img class="img-profile" :src="user.avatar"/>
-                        <span class="user-name">{{user.username}}</span>
+                        <img class="img-profile" :src="`http://localhost:3000/upload/users/${user.avatar}`"/>
+                        <span class="user-name">{{user.fullname}}</span>
                       </div>
                       <ul class="dropdown-menu dropdown-menu-right" >
                         <li class="profile-choose">
@@ -166,7 +166,7 @@ export default {
       localStorage.removeItem('token');
       this.$router.go();
     },
-  }
+  }, 
 };
 </script>
 
@@ -201,9 +201,9 @@ a.dropdown-item {
   padding: 4px;
 }
 
-.md-list-item .md-list-item-content:not(.md-ripple){
+/* .md-list-item .md-list-item-content:not(.md-ripple){
   margin: 5px;
-}
+} */
 
 ul.dropdown-menu.dropdown-menu-right.show {
     display: block;
