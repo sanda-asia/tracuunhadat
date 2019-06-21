@@ -1,31 +1,30 @@
 const router = require("express").Router();
 const projectController = require("./project.controller");
 const auth = require("../../services/auth.service");
-const check = require("../../services/checkPermision");
 
 //Thêm dự án
-router.post("/them-duan", auth, projectController.add);
+router.post("/them-duan", auth.checkAdmin, projectController.add);
 
 //Update project
-router.put("/sua-duan/:id", auth, projectController.updateProject);
+router.put("/sua-duan/:id", auth.checkAdmin, projectController.updateProject);
 
 //Delete project
-router.delete("/xoa-duan/:id", auth, projectController.deleteProject);
+router.delete("/xoa-duan/:id", auth.checkAdmin, projectController.deleteProject);
 
 //Xem thông tin dự án theo ID
-router.get("/:id", auth, projectController.viewProject);
+router.get("/:id", auth.checkAdmin, projectController.viewProject);
 
 // fetch all project
-router.get("/", auth, projectController.viewAllProject);
+router.get("/", auth.checkAdmin, projectController.viewAllProject);
 
 
 //Sửa đổi: put
 //add evaluate about project
 //Thêm đánh giá về dự án
-router.put("/them-danhgia/:id", auth, projectController.addEvaluateProject);
+router.put("/them-danhgia/:id", auth.checkAdmin, projectController.addEvaluateProject);
 
 
-router.post("/update-posision/:id", auth, projectController.updateLocationProject);
+router.post("/update-posision/:id", auth.checkAdmin, projectController.updateLocationProject);
 
 //view all evaluate about project
 // router.get("/tatcadanhgia/:id", auth, projectController.viewAllEvaluateProject);

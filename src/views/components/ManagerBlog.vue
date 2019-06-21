@@ -85,9 +85,15 @@ import axios from 'axios'
     },
     methods: {
       initialize () {
-        axios.get('http://localhost:3000/blog')
-          .then(res => this.blogs = res.data.listBlog)
-          .catch(err => console.log(err));
+        axios({ 
+          url: 'http://localhost:3000/blog',
+          method: 'get',
+          headers: {
+            'x-access-token' : localStorage.getItem('token')
+          }
+        })
+        .then(res => this.blogs = res.data.listBlog)
+        .catch(err => console.log(err));
       },
       switchComponent(){
         this.isAddOrEdit = !this.isAddOrEdit;
@@ -102,7 +108,13 @@ import axios from 'axios'
         let uri = `http://localhost:3000/blog/${id_blog}/delete`;
         let cf = confirm('Are you sure you want to delete this item?');
         if(cf){
-          axios.delete(uri)
+          axios({ 
+            url: uri,
+            method: 'delete',
+            headers: {
+              'x-access-token' : localStorage.getItem('token')
+            }
+          })
             .then(res => this.initialize())
             .catch(err => console.log(err));
         }

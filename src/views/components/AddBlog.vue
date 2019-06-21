@@ -115,7 +115,7 @@ export default{
             data: formData,
             headers: {
                'Content-Type': 'multipart/form-data',
-               // 'x-access-token' : localStorage.getItem('token')
+               'x-access-token' : localStorage.getItem('token')
             },
          })
          .then(req => this.$emit('onSubmit'))

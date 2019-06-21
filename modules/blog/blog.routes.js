@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const blogController = require('./blog.controller');
 const multer = require('multer');
+const auth = require('../../services/auth.service')
 const storage = multer.diskStorage({
     destination: function (req, file, callback) {
       callback(null, './static/upload/blog');
@@ -21,14 +22,14 @@ const upload = multer({
 router.get('/', blogController.getListBlog);
 
 // Create blog
-router.post('/tao-blog', upload.array('images'), blogController.createBlog);
+router.post('/tao-blog', auth.checkAdmin, upload.array('images'), blogController.createBlog);
 
 // Get blog by ID
 router.get('/:id', blogController.getBlogById);
 
 // Update blog
-router.patch('/:id/update', upload.array('images'), blogController.updateById);
+router.patch('/:id/update', auth.checkAdmin, upload.array('images'), blogController.updateById);
 
 // Delete blog
-router.delete('/:id/delete', blogController.deleteBlog);
+router.delete('/:id/delete', auth.checkAdmin, blogController.deleteBlog);
 module.exports = router;

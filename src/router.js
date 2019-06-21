@@ -9,6 +9,9 @@ import MainFooter from "./layout/MainFooter.vue";
 import Admin from "./views/Admin.vue";
 import Login from "./views/Login.vue";
 import AddClassified from "./views/AddClassified.vue";
+import Project from "./views/Project.vue";
+import Agent from "./views/Agent.vue";
+
 Vue.use(Router);
 
 export default new Router({
@@ -22,6 +25,16 @@ export default new Router({
       path: "/rao-vat",
       name: "classified",
       components: { default: Home, header: MainNavbar, footer: MainFooter },
+    },
+    {
+      path: "/du-an",
+      name: "project",
+      components: { default: Project, header: MainNavbar, footer: MainFooter },
+    },
+    {
+      path: "/danh-ba",
+      name: "agent",
+      components: { default: Agent, header: MainNavbar, footer: MainFooter },
     },
     {
       path: "/nhan-dinh",

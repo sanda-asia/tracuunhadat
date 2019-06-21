@@ -28,8 +28,8 @@
         </td>
         <td class="text-xs-right">
             <md-button class="md-info md-sm" @click="showPost(props.item)" data-toggle="modal" data-target=".bd-example-modal-lg">Xem</md-button>
-            <md-button class="md-success md-sm" @click="approvedPost(props.item._id)">Duyệt tin</md-button>
-            <md-button class="md-danger md-sm" @click="refusePost(props.item._id)">Từ chối</md-button>
+            <md-button class="md-success md-sm" v-if="props.item.status != 1" @click="approvedPost(props.item._id)">Duyệt tin</md-button>
+            <md-button class="md-danger md-sm" v-if="props.item.status != 2" @click="refusePost(props.item._id)">Từ chối</md-button>
         </td>
       </template>
       <template v-slot:no-results>
@@ -78,6 +78,9 @@ import EventBus from '../../EventBus'
             axios({
                 url: `http://localhost:3000/classified/posts-approve/${id}`,
                 method: 'put',
+                headers: {
+                  'x-access-token' : localStorage.getItem('token')
+                }
             })
             .then(res => swal(`Tin đăng đã được duyêt!`))
             .catch(err => console.log(err.message))
@@ -89,6 +92,9 @@ import EventBus from '../../EventBus'
           axios({
                 url: `http://localhost:3000/classified/posts-refuse/${id}`,
                 method: 'put',
+                headers: {
+                  'x-access-token' : localStorage.getItem('token')
+                }
             })
             .then(res => swal(`Tin đăng bị từ chối!`))
             .catch(err => console.log(err.message))
