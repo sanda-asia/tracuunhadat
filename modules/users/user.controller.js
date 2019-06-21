@@ -143,6 +143,19 @@ module.exports = {
             }
         });
         // res.json({status: true})
+    },
+    recharge: async (req, res) =>{
+        // console.log(req.params.id)
+        let data = await User.findOne({_id: req.params.id}).select('amount');
+        let add_amount = parseInt(data.amount) + parseInt(req.body.amount);
+        console.log(req.body.amount)
+        // res.json(amount)
+        User.findOneAndUpdate({_id: req.params.id},{amount: add_amount}, (err, user)=>{
+            if(err){
+                console.log(err.message)
+            } else{
+                res.json(user)
+            }
+        })
     }
-
 }

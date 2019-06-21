@@ -39,6 +39,7 @@ router.get("/:id/transaction",auth, userController.getTransaction);
 // Cập nhập thông tin user
 router.put("/:id/", userController.putUser);
 
+router.put("/recharge/:id/", userController.recharge);
 
 // Yêu cầu hiện thị thông tin lên chuyên mục top môi giới
 router.get("/:id/show-agency", userController.showAgency);
