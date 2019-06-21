@@ -28,12 +28,12 @@
                 <p>Tin Đăng</p>
               </md-list-item>
 
-              <md-list-item href="javascript:void(0)" @click="">
+              <md-list-item href="javascript:void(0)" >
                 <md-icon>settings</md-icon>
                 <p>Dự Án</p>
               </md-list-item>
 
-              <md-list-item href="javascript:void(0)" @click="">
+              <md-list-item href="javascript:void(0)" >
                 <md-icon>account_circle</md-icon>
                 <p>Danh Bạ</p>
               </md-list-item>
