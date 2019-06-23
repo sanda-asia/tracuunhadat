@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 const unit_price = [0,10000,20000,30000];
 function calculateBalance(current_balance,time_post, level_post = 1){
    let account_blance = current_balance - time_post * unit_price[level_post];
@@ -333,5 +334,21 @@ module.exports = {
          }
       }
       res.json(result);
+   },
+   countClassified: async (req, res, next) => {
+      var requirement= ['Tất Cả','Cần Mua', 'Cần Bán','Cho Thuê', 'Cần Thuê'];
+      var listCount =[];
+      await Classified.countDocuments({}, function(err, count) {
+         listCount[0]= count;
+      });
+      for(var i=1; i<requirement.length;i++) {
+         await Classified.countDocuments({requirement: requirement[i]}, async function(err, count) {
+            listCount[i]= count;
+         })    
+      }
+      res.json({
+         listCount: listCount
+      });
+
    }
 };

@@ -5,10 +5,11 @@ import router from "./router";
 import MaterialKit from "./plugins/material-kit";
 
 import * as VueGoogleMaps from "vue2-google-maps";
-import Vuetify from 'vuetify'
-
 import 'vuetify/dist/vuetify.min.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css';
+import Vuetify from 'vuetify'
+
+
 import BootstrapVue from 'bootstrap-vue';
 
 

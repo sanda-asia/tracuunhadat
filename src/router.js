@@ -19,6 +19,11 @@ export default new Router({
     {
       path: "/",
       name: "home",
+      components: { default: Home, header: MainNavbar, footer: MainFooter }
+    },
+    {
+      path: "/query/:tab",
+      name: "FillByTab",
       components: { default: Home, header: MainNavbar, footer: MainFooter },
     },
     {

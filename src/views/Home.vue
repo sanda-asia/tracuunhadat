@@ -68,7 +68,9 @@ export default {
 
 .wrapper{
 }
-
+div#contentHome {
+    height: 100%;
+}
 #mapView{
     width: 50%;
     position: absolute;
