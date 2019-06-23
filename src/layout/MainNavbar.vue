@@ -69,7 +69,7 @@
                         @click="toggleProfile()"
                       >
                         <img class="img-profile" :src="`http://localhost:3000/upload/users/${user.avatar}`"/>
-                        <span class="user-name">{{user.fullname}}</span>
+                        <span class="user-name">{{user.username}}</span>
                       </div>
                       <ul class="dropdown-menu dropdown-menu-right" >
                         <li class="profile-choose">

@@ -1,10 +1,11 @@
 <template>
   <div class="scroll-able">
-    <v-tabs v-model="active" slider-color="black">
-      <v-tab v-for="n in requirement" :key="n" ripple @click="fetchPost(n)" >
-        {{ n }}
+    <v-tabs v-model="active_tab" slider-color="black">
+      <v-tab v-for="(n, index) in requirement" :key="index" ripple @click="fetchPost(index, n)" >
+        <router-link v-if="index == 0" :to="{name:'home'}"> {{ n }}</router-link>
+        <router-link v-if="index != 0" :to="{name:'FillByTab', params:{tab:key_tab[index]}}"> {{ n }}</router-link>
       </v-tab>
-      <v-tab-item v-for="n in requirement" :key="n">
+      <v-tab-item v-for="(n, index) in requirement" :key="index">
         <v-card flat>
           <div class="results-list">
             <div v-for="(post) in listClassified" :key="post._id" class="row row-post">
@@ -34,6 +35,9 @@
         </v-card>
       </v-tab-item>
     </v-tabs>
+    <div class="overflow-auto">
+      <b-pagination-nav :link-gen="linkGen" align="center" :number-of-pages="numberOfPage" use-router  v-model="currentPage" ></b-pagination-nav>
+    </div>
     <post-detail/>
   </div>
 </template>
@@ -51,30 +55,79 @@ export default {
   data() {
     return {
       requirement: ['Tất Cả','Cần Mua', 'Cần Bán','Cho Thuê', 'Cần Thuê'],
+      key_tab: ['','can-mua', 'can-ban', 'cho-thue', 'can-thue'],
       listClassified: [],
-      active: ''
+      active: '',
+      currentPage: 1,
+      active_tab: 0,
+      numberOfPage:1,
+      countByTabs: []
     };
   },
+  computed: {
+
+    },
   created(){
-    this.fetchPost("Tất Cả")
+    this.fetchCountPages();
   },
   methods: {
+    setNumberOfPage(number){
+      if (number == 0|| number == null) {
+        this.numberOfPage = 1;
+      } else {
+        this.numberOfPage = Math.ceil(number/12);
+      }
+    },
+    resetCurrentPage(){
+      this.currentPage = 1;
+    },
+    linkGen(pageNum) {
+        return pageNum === 1 ? '?' : `?page=${pageNum}`
+      },
     showDetail(post){
       EventBus.$emit('detailPost', post)
     },
-    fetchPost(requirement){
+    fetchPost(index, requirement){
+      this.setNumberOfPage(this.countByTabs[index]);
+      this.resetCurrentPage()
       axios({
         url: `http://localhost:3000/classified/posts/${requirement}`,
         method: 'get',
       })
       .then(res => this.listClassified = res.data.data)
       .catch(err => console.log(err.message))
-      }
-  },
-  computed: {
+      },
+    fetchCountPages(){
+      axios({
+        url: 'http://localhost:3000/classified/count-classified',
+        method: 'get',
+      }).then(res => {
+        this.countByTabs = res.data.listCount
+        })
+        .catch(err => console.log(err.message))
+    }
   },
   mounted() {
-
+    var index;
+    switch(this.$route.params.tab){
+      case 'can-mua':
+        index = 1;
+        break;
+      case 'can-ban':
+        index = 2;
+        break;
+      case 'cho-thue':
+        index = 3;
+        break;
+      case 'can-thue' :
+        index = 4;
+        break;
+      default:
+        index = 0; 
+    }
+    this.active_tab = index;
+    this.fetchPost(this.requirement[this.active_tab])
+    
   }
 };
 </script>
@@ -122,5 +175,8 @@ a.v-tabs__item {
     padding: 0;
 }
 
+.overflow-auto {
+    transform: translateY(-152px);
+}
 
 </style>

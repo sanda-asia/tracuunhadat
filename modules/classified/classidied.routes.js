@@ -27,6 +27,7 @@ router.get("/posts-pending", classifiedController.showListPostPending); //isAdmi
 
 // pagination with query: page
 router.get("/posts/:requirement", classifiedController.showPostApproved);
+router.get("/count-classified",classifiedController.countClassified)
 
 router.get("/post-details/:id", classifiedController.showPostDetails);
 

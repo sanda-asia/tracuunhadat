@@ -63,6 +63,7 @@ export default {
     try {
       if(!localStorage.getItem('token')){
           this.$router.push({name: 'home'})
+          
           console.log("1")
       } else {
           this.user = jwt_decode(localStorage.getItem('token')).data;
