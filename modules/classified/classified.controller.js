@@ -342,9 +342,9 @@ module.exports = {
          listCount[0]= count;
       });
       for(var i=1; i<requirement.length;i++) {
-         await Classified.countDocuments({requirement: requirement[i]}, async function(err, count) {
+         await Classified.countDocuments({requirement: requirement[i]}).then(count =>{
             listCount[i]= count;
-         })    
+         })   
       }
       res.json({
          listCount: listCount
