@@ -126,8 +126,7 @@ export default {
         index = 0; 
     }
     this.active_tab = index;
-    this.fetchPost(this.requirement[this.active_tab])
-    
+    this.fetchPost(index,this.requirement[this.active_tab])
   }
 };
 </script>
