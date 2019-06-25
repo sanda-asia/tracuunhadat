@@ -1,7 +1,12 @@
 <template>
   <v-card>
     <v-card-title>
-      Quản lí Người dùng
+      <v-toolbar-title>User management</v-toolbar-title>
+      <v-divider
+        class="mx-2"
+        inset
+        vertical
+      ></v-divider>
       <v-spacer></v-spacer>
       <v-text-field
         v-model="search"
@@ -95,12 +100,12 @@ import { parse } from 'url';
         classicModal: false,
         search: '',
         headers: [
-            { text: 'ID', align: 'left', value: 'status', sortable: true, width:'10%' },
+            { text: 'ID', align: 'left', value: '_id', sortable: true, width:'10%' },
             {text: 'Username', align: 'left', sortable: false, value: 'username', width:'15%'},
             { text: 'Họ tên', align: 'left', value: 'id_user.name', sortable: false, width:'15%'},
             { text: 'Số điện thoại', align: 'left', value: 'address', sortable: false, width:'20%'},
             { text: 'Tin Đăng', align: 'left', value: 'address', sortable: false, width:'10%'},
-            { text: 'Tài Khoản', align: 'left', value: 'level', sortable: false,width:'10%'},
+            { text: 'Tài Khoản', align: 'left', value: 'amount', sortable: true,width:'10%'},
             { text: 'Action', align: 'left', value: '_id', sortable: false, width:'20%'}
         ],
         desserts: [],
@@ -109,17 +114,21 @@ import { parse } from 'url';
       }
     },
     created(){
-        axios({
+      this.initialize();
+    },
+
+    methods:{
+        initialize(){
+          axios({
             url: 'http://localhost:3000/user/',
             method: 'get',
             headers: {
               'x-access-token' : localStorage.getItem('token')
             }
-        })
-        .then(res => this.desserts = res.data)
-        .catch(err => console.log(err.message))
-    },
-    methods:{
+          })
+          .then(res => this.desserts = res.data)
+          .catch(err => console.log(err.message))
+        },
         classicModalHide() {
             this.classicModal = false;
         },
@@ -137,7 +146,7 @@ import { parse } from 'url';
                     'x-access-token' : localStorage.getItem('token') || null
                 },
             })
-            .then(res => this.desserts = res.data)
+            .then(res => this.initialize())
             .catch(err => console.log(err.message)) 
             this.classicModalHide();
         }

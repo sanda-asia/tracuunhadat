@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div class="wrapper" >
     <div id="javascriptComponents">
       <div class="md-layout">
         <div class="md-layout-item md-small-size-100">
@@ -14,7 +14,7 @@
                           <input type="password" v-model="passwordLogin" placeholder="Password">
                           <h6 class="error-alert">{{temp}}</h6>
                           <h6><a href="">Forot Password?</a></h6>
-                          <input type="button" @click="submitLogin" value="Sign in" />
+                          <input type="button"  @click="submitLogin" value="Sign in" />
                           <h6 @click="toRegister" class="create-account">Create New Account!</h6>
                       </v-form>
                       <v-form v-if="displayRegister" v-model="valid" ref="form" lazy-validation>
@@ -139,6 +139,19 @@ export default {
         ]
     };
   },
+  mounted(){
+    self = this;
+    window.addEventListener('keyup', function(event) {
+      if(event.keyCode == 27 ) {
+        self.classicModalHide();
+      }
+      if(event.keyCode == 13){
+        self.submitLogin();
+      }
+         // declared in your component methods
+    });
+  }
+  ,
   computed: {
      comparePassword () {
          return this.password !== this.confirm_password ? 'Passwords is not match':true;
@@ -160,80 +173,75 @@ export default {
       this.displayLogin = true;
       this.displayRegister = false;
     },
+
     submitLogin(){
-            if (this.$refs.formLogin.validate()){
-                return axios({
-                    method: 'post',
-                    data: {
-                        username: this.usernameLogin,
-                        password: this.passwordLogin,
-                    },
-                    url: 'http://localhost:3000/user/dang-nhap',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                })
-                .then((response) => {
-                    console.log(this.usernameLogin)
-                    console.log(this.passwordLogin)
-                    console.log(response.data)
-                    if (response.data.status === false) {
-                        this.temp = 'Username or Password is incorrect!'
-                    } else {
-                       this.temp = '';
-                       localStorage.setItem('token',response.data.token);
-                      //  swal(
-                      //       `Welcome ${response.data.data.username}!`,
-                      //       'Login success!',
-                      //       'success',
-                      //   );
-                      // this.classicModalHide()
-                      this.$router.go()
-                    }
-                }).catch((error) => {
-                    console.log(error);
-                })
-                
-            }
-        },
-        async submitRegister() {
-            
-            if (this.$refs.form.validate()) {
-                
-                // add proccess here
-                return axios({
-                    method: 'post',
-                    data: {
-                        username: this.username,
-                        email: this.email,
-                        password:this.password,
-                        address: this.address,
-                        phone_number: this.phone_number
-                    },
-                    url: 'http://localhost:3000/user/dang-ky',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                })
-                    .then(() => {
-                        swal(
-                            'Great!',
-                            'You have been successfully registered!',
-                            'success',
-                        );
-                        this.$refs.form.reset();
-                        // this.toLogin();
-                    })
-                        .catch((error) => {
-                            // const message = error.response.data.message;
-                            // this.$swal('Oh oo!', 'error');
-                        });
-            }
-            return true;
-        },
-        clear() {
-            this.$refs.form.reset();
-        },
+      if (this.$refs.formLogin.validate()){
+        return axios({
+          method: 'post',
+          data: {
+              username: this.usernameLogin,
+              password: this.passwordLogin,
+          },
+          url: 'http://localhost:3000/user/dang-nhap',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+        })
+        .then((response) => {
+          if (response.data.status === false) {
+              this.temp = 'Username or Password is incorrect!';
+              this.$refs.formLogin.reset()
+          } else {
+              this.temp = '';
+              localStorage.setItem('token',response.data.token);
+              swal({
+                title: 'Login successfully!',
+                text:`Welcome ${response.data.data.username}!`,
+                icon: 'success',
+                buttons: false,
+                timer: 1000
+              }).then(()=>{
+                // this.$refs.formLogin.reset()
+                this.$router.go()
+              });
+          }
+        }).catch((error) => {
+            console.log(error);
+        })
+      }
+    },
+    async submitRegister() {
+      if (this.$refs.form.validate()) {
+        return axios({
+          method: 'post',
+          data: {
+              username: this.username,
+              email: this.email,
+              password:this.password,
+              address: this.address,
+              phone_number: this.phone_number
+          },
+          url: 'http://localhost:3000/user/dang-ky',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+        })
+        .then(() => {
+          swal(
+              'Great!',
+              'You have been successfully registered!',
+              'success',
+          );
+          this.$refs.form.reset();
+          // this.toLogin();
+        })
+        .catch((error) => {
+            // const message = error.response.data.message;
+            // this.$swal('Oh oo!', 'error');
+        });
+      }
+      return true;
+    }
   }
 };
 </script>

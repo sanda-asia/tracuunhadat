@@ -4,7 +4,7 @@
         <div class="md-toolbar-section-start">
           <h3 class="md-title">
             <!-- Primary Color -->
-            <img style="width:50px" src="https://static.reverland.com/images/logo-r-white.svg"/>
+            <img @click="toHome" style="width:50px" src="https://static.reverland.com/images/logo-r-white.svg"/>
           </h3>
         </div>
         <div class="md-toolbar-section-end">
@@ -192,6 +192,7 @@ a.dropdown-item {
   top:0;
   height: 10vh;
   background-color: #2e5dad !important;
+  border-radius: 0px;
 }
 
 .md-list-item{
@@ -228,6 +229,14 @@ span.user-name {
     margin-left: 6px;
     text-transform: none;
 }
+
+.md-toolbar .dropdown-menu li > a:hover, .md-toolbar .dropdown-menu li > a:focus {
+  background-color:#2e5dad !important;
+  box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.2),
+              0 13px 24px -11px rgba(46, 93, 173, 0.6);
+}
+
+
 @media (min-width: 1200px){
 .md-toolbar-row, .section .container, .footer .container {
     max-width: 100%;

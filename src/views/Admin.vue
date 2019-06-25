@@ -2,8 +2,8 @@
   <div class="wrapper">
     <div class="md-layout-item tabs-customs">
       <tabs
-        :tab-name="['Dashboard', 'Blog', 'Rao Vặt', 'Người Dùng']"
-        :tab-icon="['dashboard', 'schedule', 'schedule','schedule']"
+        :tab-name="['Dashboard', 'Blog', 'Post management', 'User management']"
+        :tab-icon="['dashboard', 'schedule', 'list','assignment_ind']"
         plain
         flex-column
         nav-pills-icons

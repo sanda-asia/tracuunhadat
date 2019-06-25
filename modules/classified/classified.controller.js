@@ -149,15 +149,18 @@ module.exports = {
          let objectClassifiedDelete = await Classified.findById(req.params.id);
 
          // check author of post
-         if(req.user.data._id != objectClassifiedDelete.id_user){
+         //req.user.data._id != objectClassifiedDelete.id_user 
+         if(req.user.data.role == true){
+            // console.log(req.user.data.role);
             throw new Error('Action denied! You are not author of the post');
+            
          }
 
          await Classified.findOneAndDelete({_id:req.params.id});
 
          //delete id_classified in table user
          await User.findOneAndUpdate(
-            { _id:req.user.data._id },
+            { _id: objectClassifiedDelete.id_user },
             { $pull: {id_classified: req.params.id }
          });
 

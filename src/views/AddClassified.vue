@@ -215,6 +215,7 @@ export default {
         //     console.log(data)
         // }
         async submitPost(){
+            const that = this;
             if(this.title && this.price && this.area && this.content && 
             this.category && this.requirement && this.address && this.time_post && this.level){
                 let formData = new FormData();
@@ -246,10 +247,18 @@ export default {
                             'Bạn cần đăng nhập để đăng bài!',
                         );
                     }else{
-                        swal(
-                            'Tin đăng đã được gửi!',
-                        );
-                        this.$router.push({name: 'Home'})
+                        swal({
+                            title: "Successfully!",
+                            text: "Post has been sent.",
+                            icon: "success",
+                            timer: 1500,
+                            buttons: false
+                        }).then(function() {
+                            that.$router.push({
+                                name:'profile', 
+                                params:{id : that.$route.params.idUser}
+                            })
+                        });
                     }
                 })
                 .catch(function (error) {

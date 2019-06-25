@@ -1,7 +1,12 @@
 <template>
   <v-card>
     <v-card-title>
-      Quản lí tin rao vặt
+      <v-toolbar-title>Post management</v-toolbar-title>
+      <v-divider
+        class="mx-2"
+        inset
+        vertical
+      ></v-divider>
       <v-spacer></v-spacer>
       <v-text-field
         v-model="search"
@@ -30,6 +35,7 @@
             <md-button class="md-info md-sm" @click="showPost(props.item)" data-toggle="modal" data-target=".bd-example-modal-lg">Xem</md-button>
             <md-button class="md-success md-sm" v-if="props.item.status != 1" @click="approvedPost(props.item._id)">Duyệt tin</md-button>
             <md-button class="md-danger md-sm" v-if="props.item.status != 2" @click="refusePost(props.item._id)">Từ chối</md-button>
+            <md-button class="md-dark md-sm" @click="deletePost(props.item._id)">Xóa</md-button>
         </td>
       </template>
       <template v-slot:no-results>
@@ -58,7 +64,7 @@ import EventBus from '../../EventBus'
           },
           { text: 'Người đăng', align: 'left', value: 'id_user.name', sortable: false, width:'10%'},
           { text: 'Địa chỉ', align: 'left', value: 'address', sortable: false, width:'15%'},
-          { text: 'Level', align: 'left', value: 'level', sortable: false,width:'10%'},
+          { text: 'Level', align: 'left', value: 'level', sortable: true,width:'10%'},
           { text: 'Trạng Thái', align: 'left', value: 'status', sortable: true, width:'10%' },
           { text: 'Action', align: 'left', value: '_id', sortable: false, width:'25%'}
         ],
@@ -66,14 +72,17 @@ import EventBus from '../../EventBus'
       }
     },
     created(){
-        axios({
+        this.initalize();
+    },
+    methods:{
+        initalize(){
+          axios({
             url: 'http://localhost:3000/classified/all',
             method: 'get',
         })
         .then(res => this.desserts = res.data.data)
         .catch(err => console.log(err.message))
-    },
-    methods:{
+        },
         approvedPost(id){
             axios({
                 url: `http://localhost:3000/classified/posts-approve/${id}`,
@@ -82,7 +91,10 @@ import EventBus from '../../EventBus'
                   'x-access-token' : localStorage.getItem('token')
                 }
             })
-            .then(res => swal(`Tin đăng đã được duyêt!`))
+            .then(res => {
+              swal(`Tin đăng đã được duyêt!`);
+              this.initalize();
+              })
             .catch(err => console.log(err.message))
         },
         showPost(item){
@@ -96,9 +108,32 @@ import EventBus from '../../EventBus'
                   'x-access-token' : localStorage.getItem('token')
                 }
             })
-            .then(res => swal(`Tin đăng bị từ chối!`))
+            .then(res => {
+              swal(`Tin đăng bị từ chối!`);
+              this.initalize();
+            })
             .catch(err => console.log(err.message))
-        }
+        },
+        deletePost(id){
+            axios({
+                url: `http://localhost:3000/classified/posts/${id}`,
+                method: 'delete',
+                headers: {
+                  'x-access-token' : localStorage.getItem('token')
+                }
+            })
+            .then(res => {
+              swal({
+                title: "Deleted!",
+                text: "Post has been deleted.",
+                icon: "success",
+                buttons: false,
+                timer: 1500
+              });
+              this.initalize();
+            })
+            .catch(err => console.log(err.message))
+        },
     }
   }
 </script>

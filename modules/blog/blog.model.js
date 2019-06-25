@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 mongoose.set('useFindAndModify', false);
 const BlogSchema = mongoose.Schema({
     headerBlog: String,
+    // headerBlogSlug: String,
     content: String,
     province: String,
     imageSrc: [{

@@ -8,6 +8,7 @@ module.exports = {
         }
         const newBlog = new Blog({
             headerBlog: req.body.headerBlog,
+            // headerBlogSlug:, 
             content: req.body.content,
             province: req.body.province,
             author: req.body.author,

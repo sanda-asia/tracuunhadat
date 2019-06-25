@@ -6,7 +6,7 @@
       <div class="clearfix"></div>
       <div id="content">
         <router-view/>
-        <login :a="classicModel" v-on:changeModel="changeModel($event)" />
+        <login :a="classicModel" v-on:changeModel="changeModel($event)"/>
       </div>
     </div>
   </div>
