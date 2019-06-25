@@ -61,7 +61,7 @@
                       <div>
                           <p v-html="postDetail.content"></p>
                       </div>
-                      <fb-comment :url="`https://localhost:8080/rao-vat/${postDetail}`"></fb-comment>
+                      <fb-comment :url="`https://localhost:8080/rao-vat/${postDetail._id}`"></fb-comment>
                     </div>
 
                     <!-- Sidebar Widgets Column -->
@@ -76,7 +76,7 @@
                             <div class="d-lfex justify-content-center flex-column">
                               <div class="name_container">
                                 <div class="name">
-                                  <router-link :to="{name: 'profile', params:{id: postDetail.id_user._id}}">{{postDetail.id_user.fullname}}</router-link>
+                                  <router-link :to="{name: 'profile', params:{id: postDetail.id_user._id}}" data-dismiss="modal">{{postDetail.id_user.fullname}}</router-link>
                                 </div>
                               </div>
                               <div class="address">{{postDetail.id_user.address}}</div>
@@ -97,8 +97,8 @@
                             </div> -->
                             <div class="follow">
                               <!-- <div class="follow_btn" @click="showPhone">{{phone}}</div> -->
-                              <button type="button" class="btn btn-primary"  @click="showPhone">
-                                  {{phone}}
+                              <button type="button" class="btn btn-primary"  >
+                                  {{postDetail.id_user.phone_number}}
                               </button>
                             </div>
                           </div>

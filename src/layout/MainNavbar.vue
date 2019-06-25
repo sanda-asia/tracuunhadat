@@ -135,9 +135,6 @@ export default {
       this.isActive = false
       console.log('click out side')
     },
-    toLanding(){
-      this.$router.push('/landing');
-    },
     toHome(){
       this.$router.push('/');
     },

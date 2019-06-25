@@ -249,7 +249,7 @@ export default {
                         swal(
                             'Tin đăng đã được gửi!',
                         );
-                        router.push({name: 'Home'})
+                        this.$router.push({name: 'Home'})
                     }
                 })
                 .catch(function (error) {

@@ -74,9 +74,9 @@
                 <div class="row">
                      <div class="scroll-able">
                           <v-tabs v-model="active" slider-color="black">
-                            <v-tab v-for="(n) in requirement" :key="n" ripple>
-                              {{ n }}
-                            </v-tab>
+                            <v-tab ripple>Đã Duyệt</v-tab>
+                            <v-tab v-if="isUser" ripple>Chờ Duyệt</v-tab>
+                            <v-tab v-if="isUser" ripple>Từ Chối</v-tab>
                             <v-tab v-if="isUser" ripple>Lịch sử Giao dịch</v-tab>
                             <v-tab-item v-for="(n,index) in requirement" :key="n">
                               <v-card flat>
@@ -129,7 +129,7 @@
                                     :search="search"
                                     >
                                     <template v-slot:items="props">
-                                        <td class="text-xs-left">1</td>
+                                        <td class="text-xs-left">{{ props.item._id}}</td>
                                         <td class="text-xs-left">{{ props.item.transaction_content }}</td>
                                         <td class="text-xs-left">{{ (new Date( props.item.created_at)).toLocaleDateString() }}</td>
                                         <td class="text-xs-left">{{ props.item.transaction_amount.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') }}</td>
@@ -217,7 +217,7 @@ export default {
           { text: 'Ngày giao dịch', align: 'left', value: 'date', sortable: false, width:'20%'},
           { text: 'Số tiền', align: 'left', value: 'amount', sortable: false,width:'20%'}
         ],   
-        requirement: ['Tất Cả','Đã Duyệt', 'Chờ Duyệt','Từ Chối'],
+        requirement: ['Đã Duyệt', 'Chờ Duyệt','Từ Chối'],
         active: '',
         user: '',
         avatar: false,
@@ -238,10 +238,9 @@ export default {
         method: 'get',
       })
       .then(res => {
-        this.listClassified[0] = res.data.id_classified;
-        this.listClassified[1] = res.data.id_classified.filter(item => item.status == 1);
-        this.listClassified[2] = res.data.id_classified.filter(item => item.status == 0);
-        this.listClassified[3] = res.data.id_classified.filter(item => item.status == 2);
+        this.listClassified[0] = res.data.id_classified.filter(item => item.status == 1);
+        this.listClassified[1] = res.data.id_classified.filter(item => item.status == 0);
+        this.listClassified[2] = res.data.id_classified.filter(item => item.status == 2);
       })
       .catch(err => console.log(err.message))
     },
@@ -320,7 +319,6 @@ body{
 }
 
 .wrapper{
-  height: 997px;
   padding: 0 100px;
   overflow-y: scroll;
   background-color: white;
