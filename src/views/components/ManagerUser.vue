@@ -120,7 +120,7 @@ import { parse } from 'url';
     methods:{
         initialize(){
           axios({
-            url: 'http://localhost:3000/user/',
+            url: 'http://localhost:3000/api/user/',
             method: 'get',
             headers: {
               'x-access-token' : localStorage.getItem('token')
@@ -138,7 +138,7 @@ import { parse } from 'url';
         },
         recharge(){
             axios({
-                url: `http://localhost:3000/user/recharge/${this.user._id}`,
+                url: `http://localhost:3000/api/user/${this.user._id}/recharge`,
                 method: 'put',
                 data: {amount: this.amount},
                 headers: {

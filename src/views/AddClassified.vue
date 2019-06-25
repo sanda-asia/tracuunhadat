@@ -185,7 +185,7 @@ export default {
         //     console.log('data', formData, index, fileList);
         //     axios({
         //         method: 'POST',
-        //         url: `http://localhost:3000/user/${this.user._id}/upload`,
+        //         url: `http://localhost:3000/api/user/${this.user._id}/upload`,
         //         data: formData,
         //         headers: {
         //             'Content-Type': 'multipart/form-data',
@@ -233,7 +233,7 @@ export default {
                 formData.append('level', this.level);
                 await axios({
                     method: 'POST',
-                    url: 'http://localhost:3000/classified/posts',
+                    url: 'http://localhost:3000/api/classified',
                     data: formData,
                     headers: {
                         'Content-Type': 'application/json',

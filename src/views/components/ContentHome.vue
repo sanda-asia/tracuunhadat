@@ -46,7 +46,6 @@
 import PostDetail from './PostDetail'
 import axios from 'axios'
 import EventBus from '../../EventBus'
-
 export default {
   components: {
     PostDetail
@@ -65,7 +64,6 @@ export default {
     };
   },
   computed: {
-
     },
   created(){
     this.fetchCountPages();
@@ -91,7 +89,7 @@ export default {
       this.setNumberOfPage(this.countByTabs[index]);
       this.resetCurrentPage()
       axios({
-        url: `http://localhost:3000/classified/posts/${requirement}`,
+        url: `http://localhost:3000/api/classified/requirement/${requirement}`,
         method: 'get',
       })
       .then(res => this.listClassified = res.data.data)
@@ -99,7 +97,7 @@ export default {
       },
     fetchCountPages(){
       axios({
-        url: 'http://localhost:3000/classified/count-classified',
+        url: 'http://localhost:3000/api/classified/count-classified',
         method: 'get',
       }).then(res => {
         this.countByTabs = res.data.listCount
@@ -146,14 +144,12 @@ a.v-tabs__item {
     padding: 10px 0;
     border-bottom: 1px solid #ccc;
 }
-
 .m-header-poster{
     margin: 0 0 30px 0;
     text-align: left;
     padding-right: 15px;
     font-size: 16px;
 }
-
 .m-price-poster{
     float: left;
     width: 50%;
@@ -161,7 +157,6 @@ a.v-tabs__item {
     font-size: 18px;
     font-weight: bold;
 }
-
 .icon-bookmark{
     position: absolute;
     right: 50px;
@@ -173,9 +168,7 @@ a.v-tabs__item {
     height: auto;
     padding: 0;
 }
-
 .overflow-auto {
     transform: translateY(-152px);
 }
-
 </style>

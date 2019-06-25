@@ -22,14 +22,14 @@ const upload = multer({
 router.get('/', blogController.getListBlog);
 
 // Create blog
-router.post('/tao-blog', auth.checkAdmin, upload.array('images'), blogController.createBlog);
+router.post('/', auth.checkAdmin, upload.array('images'), blogController.createBlog);
 
 // Get blog by ID
 router.get('/:id', blogController.getBlogById);
 
 // Update blog
-router.patch('/:id/update', auth.checkAdmin, upload.array('images'), blogController.updateById);
+router.put('/:id', auth.checkAdmin, upload.array('images'), blogController.updateById);
 
 // Delete blog
-router.delete('/:id/delete', auth.checkAdmin, blogController.deleteBlog);
+router.delete('/:id', auth.checkAdmin, blogController.deleteBlog);
 module.exports = router;

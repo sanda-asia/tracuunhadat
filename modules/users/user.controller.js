@@ -144,6 +144,7 @@ module.exports = {
         });
         // res.json({status: true})
     },
+    
     recharge: async (req, res) =>{
         // console.log(req.params.id)
         let data = await User.findOne({_id: req.params.id}).select('amount');

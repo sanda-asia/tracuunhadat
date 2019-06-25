@@ -21,14 +21,14 @@ module.exports = app => {
 
     var cors = require('cors');
 
-    app.use('/user', cors(), userRouter);
+    app.use('/api/user', cors(), userRouter);
     // app.use('/setting', settingRouter);
     
-    app.use('/classified', cors(), classifiedRouter);
+    app.use('/api/classified', cors(), classifiedRouter);
 
-    app.use('/blog', cors(), blogRouter);
+    app.use('/api/blog', cors(), blogRouter);
 
-    app.use('/project', cors(), projectRouter);
+    app.use('/api/project', cors(), projectRouter);
 
     app.get('/', (req,res,next)=> res.json({"message": "Vao day lam gi?"}));
 

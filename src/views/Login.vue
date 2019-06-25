@@ -182,7 +182,7 @@ export default {
               username: this.usernameLogin,
               password: this.passwordLogin,
           },
-          url: 'http://localhost:3000/user/dang-nhap',
+          url: 'http://localhost:3000/api/user/login',
           headers: {
               'Content-Type': 'application/json',
           },
@@ -221,7 +221,7 @@ export default {
               address: this.address,
               phone_number: this.phone_number
           },
-          url: 'http://localhost:3000/user/dang-ky',
+          url: 'http://localhost:3000/api/user',
           headers: {
               'Content-Type': 'application/json',
           },

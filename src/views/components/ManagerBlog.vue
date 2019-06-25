@@ -86,7 +86,7 @@ import axios from 'axios'
     methods: {
       initialize () {
         axios({ 
-          url: 'http://localhost:3000/blog',
+          url: 'http://localhost:3000/api/blog',
           method: 'get',
           headers: {
             'x-access-token' : localStorage.getItem('token')
@@ -105,7 +105,7 @@ import axios from 'axios'
       },
 
       deleteItem (id_blog) {
-        let uri = `http://localhost:3000/blog/${id_blog}/delete`;
+        let uri = `http://localhost:3000/api/blog/${id_blog}`;
         let cf = confirm('Are you sure you want to delete this item?');
         if(cf){
           axios({ 

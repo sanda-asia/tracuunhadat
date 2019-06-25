@@ -18,29 +18,31 @@ const upload = multer({
 });
 
 // fetch all posts in classified
-router.get("/all", classifiedController.showAllListPost);
+router.get("/", classifiedController.showAllListPost);
 
 // return all posts approved or posts match query: search
 router.get("/posts-approved", classifiedController.showListPostAprroved); 
 
 router.get("/posts-pending", classifiedController.showListPostPending); //isAdmin
 
-// pagination with query: page
-router.get("/posts/:requirement", classifiedController.showPostApproved);
+// pagination with query: requirement
+// router.get("/:requirement", classifiedController.showPostApproved);
+router.get("/requirement/:requirement", classifiedController.showPostApproved);
+
 router.get("/count-classified",classifiedController.countClassified)
 
-router.get("/post-details/:id", classifiedController.showPostDetails);
+router.get("/:id", classifiedController.showPostDetails);
 
-router.post("/posts", auth.checkLogin, upload.array('images'), classifiedController.createPost); //auth
+router.post("/", auth.checkLogin, upload.array('images'), classifiedController.createPost); //auth
 
-router.put("/posts/:id", auth.checkLogin, classifiedController.updatePost); //auth
+router.put("/:id", auth.checkLogin, classifiedController.updatePost); //auth
 
-router.put("/posts-approve/:id", auth.checkAdmin, classifiedController.aprrovePost); //isAdmin
+router.put("/:id/approve", auth.checkAdmin, classifiedController.aprrovePost); //isAdmin
 
-router.put("/posts-refuse/:id", auth.checkAdmin, classifiedController.refusePost); //isAdmin
+router.put("/:id/refuse", auth.checkAdmin, classifiedController.refusePost); //isAdmin
 
-router.put("/save-post/:id",auth.checkLogin, classifiedController.savePost); //auth
+router.put("/:id/save",auth.checkLogin, classifiedController.savePost); //auth
 
-router.delete("/posts/:id",auth.checkLogin, classifiedController.deletePost); //auth
+router.delete("/:id",auth.checkLogin, classifiedController.deletePost); //auth
 
 module.exports = router;

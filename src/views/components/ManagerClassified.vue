@@ -77,7 +77,7 @@ import EventBus from '../../EventBus'
     methods:{
         initalize(){
           axios({
-            url: 'http://localhost:3000/classified/all',
+            url: 'http://localhost:3000/api/classified',
             method: 'get',
         })
         .then(res => this.desserts = res.data.data)
@@ -85,7 +85,7 @@ import EventBus from '../../EventBus'
         },
         approvedPost(id){
             axios({
-                url: `http://localhost:3000/classified/posts-approve/${id}`,
+                url: `http://localhost:3000/api/classified/${id}/approve`,
                 method: 'put',
                 headers: {
                   'x-access-token' : localStorage.getItem('token')
@@ -102,7 +102,7 @@ import EventBus from '../../EventBus'
         },
         refusePost(id){
           axios({
-                url: `http://localhost:3000/classified/posts-refuse/${id}`,
+                url: `http://localhost:3000/api/classified/${id}/refuse`,
                 method: 'put',
                 headers: {
                   'x-access-token' : localStorage.getItem('token')
@@ -116,7 +116,7 @@ import EventBus from '../../EventBus'
         },
         deletePost(id){
             axios({
-                url: `http://localhost:3000/classified/posts/${id}`,
+                url: `http://localhost:3000/api/classified/posts/${id}`,
                 method: 'delete',
                 headers: {
                   'x-access-token' : localStorage.getItem('token')

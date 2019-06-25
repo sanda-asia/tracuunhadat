@@ -60,7 +60,7 @@ export default{
                 formData.append('images', blobInfo.blob());
                 axios({
                     method: 'POST',
-                    url: `http://localhost:3000/user/5d076d7b4346db220c64aa86/upload`,
+                    url: `http://localhost:3000/api/user/5d076d7b4346db220c64aa86/upload`,
                     data: formData,
                     headers: {
                         'Content-Type': 'multipart/form-data',
@@ -102,11 +102,11 @@ export default{
          let url = ''
          let method = ''
          if(this.$props.item){
-            url = `http://localhost:3000/blog/${this.$props.item._id}/update`,
-            method = 'PATCH'
+            url = `http://localhost:3000/api/blog/${this.$props.item._id}`,
+            method = 'PUT'
          }
          else{
-            url = "http://localhost:3000/blog/tao-blog";
+            url = "http://localhost:3000/api/blog";
             method = 'POST'
          }
          axios({

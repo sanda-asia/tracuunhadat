@@ -140,7 +140,7 @@ export default {
   },
   methods: {
       initialize () {
-        axios.get('http://localhost:3000/blog')
+        axios.get('http://localhost:3000/api/blog')
           .then(res => this.blogs = res.data.listBlog)
           .catch(err => console.log(err));
       },

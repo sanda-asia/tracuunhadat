@@ -118,7 +118,7 @@ export default {
     methods: {
         initialize(){
             let blogId = this.$route.params.blogId; 
-            axios.get(`http://localhost:3000/blog/${blogId}`)
+            axios.get(`http://localhost:3000/api/blog/${blogId}`)
             .then(res => this.blog = res.data)
             .catch(err => console.log(err));
         }

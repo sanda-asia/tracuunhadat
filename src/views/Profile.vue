@@ -234,7 +234,7 @@ export default {
   methods: {
     fetchListPostApprove(){
       axios({
-        url: `http://localhost:3000/user/${this.$route.params.id}/list-classified`,
+        url: `http://localhost:3000/api/user/${this.$route.params.id}/list-classified`,
         method: 'get',
       })
       .then(res => {
@@ -246,7 +246,7 @@ export default {
     },
     fetchListTransaction(){
       axios({
-        url: `http://localhost:3000/user/${this.$route.params.id}/transaction`,
+        url: `http://localhost:3000/api/user/${this.$route.params.id}/transaction`,
         method: 'get',
         headers: {
             'Content-Type': 'application/json',
@@ -261,7 +261,7 @@ export default {
       EventBus.$emit('detailPost', post)
     },
     getProfile(){
-      axios.get(`http://localhost:3000/user/${this.$route.params.id}`)
+      axios.get(`http://localhost:3000/api/user/${this.$route.params.id}`)
       .then( res =>{
         this.user = res.data;
       })
@@ -279,7 +279,7 @@ export default {
     },
     updateUser(){
       axios({
-        url: `http://localhost:3000/user/${this.$route.params.id}`,
+        url: `http://localhost:3000/api/user/${this.$route.params.id}`,
         method: 'put',
         data: this.user,
         headers: {
