@@ -124,6 +124,7 @@ export default {
   },
   methods:{
     toggleProfile(){
+      console.log(this.user)
       if (this.profileClass=='profile-photo dropdown') {
         this.profileClass='profile-photo open dropdown show'
       }
@@ -216,7 +217,7 @@ ul.dropdown-menu.dropdown-menu-right {
 }
 .md-toolbar .profile-photo-small{
   border-radius: 0px;
-  width: 140px;
+  width: 130px;
 }
 .img-profile{
   width: 40px;

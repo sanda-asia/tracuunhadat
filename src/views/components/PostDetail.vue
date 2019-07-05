@@ -47,7 +47,7 @@
                       <div class="m-text-description-poster"> 
                           <div class="m-price-poster"><i class="fas fa-money-bill-wave"></i>{{postDetail.price.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}}</div>
                           <div class="area-poster">
-                            <span class="icon-frame"></span>
+                            <i class="fas fa-chart-area"></i>
                             {{postDetail.area}}m<sup>2</sup>
                           </div>
                           <div class="box-icon">
@@ -129,7 +129,21 @@ export default {
   },
   data(){
     return{
-      postDetail: null,
+      postDetail: {
+        _id: '',
+        title: '',
+        images: '',
+        price: '',
+        area: '',
+        address: '',
+        content: '',
+        id_user: {
+          _id: '',
+          avatar: '',
+        }
+
+
+      },
       phone : 'Nhấn để hiển thị số'
       // url_comment: `http://localhost:8080/rao-vat/`,
     }
@@ -199,7 +213,14 @@ export default {
 .icon-bookmark{
     font-size: 30px;
 }
+i.fas.fa-money-bill-wave {
+    margin-right: 10px;
+}
 
+i.fas.fa-map-marked {
+    font-size: 20px;
+    margin-right: 9px;
+}
 .m-price-poster{
     float: left;
     width: 50%;
@@ -225,7 +246,11 @@ export default {
 .m-text-description-poster{
   margin: 25px 0;
 }
-
+i.fas.fa-chart-area {
+    font-size: 20px;
+    color: #2e9b47;
+    margin-right: 7px;
+}
 @media only screen and (min-width: 1264px){
 .container {
     max-width: 100%;
@@ -310,9 +335,7 @@ export default {
 				content: "\f234";
 				font-weight: 600;
 				margin-right: 5px;
-			
-
-
+		
 			}
 			.follow_btn:hover{
 				background: #f39c12;

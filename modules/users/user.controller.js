@@ -127,7 +127,10 @@ module.exports = {
 
     upload: (req, res) =>{
         let updateImg = {
-            avatar : req.file.filename
+            // avatar : req.file.filename
+            $push:{
+                photo_library: req.file.filename
+            }
         };
 
         // console.log(arrImg)

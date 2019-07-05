@@ -10,7 +10,7 @@
                       <v-form v-if="displayLogin" class="box" ref="formLogin" lazy-validation>
                           <h1>Login</h1>
                           <h5>Welcome back !</h5>
-                          <input type="text" v-model="usernameLogin" placeholder="Username">
+                          <input type="text" v-model="usernameLogin" autofocus placeholder="Username">
                           <input type="password" v-model="passwordLogin" placeholder="Password">
                           <h6 class="error-alert">{{temp}}</h6>
                           <h6><a href="">Forot Password?</a></h6>

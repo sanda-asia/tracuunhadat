@@ -116,7 +116,7 @@ import EventBus from '../../EventBus'
         },
         deletePost(id){
             axios({
-                url: `http://localhost:3000/api/classified/posts/${id}`,
+                url: `http://localhost:3000/api/classified/${id}`,
                 method: 'delete',
                 headers: {
                   'x-access-token' : localStorage.getItem('token')

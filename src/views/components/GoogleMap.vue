@@ -3,7 +3,7 @@
     <gmap-map
       :center="center"
       :zoom="12"
-      style="width:100%; height: 100vh"
+      style="width:100%; height: 90vh"
     >
       <gmap-marker
         :key="index"
@@ -25,6 +25,7 @@ export default {
       center: { lat: 45.508, lng: -73.587 },
       markers: [],
       places: [],
+      index : 'AIzaSyBSOBilwWBex-kEZDen4PyUJdCzf6BciaE',
       currentPlace: null
     };
   },

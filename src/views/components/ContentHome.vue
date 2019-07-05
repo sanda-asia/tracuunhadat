@@ -1,11 +1,11 @@
 <template>
   <div class="scroll-able">
     <v-tabs v-model="active_tab" slider-color="black">
-      <v-tab v-for="(n, index) in requirement" :key="index" ripple @click="fetchPost(index, n)" >
+      <v-tab v-for="(n, index) in requirement" :key="index" ripple @click="changeTabAction(index, n)" >
         <router-link v-if="index == 0" :to="{name:'home'}"> {{ n }}</router-link>
         <router-link v-if="index != 0" :to="{name:'FillByTab', params:{tab:key_tab[index]}}"> {{ n }}</router-link>
       </v-tab>
-      <v-tab-item v-for="(n, index) in requirement" :key="index">
+      <v-tab-item class="content-list" v-for="(n, index) in requirement" :key="index">
         <v-card flat>
           <div class="results-list">
             <div v-for="(post) in listClassified" :key="post._id" class="row row-post">
@@ -16,11 +16,11 @@
                 </div>
                 <div class="col-8 description-poster" >
                     <button type="button" data-toggle="modal" data-target=".bd-example-modal-lg" @click="showDetail(post)">
-                        <h4 class="m-header-poster">{{post.title}}</h4>
+                        <h3 class="m-header-poster">{{post.title}}</h3>
                     </button>
                     <div class="m-text-description-poster"> 
                         <div class="m-price-poster"><i class="fas fa-money-bill-wave"></i> {{post.price.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}} VND</div>
-                        <div class="area-poster"><span class="icon-frame"></span>
+                        <div class="area-poster"><i class="fas fa-chart-area"></i>
                             {{post.area}}m<sup>2</sup>
                         </div>    
                         <div class="clearfix"></div>
@@ -28,16 +28,19 @@
                           <i class="fas fa-map-marked"></i> {{post.address}}
                         </div>
                     </div>
-                    <i class="far fa-bookmark icon-bookmark" ></i>
+                    <!-- <i class="far fa-bookmark icon-bookmark" ></i> -->
                 </div>
             </div>
+            <div class="overflow-auto">
+             <b-pagination-nav :link-gen="linkGen" align="center" :number-of-pages="numberOfPage" use-router  v-model="currentPage" ></b-pagination-nav>
+            </div>
+            <div class="empty-box"></div>
           </div>
         </v-card>
       </v-tab-item>
     </v-tabs>
-    <div class="overflow-auto">
-      <b-pagination-nav :link-gen="linkGen" align="center" :number-of-pages="numberOfPage" use-router  v-model="currentPage" ></b-pagination-nav>
-    </div>
+    
+    
     <post-detail/>
   </div>
 </template>
@@ -69,6 +72,10 @@ export default {
     this.fetchCountPages();
   },
   methods: {
+    changeTabAction(index, post) {
+      this.fetchPost(index, post);
+      this.resetCurrentPage();
+    },
     setNumberOfPage(number){
       if (number == 0|| number == null) {
         this.numberOfPage = 1;
@@ -87,20 +94,19 @@ export default {
     },
     fetchPost(index, requirement){
       this.setNumberOfPage(this.countByTabs[index]);
-      this.resetCurrentPage()
-      axios({
-        url: `http://localhost:3000/api/classified/requirement/${requirement}`,
-        method: 'get',
-      })
-      .then(res => this.listClassified = res.data.data)
+      axios.get(`http://localhost:3000/api/classified/requirement/${requirement}/${this.currentPage}`
+      )
+      .then(res => {
+        this.listClassified = res.data.data
+        })
       .catch(err => console.log(err.message))
       },
     fetchCountPages(){
-      axios({
-        url: 'http://localhost:3000/api/classified/count-classified',
-        method: 'get',
-      }).then(res => {
+      axios.get('http://localhost:3000/api/classified/count-classified'
+      ).then(res => {
         this.countByTabs = res.data.listCount
+        console.log(this.countByTabs)
+        this.setNumberOfPage(this.countByTabs[this.active_tab]);
         })
         .catch(err => console.log(err.message))
     }
@@ -125,11 +131,21 @@ export default {
     }
     this.active_tab = index;
     this.fetchPost(index,this.requirement[this.active_tab])
+    
+  },
+  watch: {
+    currentPage:function(newVal, oldVal){
+      this.fetchPost(this.active_tab, this.requirement[this.active_tab]);
+
+    },
+    active_tab:function(newVal, oldVal){
+      this.resetCurrentPage()
+    }
   }
 };
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 .results-list{
     height: 96vh;
     overflow-y: scroll;
@@ -145,10 +161,43 @@ a.v-tabs__item {
     border-bottom: 1px solid #ccc;
 }
 .m-header-poster{
-    margin: 0 0 30px 0;
+    margin: 0 0 15px 0;
     text-align: left;
     padding-right: 15px;
-    font-size: 16px;
+}
+i.fas.fa-chart-area {
+    font-size: 20px;
+    color: #2e9b47;
+    margin-right: 7px;
+}
+
+i.fas.fa-money-bill-wave {
+    margin-right: 10px;
+}
+
+i.fas.fa-map-marked {
+    margin-right: 13px;
+    margin-top: 5px;
+    font-size: 19px;
+}
+
+.address-poster {
+    overflow-x: hidden;
+}
+
+.m-price-poster {
+    width: 60% !important;
+}
+ .empty-box {
+    height: 91px;
+}
+.overflow-auto {
+    margin-top: 10px;
+}
+
+span.page-link {
+    font-size: 18px !important;
+    border: 1px solid lightgrey !important;
 }
 .m-price-poster{
     float: left;
@@ -167,8 +216,18 @@ a.v-tabs__item {
     width: 100%;
     height: auto;
     padding: 0;
+    max-height: 140px;
+    overflow: hidden;
+}
+.img-poster button {
+  height: 100%;
+  width: 100%;
+}
+.img-poster button img{
+  height: 100%;
+  width: 100%;
 }
 .overflow-auto {
-    transform: translateY(-152px);
+
 }
 </style>

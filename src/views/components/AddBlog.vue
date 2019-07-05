@@ -38,6 +38,7 @@
 import provinces from './../../data.json'
 import axios from 'axios'
 import Editor from '@tinymce/tinymce-vue'
+import jwt_decode from 'jwt-decode'
 export default{
    props: ['item'],
    components: {
@@ -45,6 +46,7 @@ export default{
    },
    data(){
       return{
+         user_id: jwt_decode(localStorage.getItem('token')).data._id,
          headerBlog: '',
          content: '',
          images: [],
@@ -55,12 +57,12 @@ export default{
             plugins: 'print preview fullpage powerpaste searchreplace autolink directionality advcode visualblocks visualchars fullscreen image link media mediaembed template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount tinymcespellchecker a11ychecker imagetools textpattern help formatpainter permanentpen pageembed tinycomments mentions linkchecker',
             toolbar: 'formatselect | bold italic strikethrough forecolor backcolor permanentpen formatpainter | link image media pageembed | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent | removeformat | addcomment',
             image_advtab: true,
-            images_upload_handler: function (blobInfo, success, failure) {
-                let formData = new FormData();
-                formData.append('images', blobInfo.blob());
-                axios({
+            images_upload_handler: (blobInfo, success, failure) => {
+                let formData = new FormData();  
+                formData.append('image', blobInfo.blob());
+                axios({ 
                     method: 'POST',
-                    url: `http://localhost:3000/api/user/5d076d7b4346db220c64aa86/upload`,
+                    url: `http://localhost:3000/api/user/${this.user_id}/upload`,
                     data: formData,
                     headers: {
                         'Content-Type': 'multipart/form-data',
@@ -69,7 +71,7 @@ export default{
                 })
                 .then(function (response) {
                     console.log(response);
-                    success(`http://localhost:3000/upload/users/${response.data.name_images[0]}`)
+                    success(`http://localhost:3000/upload/users/${response.data.name_images}`)
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -85,7 +87,7 @@ export default{
          this.content = this.$props.item.content;
          this.author = this.$props.item.author; 
          this.province = this.$props.item.province;
-      }
+      }  
    },
 
    methods : {

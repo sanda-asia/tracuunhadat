@@ -311,8 +311,10 @@ module.exports = {
 
    showPostApproved: async(req, res)=>{
       try {
+         console.log(req.params.page)
          let requirement = req.params.requirement || null;
-         let pageNumber = parseInt(req.query.page) || 1;
+         let pageNumber = parseInt(req.params.page) || 1;
+         console.log(requirement);
          let numberOfItems = 4;
          let begin = (pageNumber - 1) * numberOfItems;
          let listPost = []
@@ -341,11 +343,11 @@ module.exports = {
    countClassified: async (req, res, next) => {
       var requirement= ['Tất Cả','Cần Mua', 'Cần Bán','Cho Thuê', 'Cần Thuê'];
       var listCount =[];
-      await Classified.countDocuments({}, function(err, count) {
+      await Classified.countDocuments({status: 1}, function(err, count) {
          listCount[0]= count;
       });
       for(var i=1; i<requirement.length;i++) {
-         await Classified.countDocuments({requirement: requirement[i]}).then(count =>{
+         await Classified.countDocuments({requirement: requirement[i], status : 1}).then(count =>{
             listCount[i]= count;
          })   
       }

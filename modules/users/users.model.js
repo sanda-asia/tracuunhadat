@@ -12,6 +12,9 @@ const UserSchema = mongoose.Schema({
     amount: Number,
     role: Boolean, // 1, khach hang 0-admin,
     show_agency: Number, // 0: không hiển thị, 1: đang chờ duyệt, 2: hiển thị
+    photo_library: [{
+        type: String
+    }],
     transaction:[{
         _id:  mongoose.Schema.Types.ObjectId,
         transaction_amount: Number,
