@@ -27,8 +27,8 @@ const ProjectSchema = mongoose.Schema({
             type: Date,
             default: Date.now
         },
-
     }],
+    
     img_url: [{
         type: String
     }],
