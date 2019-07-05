@@ -83,6 +83,10 @@ export default {
         this.numberOfPage = Math.ceil(number/12);
       }
     },
+    resetContentHome(){
+      this.currentPage = 1;
+      this.active_tab = 0;
+    },
     resetCurrentPage(){
       this.currentPage = 1;
     },

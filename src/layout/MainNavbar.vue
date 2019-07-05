@@ -104,7 +104,8 @@ export default {
     return {
       exitsToken : localStorage.getItem('token') || null,
       user: '',
-      profileClass: "profile-photo dropdown"
+      profileClass: "profile-photo dropdown",
+      goHome: false
     };
   },
   created(){
@@ -138,6 +139,7 @@ export default {
     },
     toHome(){
       this.$router.push('/');
+      this.goHome=true
     },
     toLogin(){
       this.$router.push('/login');
